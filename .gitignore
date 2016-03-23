@@ -5,3 +5,4 @@
 /WordPressUWP/obj
 /WordPressUWP/bin
 *.suo
+/WordPressUWP/.vs/config/applicationhost.config
