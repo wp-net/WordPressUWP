@@ -36,5 +36,25 @@ namespace WordPressUWP
             return result;
         }
 
+        public async Task<Post> GetPost(String id)
+        {
+            Post result = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Endpoint);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = await client.GetAsync($"posts/{id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("success");
+                    var responseString = await response.Content.ReadAsStringAsync();
+                    result = JsonConvert.DeserializeObject<Post>(responseString);
+                }
+            }
+            return result;
+        }
+
     }
 }
