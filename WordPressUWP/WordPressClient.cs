@@ -15,20 +15,20 @@ namespace WordPressUWP
     {
         public String Endpoint { get; set; }
 
+        public WordPressClient(String endpoint)
+        {
+            Endpoint = endpoint;
+        }
 
-        public async Task<List<Post>> ListPosts(int page = 1, int per_page = 10, int offset = 0, OrderBy orderby = OrderBy.date)
+
+        public async Task<List<Post>> ListPosts(int page = 1, int per_page = 10, int offset = 0, Post.OrderBy orderby = Post.OrderBy.date)
         {
             List<Post> result = null;
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(Endpoint);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = await client.GetAsync("posts");
+                var response = await client.GetAsync($"{Endpoint}posts");
                 if (response.IsSuccessStatusCode)
                 {
-                    Debug.WriteLine("success");
                     var responseString = await response.Content.ReadAsStringAsync();
                     result = JsonConvert.DeserializeObject<List<Post>>(responseString);
                 }
@@ -41,20 +41,46 @@ namespace WordPressUWP
             Post result = null;
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(Endpoint);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = await client.GetAsync($"posts/{id}");
+                var response = await client.GetAsync($"{Endpoint}posts/{id}");
                 if (response.IsSuccessStatusCode)
                 {
-                    Debug.WriteLine("success");
                     var responseString = await response.Content.ReadAsStringAsync();
                     result = JsonConvert.DeserializeObject<Post>(responseString);
                 }
             }
             return result;
         }
+
+        public async Task<List<Comment>> ListComments()
+        {
+            List<Comment> result = null;
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync($"{Endpoint}comments");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseString = await response.Content.ReadAsStringAsync();
+                    result = JsonConvert.DeserializeObject<List<Comment>>(responseString);
+                }
+            }
+            return result;
+        }
+
+        public async Task<Comment> GetComment(String id)
+        {
+            Comment result = null;
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync($"{Endpoint}comment/{id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseString = await response.Content.ReadAsStringAsync();
+                    result = JsonConvert.DeserializeObject<Comment>(responseString);
+                }
+            }
+            return result;
+        }
+
 
     }
 }
