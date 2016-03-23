@@ -16,7 +16,7 @@ namespace WordPressUWP
         public String Endpoint { get; set; }
 
 
-        public async Task<List<Post>> ListPosts()
+        public async Task<List<Post>> ListPosts(int page = 1, int per_page = 10, int offset = 0, OrderBy orderby = OrderBy.date)
         {
             List<Post> result = null;
             using (var client = new HttpClient())
@@ -34,7 +34,6 @@ namespace WordPressUWP
                 }
             }
             return result;
-
         }
 
     }
