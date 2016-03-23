@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 
 namespace WordPressUWP.Models
 {
-    public class Content
-    {
-        public string rendered { get; set; }
-    }
+	public class Content
+	{
+		public string Rendered { get; set; }
+	}
 
-    public class Self
-    {
-        public string href { get; set; }
-    }
+	public class Self
+	{
+		public string Href { get; set; }
+	}
 
-
-    public class Collection
-    {
-        public string href { get; set; }
-    }
+	public class Collection
+	{
+		public string Href { get; set; }
+	}
 }
