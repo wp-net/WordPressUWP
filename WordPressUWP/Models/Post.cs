@@ -7,132 +7,150 @@ using System.Threading.Tasks;
 
 namespace WordPressUWP.Models
 {
-    public class Post
-    {
-        [JsonProperty("id")]
-        public int id { get; set; }
-        [JsonProperty("date")]
-        public DateTime date { get; set; }
-        [JsonProperty("date_gmt")]
-        public DateTime date_gmt { get; set; }
-        [JsonProperty("guid")]
-        public Guid guid { get; set; }
-        [JsonProperty("modified")]
-        public string modified { get; set; }
-        [JsonProperty("modified_gmt")]
-        public string modified_gmt { get; set; }
-        [JsonProperty("slug")]
-        public string slug { get; set; }
-        [JsonProperty("type")]
-        public string type { get; set; }
-        [JsonProperty("link")]
-        public string link { get; set; }
-        [JsonProperty("title")]
-        public Title title { get; set; }
-        [JsonProperty("content")]
-        public Content content { get; set; }
-        [JsonProperty("excerpt")]
-        public Excerpt excerpt { get; set; }
-        [JsonProperty("author")]
-        public int author { get; set; }
-        [JsonProperty("featured_image")]
-        public int featured_image { get; set; }
-        [JsonProperty("comment_status")]
-        public string comment_status { get; set; }
-        [JsonProperty("ping_status")]
-        public string ping_status { get; set; }
-        [JsonProperty("sticky")]
-        public bool sticky { get; set; }
-        [JsonProperty("format")]
-        public string format { get; set; }
+	public class Post
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
 
-        //public Links _links { get; set; }
+		[JsonProperty("date")]
+		public DateTime Date { get; set; }
 
-        public enum OrderBy
-        {
-            date, id, include, title, slug
-        }
+		[JsonProperty("date_gmt")]
+		public DateTime DateGmt { get; set; }
 
-    }
-    public class Guid
-    {
-        [JsonProperty("rendered")]
-        public string rendered { get; set; }
-    }
+		[JsonProperty("guid")]
+		public Guid Guid { get; set; }
 
-    public class Title
-    {
-        [JsonProperty("rendered")]
-        public string rendered { get; set; }
-    }
+		[JsonProperty("modified")]
+		public string Modified { get; set; }
 
+		[JsonProperty("modified_gmt")]
+		public string ModifiedGmt { get; set; }
 
+		[JsonProperty("slug")]
+		public string Slug { get; set; }
 
-    public class Excerpt
-    {
-        [JsonProperty("rendered")]
-        public string rendered { get; set; }
-    }
+		[JsonProperty("type")]
+		public string Type { get; set; }
 
+		[JsonProperty("link")]
+		public string Link { get; set; }
 
+		[JsonProperty("title")]
+		public Title Title { get; set; }
 
-    public class About
-    {
-        [JsonProperty("href")]
-        public string href { get; set; }
-    }
+		[JsonProperty("content")]
+		public Content Content { get; set; }
 
-    public class Author
-    {
-        [JsonProperty("embeddable")]
-        public bool embeddable { get; set; }
-        [JsonProperty("href")]
-        public string href { get; set; }
-    }
+		[JsonProperty("excerpt")]
+		public Excerpt Excerpt { get; set; }
 
-    public class Reply
-    {
-        [JsonProperty("embeddable")]
-        public bool embeddable { get; set; }
-        [JsonProperty("href")]
-        public string href { get; set; }
-    }
+		[JsonProperty("author")]
+		public int Author { get; set; }
 
-    public class VersionHistory
-    {
-        [JsonProperty("href")]
-        public string href { get; set; }
-    }
+		[JsonProperty("featured_image")]
+		public int FeaturedImage { get; set; }
 
-    public class HttpsApiWOrgFeaturedmedia
-    {
-        [JsonProperty("embeddable")]
-        public bool embeddable { get; set; }
-        [JsonProperty("href")]
-        public string href { get; set; }
-    }
+		[JsonProperty("comment_status")]
+		public string CommentStatus { get; set; }
 
-    public class HttpsApiWOrgAttachment
-    {
-        [JsonProperty("href")]
-        public string href { get; set; }
-    }
+		[JsonProperty("ping_status")]
+		public string PingStatus { get; set; }
 
-    public class HttpsApiWOrgTerm
-    {
-        public string taxonomy { get; set; }
-        [JsonProperty("embeddable")]
-        public bool embeddable { get; set; }
-        [JsonProperty("href")]
-        public string href { get; set; }
-    }
+		[JsonProperty("sticky")]
+		public bool Sticky { get; set; }
 
-    public class HttpsApiWOrgMeta
-    {
-        [JsonProperty("embeddable")]
-        public bool embeddable { get; set; }
-        [JsonProperty("href")]
-        public string href { get; set; }
-    }
+		[JsonProperty("format")]
+		public string Format { get; set; }
 
+		//public Links _links { get; set; }
+
+		public enum OrderBy
+		{
+			date, id, include, title, slug
+		}
+	}
+
+	public class Guid
+	{
+		[JsonProperty("rendered")]
+		public string Rendered { get; set; }
+	}
+
+	public class Title
+	{
+		[JsonProperty("rendered")]
+		public string Rendered { get; set; }
+	}
+
+	public class Excerpt
+	{
+		[JsonProperty("rendered")]
+		public string Rendered { get; set; }
+	}
+
+	public class About
+	{
+		[JsonProperty("href")]
+		public string Href { get; set; }
+	}
+
+	public class Author
+	{
+		[JsonProperty("embeddable")]
+		public bool Embeddable { get; set; }
+
+		[JsonProperty("href")]
+		public string Href { get; set; }
+	}
+
+	public class Reply
+	{
+		[JsonProperty("embeddable")]
+		public bool Embeddable { get; set; }
+
+		[JsonProperty("href")]
+		public string Href { get; set; }
+	}
+
+	public class VersionHistory
+	{
+		[JsonProperty("href")]
+		public string Href { get; set; }
+	}
+
+	public class HttpsApiWOrgFeaturedmedia
+	{
+		[JsonProperty("embeddable")]
+		public bool Embeddable { get; set; }
+
+		[JsonProperty("href")]
+		public string Href { get; set; }
+	}
+
+	public class HttpsApiWOrgAttachment
+	{
+		[JsonProperty("href")]
+		public string Href { get; set; }
+	}
+
+	public class HttpsApiWOrgTerm
+	{
+		public string Taxonomy { get; set; }
+
+		[JsonProperty("embeddable")]
+		public bool Embeddable { get; set; }
+
+		[JsonProperty("href")]
+		public string Href { get; set; }
+	}
+
+	public class HttpsApiWOrgMeta
+	{
+		[JsonProperty("embeddable")]
+		public bool Embeddable { get; set; }
+
+		[JsonProperty("href")]
+		public string Href { get; set; }
+	}
 }
