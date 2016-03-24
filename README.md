@@ -15,22 +15,25 @@ We plan on making WordPressUWP available through Nuget as soon as we reach a Bet
 
 ## Using the API Wrapper
 
-    // Initialize
-    var client = new WordPressClient("http://demo.wp-api.org/wp-json/wp/v2/");
+```c#
+// Initialize
+var client = new WordPressClient("http://demo.wp-api.org/wp-json/wp/v2/");
+
+// Posts
+var posts = await client.ListPosts();
+var postbyid = await client.GetPost(id);
+
+// Comments
+var comments = await client.ListComments();
+var commentbyid = await client.GetComment(id);
+
+// Users
+// Basic authentication - not recommended for production use
+client.Username = TheUserName;
+client.Password = TheUserPassword;
+var currentuser = await client.GetCurrentUser();
+```
     
-    // Posts
-    var posts = await client.ListPosts();
-    var postbyid = await client.GetPost(id);
-    
-    // Comments
-    var comments = await client.ListComments();
-    var commentbyid = await client.GetComment(id);
-    
-    // Users
-    // Basic authentication - not recommended for production use
-    client.Username = TheUserName;
-    client.Password = TheUserPassword;
-    var currentuser = await client.GetCurrentUser();
 
 The full documentation will be made available here (but isn't yet...) 
 http://thomaspe.github.io/WordPressUWP
