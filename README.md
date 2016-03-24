@@ -29,7 +29,7 @@ var commentbyid = await client.GetComment(id);
 
 // Users
 // Basic authentication - not recommended for production use
-client.Username = "TheUserNam"e;
+client.Username = "TheUserName";
 client.Password = "TheUserPassword";
 var currentuser = await client.GetCurrentUser();
 ```
