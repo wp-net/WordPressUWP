@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPressUWP", "WordPressUWP.csproj", "{FC787BDB-9CC9-440F-971F-76452D5F300E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPressUWPTestApp", "..\WordPressUWPTestApp\WordPressUWPTestApp.csproj", "{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,26 @@ Global
 		{FC787BDB-9CC9-440F-971F-76452D5F300E}.Release|x64.Build.0 = Release|x64
 		{FC787BDB-9CC9-440F-971F-76452D5F300E}.Release|x86.ActiveCfg = Release|x86
 		{FC787BDB-9CC9-440F-971F-76452D5F300E}.Release|x86.Build.0 = Release|x86
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Debug|ARM.ActiveCfg = Debug|ARM
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Debug|ARM.Build.0 = Debug|ARM
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Debug|ARM.Deploy.0 = Debug|ARM
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Debug|x64.ActiveCfg = Debug|x64
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Debug|x64.Build.0 = Debug|x64
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Debug|x64.Deploy.0 = Debug|x64
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Debug|x86.ActiveCfg = Debug|x86
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Debug|x86.Build.0 = Debug|x86
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Debug|x86.Deploy.0 = Debug|x86
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Release|Any CPU.ActiveCfg = Release|x86
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Release|ARM.ActiveCfg = Release|ARM
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Release|ARM.Build.0 = Release|ARM
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Release|ARM.Deploy.0 = Release|ARM
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Release|x64.ActiveCfg = Release|x64
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Release|x64.Build.0 = Release|x64
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Release|x64.Deploy.0 = Release|x64
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Release|x86.ActiveCfg = Release|x86
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Release|x86.Build.0 = Release|x86
+		{959EB394-CE19-4F9C-BB4A-C847A6E7ED51}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
