@@ -67,7 +67,7 @@ namespace WordPressUWP
 
 		public async Task<Comment> GetComment(string id)
 		{
-			return await GetRequest<Comment>($"comment/{id}").ConfigureAwait(false);
+			return await GetRequest<Comment>($"comments/{id}").ConfigureAwait(false);
 		}
         #endregion
 
