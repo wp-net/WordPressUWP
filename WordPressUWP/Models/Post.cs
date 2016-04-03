@@ -9,8 +9,6 @@ namespace WordPressUWP.Models
 {
 	public class Post
 	{
-		[JsonProperty("id")]
-		public int Id { get; set; }
 
 		[JsonProperty("date")]
 		public DateTime Date { get; set; }
@@ -21,23 +19,33 @@ namespace WordPressUWP.Models
 		[JsonProperty("guid")]
 		public Guid Guid { get; set; }
 
-		[JsonProperty("modified")]
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("modified")]
 		public string Modified { get; set; }
 
 		[JsonProperty("modified_gmt")]
 		public string ModifiedGmt { get; set; }
 
-		[JsonProperty("slug")]
+        [JsonProperty("password")]
+        public string Password { get; set; }
+
+        [JsonProperty("slug")]
 		public string Slug { get; set; }
 
-		[JsonProperty("type")]
+        // One of: publish, future, draft, pending, private
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
+        [JsonProperty("type")]
 		public string Type { get; set; }
 
-		[JsonProperty("link")]
-		public string Link { get; set; }
+        [JsonProperty("title")]
+        public Title Title { get; set; }
 
-		[JsonProperty("title")]
-		public Title Title { get; set; }
+        [JsonProperty("link")]
+		public string Link { get; set; }
 
 		[JsonProperty("content")]
 		public Content Content { get; set; }
@@ -48,10 +56,11 @@ namespace WordPressUWP.Models
 		[JsonProperty("author")]
 		public int Author { get; set; }
 
-		[JsonProperty("featured_image")]
-		public int FeaturedImage { get; set; }
+		[JsonProperty("featured_media")]
+		public int FeaturedMedia { get; set; }
 
-		[JsonProperty("comment_status")]
+        // One of: open, closed
+        [JsonProperty("comment_status")]
 		public string CommentStatus { get; set; }
 
 		[JsonProperty("ping_status")]
@@ -60,12 +69,17 @@ namespace WordPressUWP.Models
 		[JsonProperty("sticky")]
 		public bool Sticky { get; set; }
 
-		[JsonProperty("format")]
+        // One of: standard, aside, chat, gallery, link, image, quote, status, video, audio
+        [JsonProperty("format")]
 		public string Format { get; set; }
 
-		//public Links _links { get; set; }
+        [JsonProperty("categories")]
+        public int[] Categories { get; set; }
 
-		public enum OrderBy
+        [JsonProperty("tags")]
+        public int[] Tags { get; set; }
+
+        public enum OrderBy
 		{
 			date, id, include, title, slug
 		}
