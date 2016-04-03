@@ -13,26 +13,26 @@ namespace WordPressUWP
 {
 	public class WordPressClient
 	{
-		private readonly string _endpoint;
+		private readonly string _wordPressUri;
 
-		public WordPressClient(string endpoint)
+		public WordPressClient(string uri)
 		{
-			if (string.IsNullOrWhiteSpace(endpoint))
+			if (string.IsNullOrWhiteSpace(uri))
 			{
-				throw new ArgumentNullException(nameof(endpoint));
+				throw new ArgumentNullException(nameof(uri));
 			}
 
-			if (!endpoint.EndsWith("/"))
+			if (!uri.EndsWith("/"))
 			{
-				endpoint += "/";
+				uri += "/";
 			}
 
-			_endpoint = endpoint;
+			_wordPressUri = uri;
 		}
 
-		public string Endpoint
+		public string WordPressUri
 		{
-			get { return _endpoint; }
+			get { return _wordPressUri; }
 		}
 
         public String Username { get; set; }
@@ -71,7 +71,7 @@ namespace WordPressUWP
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Utility.Authentication.Base64Encode($"{Username}:{Password}"));
                 }
-                var response = await client.GetAsync($"{Endpoint}{section}").ConfigureAwait(false);
+                var response = await client.GetAsync($"{WordPressUri}{section}").ConfigureAwait(false);
                 
                 if (response.IsSuccessStatusCode)
 				{
