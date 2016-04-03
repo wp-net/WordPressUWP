@@ -38,31 +38,58 @@ namespace WordPressUWP
         public String Username { get; set; }
         public String Password { get; set; }
 
-        public async Task<IList<Post>> ListPosts(int page = 1, int per_page = 10, int offset = 0, Post.OrderBy orderby = Post.OrderBy.date)
+
+        #region Post methods 
+        public async Task<IList<Post>> ListPosts()
 		{
-			return await Download<Post[]>($"posts").ConfigureAwait(false);
+            // default values 
+            // int page = 1, int per_page = 10, int offset = 0, Post.OrderBy orderby = Post.OrderBy.date
+            return await GetRequest<Post[]>($"posts").ConfigureAwait(false);
 		}
 
 		public async Task<Post> GetPost(String id)
 		{
-			return await Download<Post>($"posts/{id}").ConfigureAwait(false);
+			return await GetRequest<Post>($"posts/{id}").ConfigureAwait(false);
 		}
 
-		public async Task<IList<Comment>> ListComments()
+        public async Task<Post> CreatePost(Post postObject)
+        {
+            var postBody = new StringContent(JsonConvert.SerializeObject(postObject).ToString(), Encoding.UTF8, "application/json");
+            return await PostRequest<Post>($"posts", postBody);
+        }
+        #endregion
+
+        #region Comment methods
+        public async Task<IList<Comment>> ListComments()
 		{
-			return await Download<Comment[]>("comments").ConfigureAwait(false);
+			return await GetRequest<Comment[]>("comments").ConfigureAwait(false);
 		}
 
 		public async Task<Comment> GetComment(string id)
 		{
-			return await Download<Comment>($"comment/{id}").ConfigureAwait(false);
+			return await GetRequest<Comment>($"comment/{id}").ConfigureAwait(false);
 		}
+        #endregion
+
+        #region Tag methods
+        public async Task<Tag> CreateTag(Tag tagObject)
+        { 
+             var postBody = new StringContent(JsonConvert.SerializeObject(tagObject).ToString(), Encoding.UTF8, "application/json"); 
+             return await PostRequest<Tag>($"tags", postBody); 
+        }
+        #endregion
+
+        #region User methods
         public async Task<User> GetCurrentUser()
         {
-            return await Download<User>($"users/me", true).ConfigureAwait(false);
+            return await GetRequest<User>($"users/me", true).ConfigureAwait(false);
         }
+        #endregion
 
-        protected async Task<TClass> Download<TClass>(string section, bool isAuthRequired = false)
+
+
+        #region internal http methods
+        protected async Task<TClass> GetRequest<TClass>(string route, bool isAuthRequired = false)
 			where TClass : class
 		{
 			using (var client = new HttpClient())
@@ -71,7 +98,7 @@ namespace WordPressUWP
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Utility.Authentication.Base64Encode($"{Username}:{Password}"));
                 }
-                var response = await client.GetAsync($"{WordPressUri}{section}").ConfigureAwait(false);
+                var response = await client.GetAsync($"{WordPressUri}{route}").ConfigureAwait(false);
                 
                 if (response.IsSuccessStatusCode)
 				{
@@ -81,6 +108,27 @@ namespace WordPressUWP
 			}
 			return default(TClass);
 		}
+
+        protected async Task<TClass> PostRequest<TClass>(string route, StringContent postBody)
+            where TClass : class
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Utility.Authentication.Base64Encode($"{Username}:{Password}"));
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = await client.PostAsync($"{WordPressUri}{route}", postBody).ConfigureAwait(false);
+                
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    return JsonConvert.DeserializeObject<TClass>(responseString);
+                }
+            }
+            return default(TClass);
+        }
+
+        #endregion
 
     }
 }
