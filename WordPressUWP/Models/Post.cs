@@ -89,19 +89,26 @@ namespace WordPressUWP.Models
 	{
 		[JsonProperty("rendered")]
 		public string Rendered { get; set; }
-	}
+        [JsonProperty("raw")]
+        public string Raw { get; set; }
+    }
 
 	public class Title
 	{
 		[JsonProperty("rendered")]
 		public string Rendered { get; set; }
-	}
+        [JsonProperty("raw")] 
+        public string Raw { get; set; }
 
-	public class Excerpt
+    }
+
+    public class Excerpt
 	{
 		[JsonProperty("rendered")]
 		public string Rendered { get; set; }
-	}
+        [JsonProperty("raw")]
+        public string Raw { get; set; }
+    }
 
 	public class About
 	{

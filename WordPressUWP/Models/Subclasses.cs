@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,11 @@ namespace WordPressUWP.Models
 {
 	public class Content
 	{
-		public string Rendered { get; set; }
-	}
+        [JsonProperty("rendered")]
+        public string Rendered { get; set; }
+        [JsonProperty("raw")]
+        public string Raw { get; set; }
+    }
 
 	public class Self
 	{
