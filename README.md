@@ -1,4 +1,6 @@
 # WordPressUWP
+
+[![Join the chat at https://gitter.im/ThomasPe/WordPressUWP](https://badges.gitter.im/ThomasPe/WordPressUWP.svg)](https://gitter.im/ThomasPe/WordPressUWP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 This is a portable library for consuimg the WordPress REST-API in a Universal Windows Plattform App.
 
 #Quickstart
