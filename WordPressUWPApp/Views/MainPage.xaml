@@ -8,6 +8,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:WordPressUWPApp.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:data="using:WordPressUWPApp.Models"
       xmlns:vm="using:WordPressUWPApp.ViewModels" mc:Ignorable="d">
 
     <Page.DataContext>
@@ -61,37 +62,20 @@
 
         </controls:PageHeader>
 
-        <controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0"
-                          RelativePanel.AlignLeftWithPanel="True"
-                          RelativePanel.Below="pageHeader">
-
-            <TextBox MinWidth="150" MinHeight="62"
-                     Header="Parameter to pass"
-                     Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     TextWrapping="Wrap">
-                <Interactivity:Interaction.Behaviors>
-                    <!--  enable submit on enter key  -->
-                    <Behaviors:KeyBehavior Key="Enter">
-                        <Core:CallMethodAction MethodName="GotoDetailsPage" TargetObject="{Binding}" />
-                    </Behaviors:KeyBehavior>
-                    <!--  focus on textbox when page loads  -->
-                    <Core:EventTriggerBehavior>
-                        <Behaviors:FocusAction />
-                    </Core:EventTriggerBehavior>
-                </Interactivity:Interaction.Behaviors>
-            </TextBox>
-
-        </controls:Resizer>
-
-        <Button x:Name="submitButton"
-                Click="{x:Bind ViewModel.GotoDetailsPage}" Content="Submit"
-                RelativePanel.AlignBottomWith="parameterResizer"
-                RelativePanel.RightOf="parameterResizer" />
-
-        <TextBlock x:Name="stateTextBox" Margin="16,16,0,0"
-                   RelativePanel.AlignLeftWith="parameterResizer"
-                   RelativePanel.Below="parameterResizer"
-                   Text="Current Visual State" />
+        <GridView ItemsSource="{x:Bind ViewModel.Posts, Mode=OneWay}" RelativePanel.Below="pageHeader">
+            <GridView.Header>
+                <TextBlock Text="Latest Posts"/>
+            </GridView.Header>
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="data:PostWithMedia">
+                    <StackPanel Width="300">
+                        <Image Source="{x:Bind FeaturedMediaFull.MediaDetails.Sizes.Medium.SourceUrl}" Width="300" Height="200"></Image>
+                        <TextBlock Text="{x:Bind Post.Title.Rendered}"/>
+                        <TextBlock Text="{x:Bind Post.Excerpt.Raw}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
 
     </RelativePanel>
 </Page>
