@@ -10,3 +10,4 @@
 /WordPressUWPTestApp/bin/x86/Debug
 /WordPressUWPApp/bin/x86/Debug
 /WordPressUWPApp/obj
+WordPressUWPApp/Utility/ApiCredentials.cs
