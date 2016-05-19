@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Security.Authentication.Web;
 using WordPressUWP.Models;
 
 namespace WordPressUWP
@@ -86,7 +87,60 @@ namespace WordPressUWP
         }
         #endregion
 
+        #region Media methods
+        public async Task<Media> GetMedia(string id)
+        {
+            return await GetRequest<Media>($"media/{id}").ConfigureAwait(false);
+        }
+        #endregion
 
+        #region Authorize methods
+        public async void DoOAuth()
+        {
+            string startURL = "http://api.medienstudio.net/oauth1/request?oauth_consumer_key=Oa8UDlP8ToPh";
+
+            // "request": "http://api.medienstudio.net/oauth1/request",
+            // "authorize": "http://api.medienstudio.net/oauth1/authorize",
+            // "access": "http://api.medienstudio.net/oauth1/access",
+            string endURL = "http://api.medienstudio.net";
+
+            System.Uri startURI = new System.Uri(startURL);
+            System.Uri endURI = new System.Uri(endURL);
+
+            string result;
+
+            try
+            {
+                var webAuthenticationResult =
+                    await WebAuthenticationBroker.AuthenticateAsync(
+                    WebAuthenticationOptions.None,
+                    startURI,
+                    endURI);
+
+                switch (webAuthenticationResult.ResponseStatus)
+                {
+                    case WebAuthenticationStatus.Success:
+                        // Successful authentication. 
+                        result = webAuthenticationResult.ResponseData.ToString();
+                        break;
+                    case WebAuthenticationStatus.ErrorHttp:
+                        // HTTP error. 
+                        result = webAuthenticationResult.ResponseErrorDetail.ToString();
+                        break;
+                    default:
+                        // Other error.
+                        result = webAuthenticationResult.ResponseData.ToString();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Authentication failed. Handle parameter, SSL/TLS, and Network Unavailable errors here. 
+                result = ex.Message;
+            }
+        }
+
+        #endregion
 
         #region internal http methods
         protected async Task<TClass> GetRequest<TClass>(string route, bool isAuthRequired = false)

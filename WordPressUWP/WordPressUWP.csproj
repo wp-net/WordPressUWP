@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Media.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Subclasses.cs" />
     <Compile Include="Models\Tag.cs" />

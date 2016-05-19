@@ -6,3 +6,7 @@
 /WordPressUWP/bin
 *.suo
 /WordPressUWP/.vs/config/applicationhost.config
+/WordPressUWPTestApp/obj/x86/Debug
+/WordPressUWPTestApp/bin/x86/Debug
+/WordPressUWPApp/bin/x86/Debug
+/WordPressUWPApp/obj
