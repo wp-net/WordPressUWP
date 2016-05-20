@@ -66,6 +66,11 @@ namespace WordPressUWP
 			return await GetRequest<Comment[]>("comments").ConfigureAwait(false);
 		}
 
+        public async Task<IList<Comment>> GetCommentsForPost(string id)
+        {
+            return await GetRequest<Comment[]>($"comments?post={id}");
+        }
+
 		public async Task<Comment> GetComment(string id)
 		{
 			return await GetRequest<Comment>($"comments/{id}").ConfigureAwait(false);
