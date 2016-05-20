@@ -1,12 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Template10.Common;
 using Template10.Mvvm;
 using Template10.Services.NavigationService;
+using Template10.Utils;
 using Windows.UI.Xaml.Navigation;
+using WordPressUWP;
+using WordPressUWP.Models;
+using WordPressUWPApp.Models;
+using WordPressUWPApp.Utility;
 
 namespace WordPressUWPApp.ViewModels
 {
@@ -16,16 +22,29 @@ namespace WordPressUWPApp.ViewModels
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
-                Value = "Designtime value";
+                //Value = "Designtime value";
             }
+            _client = new WordPressClient(ApiCredentials.WordPressUri);
+            PostComments = new ObservableCollection<Comment>();
         }
+        private WordPressClient _client;
 
-        private string _Value = "Default";
-        public string Value { get { return _Value; } set { Set(ref _Value, value); } }
+        private PostWithMedia _detailspost;
+        public PostWithMedia DetailsPost { get { return _detailspost; } set { Set(ref _detailspost, value); } }
+
+        private ObservableCollection<Comment> _postComments;
+        public ObservableCollection<Comment> PostComments { get { return _postComments; } set { Set(ref _postComments, value); } }
+
+        private async void GetPostComments()
+        {
+            var comments = await _client.GetCommentsForPost(DetailsPost.Post.Id.ToString());
+            PostComments.AddRange(comments);
+        }
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
-            Value = (suspensionState.ContainsKey(nameof(Value))) ? suspensionState[nameof(Value)]?.ToString() : parameter?.ToString();
+            DetailsPost = SessionState["selectedPost"] as PostWithMedia;
+            GetPostComments();
             await Task.CompletedTask;
         }
 
@@ -33,7 +52,7 @@ namespace WordPressUWPApp.ViewModels
         {
             if (suspending)
             {
-                suspensionState[nameof(Value)] = Value;
+                //suspensionState[nameof(Value)] = Value;
             }
             await Task.CompletedTask;
         }

@@ -9,6 +9,8 @@
       xmlns:local="using:WordPressUWPApp.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:WordPressUWPApp.ViewModels" x:Name="ThisPage"
+      xmlns:tools="using:WordPressUWPApp.Utility"
+      xmlns:uwp="using:WordPressUWP.Models"
       mc:Ignorable="d">
 
     <Page.DataContext>
@@ -24,6 +26,7 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="CommentsPanel.Visbility" Value="Visibility.Collapsed"/>
                         <!--  TODO: change properties for narrow view  -->
                     </VisualState.Setters>
                 </VisualState>
@@ -53,17 +56,39 @@
                              RelativePanel.AlignTopWithPanel="True" Text="Detail Page" />
 
         <!--  content  -->
-        <ScrollViewer Padding="12,8,0,0" RelativePanel.AlignBottomWithPanel="True"
-                      RelativePanel.AlignLeftWithPanel="True"
-                      RelativePanel.AlignRightWithPanel="True"
-                      RelativePanel.Below="pageHeader"
-                      VerticalScrollBarVisibility="Auto">
+        <Grid RelativePanel.AlignBottomWithPanel="True"
+              RelativePanel.AlignLeftWithPanel="True"
+              RelativePanel.AlignRightWithPanel="True"
+              RelativePanel.Below="pageHeader">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer 
+                      VerticalScrollBarVisibility="Auto"
+                      Grid.Column="0">
             <StackPanel>
-                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="You passed:" />
-                <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="{x:Bind ViewModel.Value, Mode=OneWay, FallbackValue=DesigntimeValue}" />
+                <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="{x:Bind ViewModel.DetailsPost.Post.Title.Rendered, Mode=OneWay, FallbackValue=DesigntimeValue}" />
+                <Image Source="{x:Bind ViewModel.DetailsPost.FeaturedMediaFull.MediaDetails.Sizes.Large.SourceUrl}"/>
+                <WebView tools:HtmlTools.HTML="{x:Bind ViewModel.DetailsPost.Post.Content.Rendered}" Height="234"/>
+                
             </StackPanel>
         </ScrollViewer>
+        <StackPanel x:Name="CommentsPanel" Grid.Column="1">
+            <TextBlock Text="Comments" />
+            <ListView ItemsSource="{x:Bind ViewModel.PostComments}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="uwp:Comment">
+                            <StackPanel>
+                                <TextBlock Text="{x:Bind AuthorName}"/>
+                                <TextBlock Text="{x:Bind Content.Rendered}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
 
+        </Grid>
     </RelativePanel>
 </Page>
 

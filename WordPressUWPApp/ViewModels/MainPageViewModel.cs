@@ -11,6 +11,7 @@ using WordPressUWP;
 using WordPressUWPApp.Utility;
 using Template10.Utils;
 using WordPressUWPApp.Models;
+using Windows.UI.Popups;
 
 namespace WordPressUWPApp.ViewModels
 {
@@ -33,8 +34,6 @@ namespace WordPressUWPApp.ViewModels
         {
 
             _client = new WordPressClient(ApiCredentials.WordPressUri);
-            _client.Username = ApiCredentials.Username;
-            _client.Password = ApiCredentials.Password;
             var posts = await _client.ListPosts();
             foreach (var post in posts)
             {
@@ -55,6 +54,10 @@ namespace WordPressUWPApp.ViewModels
         string _Value = "Gas";
         public string Value { get { return _Value; } set { Set(ref _Value, value); } }
 
+
+        private PostWithMedia _selectedPost;
+        public PostWithMedia SelectedPost { get { return _selectedPost; } set { Set(ref _selectedPost, value); } }
+
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
             if (suspensionState.Any())
@@ -69,6 +72,7 @@ namespace WordPressUWPApp.ViewModels
             if (suspending)
             {
                 suspensionState[nameof(Value)] = Value;
+                suspensionState["selectedPost"] = SelectedPost;
             }
             await Task.CompletedTask;
         }
@@ -77,6 +81,18 @@ namespace WordPressUWPApp.ViewModels
         {
             args.Cancel = false;
             await Task.CompletedTask;
+        }
+
+        public async void ClickCommand(object sender, object parameter)
+        {
+            var arg = parameter as Windows.UI.Xaml.Controls.ItemClickEventArgs;
+            SelectedPost = arg.ClickedItem as PostWithMedia;
+            if (SessionState.ContainsKey("selectedPost"))
+            {
+                SessionState.Remove("selectedPost");
+            }
+            SessionState.Add("selectedPost", SelectedPost);
+            NavigationService.Navigate(typeof(Views.DetailPage));
         }
 
         public void GotoDetailsPage() =>

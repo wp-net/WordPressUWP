@@ -16,7 +16,6 @@
     </Page.DataContext>
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
                 <VisualState x:Name="VisualStateNarrow">
@@ -25,7 +24,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--  TODO: change properties for narrow view  -->
-                        <Setter Target="stateTextBox.Text" Value="Narrow Visual State" />
+                        <!--<Setter Target="pageHeader.Text" Value="Narrow Visual State" />-->
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateNormal">
@@ -34,7 +33,6 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--  TODO: change properties for normal view  -->
-                        <Setter Target="stateTextBox.Text" Value="Normal Visual State" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateWide">
@@ -43,15 +41,16 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--  TODO: change properties for wide view  -->
-                        <Setter Target="stateTextBox.Text" Value="Wide Visual State" />
+                        <!--<Setter Target="pageHeader.Text" Value="Wide Visual State" />-->
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
+
         <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
-                             RelativePanel.AlignTopWithPanel="True" Text="Main Page">
+                             RelativePanel.AlignTopWithPanel="True" Text="News">
 
             <!--  secondary commands  -->
             <controls:PageHeader.SecondaryCommands>
@@ -62,14 +61,26 @@
 
         </controls:PageHeader>
 
-        <GridView ItemsSource="{x:Bind ViewModel.Posts, Mode=OneWay}" RelativePanel.Below="pageHeader">
-            <GridView.Header>
-                <TextBlock Text="Latest Posts"/>
-            </GridView.Header>
+        <GridView ItemsSource="{x:Bind ViewModel.Posts, Mode=OneWay}" 
+                  RelativePanel.Below="pageHeader" 
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  >
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="ItemClick">
+                    <Core:CallMethodAction MethodName="ClickCommand" 
+                TargetObject="{Binding Mode=OneWay}" />
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapGrid x:Name="GridViewPanel" HorizontalChildrenAlignment="Stretch" VerticalChildrenAlignment="Stretch" Orientation="Horizontal" MaximumRowsOrColumns="3"/>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="data:PostWithMedia">
-                    <StackPanel Width="300">
-                        <Image Source="{x:Bind FeaturedMediaFull.MediaDetails.Sizes.Medium.SourceUrl}" Width="300" Height="200"></Image>
+                    <StackPanel x:Name="PostWrapper" Width="300" Margin="10, 10, 0, 0">
+                        <Image Source="{x:Bind FeaturedMediaFull.MediaDetails.Sizes.Medium.SourceUrl}" Stretch="UniformToFill" Height="150"></Image>
                         <TextBlock Text="{x:Bind Post.Title.Rendered}"/>
                         <TextBlock Text="{x:Bind Post.Excerpt.Raw}"/>
                     </StackPanel>
@@ -79,4 +90,3 @@
 
     </RelativePanel>
 </Page>
-
