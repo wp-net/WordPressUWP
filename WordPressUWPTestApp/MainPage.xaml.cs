@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+﻿using Windows.UI.Xaml.Controls;
 using WordPressUWP;
+using WordPressUWP.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -23,6 +11,7 @@ namespace WordPressUWPTestApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public WordPressClient client;
         public MainPage()
         {
             this.InitializeComponent();
@@ -31,17 +20,33 @@ namespace WordPressUWPTestApp
 
         public async void TestPosts()
         {
-            var client = new WordPressClient(ApiCredentials.WordPressUri);
+            client = new WordPressClient(ApiCredentials.WordPressUri);
             client.Username = ApiCredentials.Username;
             client.Password = ApiCredentials.Password;
 
             var posts = await client.ListPosts();
             var post = await client.GetPost("1");
-           
+
+
+            var newpost = new Post()
+            {
+                Title = new Title()
+                {
+                    Raw = "new test post"
+                }
+            };
+            //var newpostresponse = await client.CreatePost(newpost);
+
+
             var comments = await client.ListComments();
             var comment = await client.GetComment("3");
 
-            //var currentUser = await client.GetCurrentUser();
+            var currentUser = await client.GetCurrentUser();
+        }
+
+        private void authButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            client.DoOAuth();
         }
     }
 }
