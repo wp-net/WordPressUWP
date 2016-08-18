@@ -10,7 +10,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:WordPressUWPApp.ViewModels" x:Name="ThisPage"
       xmlns:tools="using:WordPressUWPApp.Utility"
-      xmlns:uwp="using:WordPressUWP.Models"
+      xmlns:wp="using:WordPressPCL.Models"
       mc:Ignorable="d">
 
     <Page.DataContext>
@@ -78,7 +78,7 @@
             <TextBlock Text="Comments" />
             <ListView ItemsSource="{x:Bind ViewModel.PostComments}">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="uwp:Comment">
+                        <DataTemplate x:DataType="wp:Comment">
                             <StackPanel>
                                 <TextBlock Text="{x:Bind AuthorName}"/>
                                 <TextBlock Text="{x:Bind Content.Rendered}"/>

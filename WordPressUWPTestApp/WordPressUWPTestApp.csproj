@@ -127,12 +127,6 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WordPressUWP\WordPressUWP.csproj">
-      <Project>{fc787bdb-9cc9-440f-971f-76452d5f300e}</Project>
-      <Name>WordPressUWP</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
