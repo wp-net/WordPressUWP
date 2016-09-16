@@ -6,6 +6,18 @@ This is a Universal Windows Platform app framework designed to turn WordPress Bl
 * [Template10](https://github.com/Windows-XAML/Template10/wiki)
 * [WordPressPCL (WordPress REST API Wrapper)](https://github.com/ThomasPe/WordPressPCL)
 
+#Features
+working and planned features for WordPressUWP:
+- [x] Show posts
+- [x] Show comments
+- [x] Settings page
+- [ ] Sign In
+- [ ] Add comment
+- [ ] Push Notifications (new posts, comments)
+- [ ] Live Tiles
+- [ ] Continuum Support
+- [ ] Enable Ads
+
 #Quickstart
 
 ## WordPress Plugins
