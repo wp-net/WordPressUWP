@@ -15,7 +15,7 @@ working and planned features for WordPressUWP:
 - [ ] Add comment
 - [ ] Push Notifications (new posts, comments)
 - [ ] Live Tiles
-- [ ] Continuum Support
+- [x] Continuum Support
 - [ ] Enable Ads
 
 #Quickstart
