@@ -22130,7 +22130,7 @@
       ]
     },
     "Template10/1.1.11": {
-      "sha512": "xXPtDTGpSX/QV+r37AGR8oCcUaP2f4c2XD4dHE8T9dFVwq/o51ACWJW35zpSadTsDtwtBrNBMbcOZup5rTzcYA==",
+      "sha512": "q8X87z/8puLV4Cazj7aQs2Cv2LqvLYvERVmiQ0iLUd4wgKc0RnD/DFmQxvyw5NKmNvOEZecuM+XbB7KdO/h+DQ==",
       "type": "package",
       "files": [
         "Template10.1.1.11.nupkg.sha512",
@@ -22149,11 +22149,12 @@
       ]
     },
     "WordPressPCL/0.1.0": {
-      "sha512": "U38KoAP48dyv6Vi6HrwDsq2fK1vl0jxPIp/Ogz5UVhlTGwc1nxu8YxuESsmhaQu4pmYMZ28q893ucOuaogtjsQ==",
+      "sha512": "minlECxoKcf3WUX/Zu48bgdEdCXka+aeZzlTgaK8aFRFNFyz9gjYhn8c1erRQFzjCMFD8kzVdXFEnQQtoSqAXA==",
       "type": "package",
       "files": [
         "WordPressPCL.0.1.0.nupkg.sha512",
         "WordPressPCL.nuspec",
+        "lib/netstandard1.1/WordPressPCL.dll",
         "lib/netstandard1.2/WordPressPCL.dll"
       ]
     }
