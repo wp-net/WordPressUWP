@@ -51,9 +51,6 @@ namespace WordPressUWPApp.ViewModels
             }
         }
 
-        string _Value = "Gas";
-        public string Value { get { return _Value; } set { Set(ref _Value, value); } }
-
 
         private PostWithMedia _selectedPost;
         public PostWithMedia SelectedPost { get { return _selectedPost; } set { Set(ref _selectedPost, value); } }
@@ -62,7 +59,7 @@ namespace WordPressUWPApp.ViewModels
         {
             if (suspensionState.Any())
             {
-                Value = suspensionState[nameof(Value)]?.ToString();
+                //Value = suspensionState[nameof(Value)]?.ToString();
             }
             await Task.CompletedTask;
         }
@@ -71,7 +68,7 @@ namespace WordPressUWPApp.ViewModels
         {
             if (suspending)
             {
-                suspensionState[nameof(Value)] = Value;
+                //suspensionState[nameof(Value)] = Value;
                 suspensionState["selectedPost"] = SelectedPost;
             }
             await Task.CompletedTask;
@@ -94,9 +91,6 @@ namespace WordPressUWPApp.ViewModels
             SessionState.Add("selectedPost", SelectedPost);
             NavigationService.Navigate(typeof(Views.DetailPage));
         }
-
-        public void GotoDetailsPage() =>
-            NavigationService.Navigate(typeof(Views.DetailPage), Value);
 
         public void GotoSettings() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 0);
