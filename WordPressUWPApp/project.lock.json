@@ -22341,12 +22341,12 @@
       ]
     },
     "WordPressPCL/0.1.0": {
-      "sha512": "minlECxoKcf3WUX/Zu48bgdEdCXka+aeZzlTgaK8aFRFNFyz9gjYhn8c1erRQFzjCMFD8kzVdXFEnQQtoSqAXA==",
+      "sha512": "U38KoAP48dyv6Vi6HrwDsq2fK1vl0jxPIp/Ogz5UVhlTGwc1nxu8YxuESsmhaQu4pmYMZ28q893ucOuaogtjsQ==",
       "type": "package",
+      "path": "WordPressPCL/0.1.0",
       "files": [
         "WordPressPCL.0.1.0.nupkg.sha512",
         "WordPressPCL.nuspec",
-        "lib/netstandard1.1/WordPressPCL.dll",
         "lib/netstandard1.2/WordPressPCL.dll"
       ]
     }
@@ -22362,5 +22362,7 @@
       "WordPressPCL >= 0.1.0"
     ],
     "UAP,Version=v10.0": []
-  }
+  },
+  "tools": {},
+  "projectFileToolGroups": {}
 }
