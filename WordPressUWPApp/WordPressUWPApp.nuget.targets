@@ -4,6 +4,7 @@
     <NuGetPackageRoot>$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
   </PropertyGroup>
   <ImportGroup>
+    <Import Project="$(NuGetPackageRoot)\Microsoft.Net.Native.Compiler\1.5.0-beta\build\Microsoft.Net.Native.Compiler.targets" Condition="Exists('$(NuGetPackageRoot)\Microsoft.Net.Native.Compiler\1.5.0-beta\build\Microsoft.Net.Native.Compiler.targets')" />
     <Import Project="$(NuGetPackageRoot)\Template10\1.1.12\build\uap10.0\Template10.targets" Condition="Exists('$(NuGetPackageRoot)\Template10\1.1.12\build\uap10.0\Template10.targets')" />
   </ImportGroup>
 </Project>
