@@ -1,9 +1,11 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
+    "Microsoft.Toolkit.Uwp": "1.1.0",
+    "Microsoft.Toolkit.Uwp.UI": "1.1.0",
+    "Microsoft.Xaml.Behaviors.Uwp.Managed": "2.0.0",
     "Newtonsoft.Json": "9.0.1",
-    "Template10": "1.1.11",
+    "Template10": "1.1.12",
     "WordPressPCL": "0.1.0"
   },
   "frameworks": {

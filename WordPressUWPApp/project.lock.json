@@ -247,6 +247,30 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
+      "Microsoft.Toolkit.Uwp/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
+        }
+      },
+      "Microsoft.Toolkit.Uwp.UI/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Toolkit.Uwp": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.1": {
         "type": "package",
         "dependencies": {
@@ -285,7 +309,7 @@
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.1.0": {
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/2.0.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
@@ -2161,10 +2185,10 @@
           }
         }
       },
-      "Template10/1.1.11": {
+      "Template10/1.1.12": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
           "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
           "Newtonsoft.Json": "8.0.3"
         },
@@ -2377,6 +2401,30 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
+      "Microsoft.Toolkit.Uwp/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
+        }
+      },
+      "Microsoft.Toolkit.Uwp.UI/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Toolkit.Uwp": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.1": {
         "type": "package",
         "dependencies": {
@@ -2416,7 +2464,7 @@
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.1.0": {
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/2.0.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
@@ -4452,10 +4500,10 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Template10/1.1.11": {
+      "Template10/1.1.12": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
           "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
           "Newtonsoft.Json": "8.0.3"
         },
@@ -4669,6 +4717,30 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
+      "Microsoft.Toolkit.Uwp/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
+        }
+      },
+      "Microsoft.Toolkit.Uwp.UI/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Toolkit.Uwp": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.1": {
         "type": "package",
         "dependencies": {
@@ -4708,7 +4780,7 @@
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.1.0": {
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/2.0.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
@@ -6782,10 +6854,10 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Template10/1.1.11": {
+      "Template10/1.1.12": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
           "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
           "Newtonsoft.Json": "8.0.3"
         },
@@ -7001,6 +7073,30 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
+      "Microsoft.Toolkit.Uwp/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
+        }
+      },
+      "Microsoft.Toolkit.Uwp.UI/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Toolkit.Uwp": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.1": {
         "type": "package",
         "dependencies": {
@@ -7040,7 +7136,7 @@
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.1.0": {
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/2.0.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
@@ -9082,10 +9178,10 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Template10/1.1.11": {
+      "Template10/1.1.12": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
           "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
           "Newtonsoft.Json": "8.0.3"
         },
@@ -9302,6 +9398,30 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
+      "Microsoft.Toolkit.Uwp/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
+        }
+      },
+      "Microsoft.Toolkit.Uwp.UI/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Toolkit.Uwp": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.1": {
         "type": "package",
         "dependencies": {
@@ -9341,7 +9461,7 @@
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.1.0": {
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/2.0.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
@@ -11421,10 +11541,10 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Template10/1.1.11": {
+      "Template10/1.1.12": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
           "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
           "Newtonsoft.Json": "8.0.3"
         },
@@ -11640,6 +11760,30 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
+      "Microsoft.Toolkit.Uwp/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
+        }
+      },
+      "Microsoft.Toolkit.Uwp.UI/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Toolkit.Uwp": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.1": {
         "type": "package",
         "dependencies": {
@@ -11679,7 +11823,7 @@
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.1.0": {
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/2.0.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
@@ -13721,10 +13865,10 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Template10/1.1.11": {
+      "Template10/1.1.12": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
           "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
           "Newtonsoft.Json": "8.0.3"
         },
@@ -13941,6 +14085,30 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
+      "Microsoft.Toolkit.Uwp/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
+        }
+      },
+      "Microsoft.Toolkit.Uwp.UI/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Toolkit.Uwp": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.1": {
         "type": "package",
         "dependencies": {
@@ -13980,7 +14148,7 @@
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.1.0": {
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/2.0.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
@@ -16060,10 +16228,10 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Template10/1.1.11": {
+      "Template10/1.1.12": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
           "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
           "Newtonsoft.Json": "8.0.3"
         },
@@ -16300,6 +16468,30 @@
         "runtime.json"
       ]
     },
+    "Microsoft.Toolkit.Uwp/1.1.0": {
+      "sha512": "3oVCXZrk2qzQ01t5YPaW4vjMrKUri7aEI0DxHiLZ9tGU9xwiInEcwH4UQ1xnE9BR/ihv/7toVtNVhR7t3rmRYw==",
+      "type": "package",
+      "files": [
+        "Microsoft.Toolkit.Uwp.1.1.0.nupkg.sha512",
+        "Microsoft.Toolkit.Uwp.nuspec",
+        "lib/uap10.0/Microsoft.Toolkit.Uwp.dll",
+        "lib/uap10.0/Microsoft.Toolkit.Uwp.pdb",
+        "lib/uap10.0/Microsoft.Toolkit.Uwp.pri",
+        "lib/uap10.0/Microsoft.Toolkit.Uwp.xml"
+      ]
+    },
+    "Microsoft.Toolkit.Uwp.UI/1.1.0": {
+      "sha512": "VS5TY4zRdlas+B0T1u0H/nL6IogskyjG4MUdweLqJYgs1VFEialYVHnQZv5HPaIn0J7+sz0WSFo5sXW+yZvc5w==",
+      "type": "package",
+      "files": [
+        "Microsoft.Toolkit.Uwp.UI.1.1.0.nupkg.sha512",
+        "Microsoft.Toolkit.Uwp.UI.nuspec",
+        "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll",
+        "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.pdb",
+        "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.pri",
+        "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.xml"
+      ]
+    },
     "Microsoft.VisualBasic/10.0.1": {
       "sha512": "HpNyOf/4Tp2lh4FyywB55VITk0SqVxEjDzsVDDyF1yafDN6Bq18xcHowzCPINyYHUTgGcEtmpYiRsFdSo0KKdQ==",
       "type": "package",
@@ -16377,11 +16569,11 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "Microsoft.Xaml.Behaviors.Uwp.Managed/1.1.0": {
-      "sha512": "Qxe4fblviCn2oFf7C4ahCsZHC0GzRa7Tz5z+L1QUHUljY3Oj/TMoT1O0jJ+ru6RcJ9qS8yFw/jIvstg2dxxpGA==",
+    "Microsoft.Xaml.Behaviors.Uwp.Managed/2.0.0": {
+      "sha512": "LfzU68PVP33nqsuSlO5xAYuoI/itVKz4VVJSIunrS7iqqxE3sy0Q+VvtoYnFcBAoGnY83ZVn8Mnc9HYqOBiPmg==",
       "type": "package",
       "files": [
-        "Microsoft.Xaml.Behaviors.Uwp.Managed.1.1.0.nupkg.sha512",
+        "Microsoft.Xaml.Behaviors.Uwp.Managed.2.0.0.nupkg.sha512",
         "Microsoft.Xaml.Behaviors.Uwp.Managed.nuspec",
         "lib/uap10.0/Design/Microsoft.Xaml.Interactions.Design.dll",
         "lib/uap10.0/Design/Microsoft.Xaml.Interactivity.Design.dll",
@@ -22129,11 +22321,11 @@
         "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll"
       ]
     },
-    "Template10/1.1.11": {
-      "sha512": "xXPtDTGpSX/QV+r37AGR8oCcUaP2f4c2XD4dHE8T9dFVwq/o51ACWJW35zpSadTsDtwtBrNBMbcOZup5rTzcYA==",
+    "Template10/1.1.12": {
+      "sha512": "FTvwISozoKs5syQkwaHl/s8iPts23Q+VFjTbnNnA+ad6MHqP5bOiq3ibjEXHGJkN5nSKY7FoMH4W1/aCS1n/ew==",
       "type": "package",
       "files": [
-        "Template10.1.1.11.nupkg.sha512",
+        "Template10.1.1.12.nupkg.sha512",
         "Template10.nuspec",
         "build/uap10.0/Template10.targets",
         "lib/uap10.0/Template10Library.dll",
@@ -22149,11 +22341,12 @@
       ]
     },
     "WordPressPCL/0.1.0": {
-      "sha512": "U38KoAP48dyv6Vi6HrwDsq2fK1vl0jxPIp/Ogz5UVhlTGwc1nxu8YxuESsmhaQu4pmYMZ28q893ucOuaogtjsQ==",
+      "sha512": "minlECxoKcf3WUX/Zu48bgdEdCXka+aeZzlTgaK8aFRFNFyz9gjYhn8c1erRQFzjCMFD8kzVdXFEnQQtoSqAXA==",
       "type": "package",
       "files": [
         "WordPressPCL.0.1.0.nupkg.sha512",
         "WordPressPCL.nuspec",
+        "lib/netstandard1.1/WordPressPCL.dll",
         "lib/netstandard1.2/WordPressPCL.dll"
       ]
     }
@@ -22161,9 +22354,11 @@
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.2.2",
-      "Microsoft.Xaml.Behaviors.Uwp.Managed >= 1.1.0",
+      "Microsoft.Toolkit.Uwp >= 1.1.0",
+      "Microsoft.Toolkit.Uwp.UI >= 1.1.0",
+      "Microsoft.Xaml.Behaviors.Uwp.Managed >= 2.0.0",
       "Newtonsoft.Json >= 9.0.1",
-      "Template10 >= 1.1.11",
+      "Template10 >= 1.1.12",
       "WordPressPCL >= 0.1.0"
     ],
     "UAP,Version=v10.0": []

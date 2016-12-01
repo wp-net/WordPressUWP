@@ -24,7 +24,7 @@ namespace WordPressUWPApp.ViewModels
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
-                Value = "Designtime value";
+
             }
 
             Initialize();
@@ -51,7 +51,6 @@ namespace WordPressUWPApp.ViewModels
             }
         }
 
-
         private PostWithMedia _selectedPost;
         public PostWithMedia SelectedPost { get { return _selectedPost; } set { Set(ref _selectedPost, value); } }
 
@@ -59,7 +58,7 @@ namespace WordPressUWPApp.ViewModels
         {
             if (suspensionState.Any())
             {
-                //Value = suspensionState[nameof(Value)]?.ToString();
+                // save to suspensionState
             }
             await Task.CompletedTask;
         }
@@ -68,7 +67,6 @@ namespace WordPressUWPApp.ViewModels
         {
             if (suspending)
             {
-                //suspensionState[nameof(Value)] = Value;
                 suspensionState["selectedPost"] = SelectedPost;
             }
             await Task.CompletedTask;

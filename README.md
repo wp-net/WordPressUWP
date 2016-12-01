@@ -1,39 +1,48 @@
 # WordPressUWP
 
 [![Join the chat at https://gitter.im/ThomasPe/WordPressUWP](https://badges.gitter.im/ThomasPe/WordPressUWP.svg)](https://gitter.im/ThomasPe/WordPressUWP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-This is a portable library for consuimg the WordPress REST-API in a Universal Windows Plattform App.
+
+This is a Universal Windows Platform app framework designed to turn WordPress Blogs / Sites into nice little apps. It's built on
+* [Template10](https://github.com/Windows-XAML/Template10/wiki)
+* [WordPressPCL (WordPress REST API Wrapper)](https://github.com/ThomasPe/WordPressPCL)
+
+#Features
+working and planned features for WordPressUWP:
+- [x] Show posts
+- [x] Show comments
+- [x] Settings page
+- [ ] Sign In
+- [ ] Add comment
+- [ ] Push Notifications (new posts, comments)
+- [ ] Live Tiles
+- [x] Continuum Support
+- [ ] Enable Ads
 
 #Quickstart
 
 ## WordPress Plugins
-As the WP REST API (Version 2) Plugin is currently being integrated into WordPress core you'll still need to install the plugin on your site for this library to work. Also, there are two additional plugins for authentication.
+As the WP REST API (Version 2) Plugin is currently being integrated into WordPress core you'll still need to install the plugin on your site for the app to work. Also, there are two additional plugins for authentication.
 
 * [WordPress REST API (Version 2)](https://wordpress.org/plugins/rest-api/)
 * [Basic Authentication handler](https://github.com/WP-API/Basic-Auth)
 * [WP REST API - OAuth 1.0a Server](https://github.com/WP-API/OAuth1)
 
-## Including WordPressUWP
-We plan on making WordPressUWP available through Nuget as soon as we reach a Beta-Status. Until then you can just download the ZIP-file and include the projekt in your Visual Studio solution.
+## Getting Started
 
-## Using the API Wrapper
+Just clone or download the repo and open it in Visual Studio. Before you can build you'll need to create a `ApiCredentials.cs` class inside the `WordPressUWPApp.Utility` folder. Here you need to enter your site uri and admin credentials (if you want to do stuff that needs admin rights from your app).
 
 ```c#
-// Initialize
-var client = new WordPressClient("http://demo.wp-api.org/wp-json/wp/v2/");
+namespace WordPressUWPApp.Utility
+{
+    public static class ApiCredentials
+    {
+        public static string WordPressUri = "http://yoursite.com/wp-json/wp/v2/";
+        public static string Username = "Admin";
+        public static string Password = "Password";
+    }
 
-// Posts
-var posts = await client.ListPosts();
-var postbyid = await client.GetPost(id);
+}
 
-// Comments
-var comments = await client.ListComments();
-var commentbyid = await client.GetComment(id);
-
-// Users
-// Basic authentication - not recommended for production use
-client.Username = "TheUserName";
-client.Password = "TheUserPassword";
-var currentuser = await client.GetCurrentUser();
 ```
     
 
