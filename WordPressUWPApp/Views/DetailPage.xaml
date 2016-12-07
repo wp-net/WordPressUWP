@@ -54,7 +54,7 @@
         <controls:PageHeader x:Name="pageHeader" Frame="{x:Bind Frame}"
                              RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
-                             RelativePanel.AlignTopWithPanel="True" Text="Detail Page" />
+                             RelativePanel.AlignTopWithPanel="True" Text="{x:Bind ViewModel.DetailsPost.Title.Rendered, Mode=OneWay}" />
 
         <!--  content  -->
         <Grid RelativePanel.AlignBottomWithPanel="True"
@@ -75,10 +75,9 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Style="{StaticResource SubtitleTextBlockStyle}" Text="{x:Bind ViewModel.DetailsPost.Title.Rendered, Mode=OneWay, FallbackValue=DesigntimeValue}" />
-                    <Image Grid.Column="1" Source="{x:Bind ViewModel.DetailsPost.Embedded.WpFeaturedmedia[0].SourceUrl}"/>
-                    <WebView Grid.Column="2" ctk:WebViewExtensions.Content="{x:Bind ViewModel.DetailsPost.Content.Rendered}" Height="Auto" />
-                    <WebView Grid.Column="3" tools:HtmlTools.HTML="{x:Bind ViewModel.DetailsPost.Content.Rendered}" Height="Auto"/>
+                    <Image Grid.Column="0" Source="{x:Bind ViewModel.DetailsPost.Embedded.WpFeaturedmedia[0].SourceUrl}"/>
+                    <WebView Grid.Column="1" ctk:WebViewExtensions.Content="{x:Bind ViewModel.DetailsPost.Content.Rendered}" Height="Auto" />
+                    <WebView Grid.Column="2" tools:HtmlTools.HTML="{x:Bind ViewModel.DetailsPost.Content.Rendered}" Height="Auto"/>
 
                 </Grid>
         </ScrollViewer>
