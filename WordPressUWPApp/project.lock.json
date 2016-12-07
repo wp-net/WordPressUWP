@@ -2242,13 +2242,16 @@
           "lib/uap10.0/Template10Library.dll": {}
         }
       },
-      "WordPressPCL/0.1.0": {
+      "WordPressPCL/0.1.1-alpha": {
         "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.0"
+        },
         "compile": {
-          "lib/netstandard1.2/WordPressPCL.dll": {}
+          "lib/netstandard1.1/WordPressPCL.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.2/WordPressPCL.dll": {}
+          "lib/netstandard1.1/WordPressPCL.dll": {}
         }
       }
     },
@@ -4600,13 +4603,16 @@
           "lib/uap10.0/Template10Library.dll": {}
         }
       },
-      "WordPressPCL/0.1.0": {
+      "WordPressPCL/0.1.1-alpha": {
         "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.0"
+        },
         "compile": {
-          "lib/netstandard1.2/WordPressPCL.dll": {}
+          "lib/netstandard1.1/WordPressPCL.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.2/WordPressPCL.dll": {}
+          "lib/netstandard1.1/WordPressPCL.dll": {}
         }
       }
     },
@@ -6997,13 +7003,16 @@
           "lib/uap10.0/Template10Library.dll": {}
         }
       },
-      "WordPressPCL/0.1.0": {
+      "WordPressPCL/0.1.1-alpha": {
         "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.0"
+        },
         "compile": {
-          "lib/netstandard1.2/WordPressPCL.dll": {}
+          "lib/netstandard1.1/WordPressPCL.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.2/WordPressPCL.dll": {}
+          "lib/netstandard1.1/WordPressPCL.dll": {}
         }
       }
     },
@@ -9364,13 +9373,16 @@
           "lib/uap10.0/Template10Library.dll": {}
         }
       },
-      "WordPressPCL/0.1.0": {
+      "WordPressPCL/0.1.1-alpha": {
         "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.0"
+        },
         "compile": {
-          "lib/netstandard1.2/WordPressPCL.dll": {}
+          "lib/netstandard1.1/WordPressPCL.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.2/WordPressPCL.dll": {}
+          "lib/netstandard1.1/WordPressPCL.dll": {}
         }
       }
     },
@@ -11770,13 +11782,16 @@
           "lib/uap10.0/Template10Library.dll": {}
         }
       },
-      "WordPressPCL/0.1.0": {
+      "WordPressPCL/0.1.1-alpha": {
         "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.0"
+        },
         "compile": {
-          "lib/netstandard1.2/WordPressPCL.dll": {}
+          "lib/netstandard1.1/WordPressPCL.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.2/WordPressPCL.dll": {}
+          "lib/netstandard1.1/WordPressPCL.dll": {}
         }
       }
     },
@@ -14137,13 +14152,16 @@
           "lib/uap10.0/Template10Library.dll": {}
         }
       },
-      "WordPressPCL/0.1.0": {
+      "WordPressPCL/0.1.1-alpha": {
         "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.0"
+        },
         "compile": {
-          "lib/netstandard1.2/WordPressPCL.dll": {}
+          "lib/netstandard1.1/WordPressPCL.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.2/WordPressPCL.dll": {}
+          "lib/netstandard1.1/WordPressPCL.dll": {}
         }
       }
     },
@@ -16543,13 +16561,16 @@
           "lib/uap10.0/Template10Library.dll": {}
         }
       },
-      "WordPressPCL/0.1.0": {
+      "WordPressPCL/0.1.1-alpha": {
         "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.0"
+        },
         "compile": {
-          "lib/netstandard1.2/WordPressPCL.dll": {}
+          "lib/netstandard1.1/WordPressPCL.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.2/WordPressPCL.dll": {}
+          "lib/netstandard1.1/WordPressPCL.dll": {}
         }
       }
     }
@@ -24778,14 +24799,15 @@
         "lib/uap10.0/Template10Library/Themes/Resizer.xaml"
       ]
     },
-    "WordPressPCL/0.1.0": {
-      "sha512": "U38KoAP48dyv6Vi6HrwDsq2fK1vl0jxPIp/Ogz5UVhlTGwc1nxu8YxuESsmhaQu4pmYMZ28q893ucOuaogtjsQ==",
+    "WordPressPCL/0.1.1-alpha": {
+      "sha512": "0fp3koyfKEZgWGjzqNFpi63p94Y/wvc6H+BDYATmtOVTcmkShRbOUBwHoWStO+hvh45yZzQeIZkI1TqmWJf8EQ==",
       "type": "package",
-      "path": "WordPressPCL/0.1.0",
+      "path": "WordPressPCL/0.1.1-alpha",
       "files": [
-        "WordPressPCL.0.1.0.nupkg.sha512",
+        "WordPressPCL.0.1.1-alpha.nupkg.sha512",
         "WordPressPCL.nuspec",
-        "lib/netstandard1.2/WordPressPCL.dll"
+        "lib/netstandard1.1/WordPressPCL.dll",
+        "lib/netstandard1.1/WordPressPCL.pdb"
       ]
     }
   },
@@ -24797,7 +24819,7 @@
       "Microsoft.Xaml.Behaviors.Uwp.Managed >= 2.0.0",
       "Newtonsoft.Json >= 9.0.2-beta1",
       "Template10 >= 1.1.12",
-      "WordPressPCL >= 0.1.0"
+      "WordPressPCL >= 0.1.1-alpha"
     ],
     "UAP,Version=v10.0": []
   },

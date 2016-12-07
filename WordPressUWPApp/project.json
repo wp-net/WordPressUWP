@@ -6,7 +6,7 @@
     "Microsoft.Xaml.Behaviors.Uwp.Managed": "2.0.0",
     "Newtonsoft.Json": "9.0.2-beta1",
     "Template10": "1.1.12",
-    "WordPressPCL": "0.1.0"
+    "WordPressPCL": "0.1.1-alpha"
   },
   "frameworks": {
     "uap10.0": {}

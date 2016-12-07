@@ -11,7 +11,6 @@ using Template10.Utils;
 using Windows.UI.Xaml.Navigation;
 using WordPressPCL;
 using WordPressPCL.Models;
-using WordPressUWPApp.Models;
 using WordPressUWPApp.Utility;
 
 namespace WordPressUWPApp.ViewModels
@@ -29,21 +28,21 @@ namespace WordPressUWPApp.ViewModels
         }
         private WordPressClient _client;
 
-        private PostWithMedia _detailspost;
-        public PostWithMedia DetailsPost { get { return _detailspost; } set { Set(ref _detailspost, value); } }
+        private Post _detailspost;
+        public Post DetailsPost { get { return _detailspost; } set { Set(ref _detailspost, value); } }
 
         private ObservableCollection<Comment> _postComments;
         public ObservableCollection<Comment> PostComments { get { return _postComments; } set { Set(ref _postComments, value); } }
 
         private async void GetPostComments()
         {
-            var comments = await _client.GetCommentsForPost(DetailsPost.Post.Id.ToString());
+            var comments = await _client.GetCommentsForPost(DetailsPost.Id.ToString());
             PostComments.AddRange(comments);
         }
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
-            DetailsPost = SessionState["selectedPost"] as PostWithMedia;
+            DetailsPost = SessionState["selectedPost"] as Post;
             GetPostComments();
             await Task.CompletedTask;
         }

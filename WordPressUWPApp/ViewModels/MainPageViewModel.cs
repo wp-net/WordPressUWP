@@ -10,14 +10,13 @@ using WordPressPCL.Models;
 using WordPressPCL;
 using WordPressUWPApp.Utility;
 using Template10.Utils;
-using WordPressUWPApp.Models;
 using Windows.UI.Popups;
 
 namespace WordPressUWPApp.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        public ObservableCollection<PostWithMedia> Posts { get; } = new ObservableCollection<PostWithMedia>();
+        public ObservableCollection<Post> Posts { get; } = new ObservableCollection<Post>();
         private WordPressClient _client;
 
         public MainPageViewModel()
@@ -34,25 +33,20 @@ namespace WordPressUWPApp.ViewModels
         {
 
             _client = new WordPressClient(ApiCredentials.WordPressUri);
-            var posts = await _client.ListPosts();
+            var posts = await _client.ListPosts(true);
             foreach (var post in posts)
             {
-                PostWithMedia newpost = new PostWithMedia() { Post = post };
-                if(post.FeaturedMedia != 0)
-                {
-                    newpost.FeaturedMediaFull = await _client.GetMedia(post.FeaturedMedia.ToString());
-                }
                 // Clean excerpt
-                if (newpost?.Post?.Excerpt?.Rendered != null)
+                if (post?.Excerpt?.Rendered != null)
                 {
-                    newpost.Post.Excerpt.Raw = HtmlTools.Strip(newpost.Post.Excerpt.Rendered);
+                    post.Excerpt.Raw = HtmlTools.Strip(post.Excerpt.Rendered);
                 }
-                Posts.Add(newpost);
+                Posts.Add(post);
             }
         }
 
-        private PostWithMedia _selectedPost;
-        public PostWithMedia SelectedPost { get { return _selectedPost; } set { Set(ref _selectedPost, value); } }
+        private Post _selectedPost;
+        public Post SelectedPost { get { return _selectedPost; } set { Set(ref _selectedPost, value); } }
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
@@ -81,7 +75,7 @@ namespace WordPressUWPApp.ViewModels
         public async void ClickCommand(object sender, object parameter)
         {
             var arg = parameter as Windows.UI.Xaml.Controls.ItemClickEventArgs;
-            SelectedPost = arg.ClickedItem as PostWithMedia;
+            SelectedPost = arg.ClickedItem as Post;
             if (SessionState.ContainsKey("selectedPost"))
             {
                 SessionState.Remove("selectedPost");
