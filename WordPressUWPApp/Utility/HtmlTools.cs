@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace WordPressUWPApp.Utility
 {
-    public class HtmlTools
+    public static class HtmlTools
     {
         public static string Strip(string text)
         {
@@ -17,29 +17,42 @@ namespace WordPressUWPApp.Utility
         }
 
 
-        public static string GetHTML(DependencyObject obj)
+        public static string GetContent(DependencyObject obj)
         {
-            return (string)obj.GetValue(HTMLProperty);
+            return (string)obj.GetValue(ContentProperty);
         }
 
 
-        public static void SetHTML(DependencyObject obj, string value)
+        public static void SetContent(DependencyObject obj, string value)
         {
-            obj.SetValue(HTMLProperty, value);
+            obj.SetValue(ContentProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for HTML.  This enables animation, styling, binding, etc...  
-        public static readonly DependencyProperty HTMLProperty =
-          DependencyProperty.RegisterAttached("HTML", typeof(string), typeof(HtmlTools), new PropertyMetadata("", new PropertyChangedCallback(OnHTMLChanged)));
+        public static readonly DependencyProperty ContentProperty = DependencyProperty.RegisterAttached(
+              "Content", 
+              typeof(string), 
+              typeof(HtmlTools), 
+              new PropertyMetadata(string.Empty, OnContentChanged));
 
 
-        private static void OnHTMLChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        //private static void OnContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        //{
+        //    WebView wv = d as WebView;
+        //    if (wv != null)
+        //    {
+        //        wv.NavigateToString((string)e.NewValue);
+        //    }
+        //}
+        private static void OnContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             WebView wv = d as WebView;
-            if (wv != null)
+            var content = e.NewValue as string;
+            if (string.IsNullOrEmpty(content))
             {
-                wv.NavigateToString((string)e.NewValue);
+                return;
             }
+            wv?.NavigateToString(content);
         }
     }
 }
