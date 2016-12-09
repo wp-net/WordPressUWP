@@ -16,7 +16,8 @@ namespace WordPressUWPApp.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        public ObservableCollection<Post> Posts { get; } = new ObservableCollection<Post>();
+        private ObservableCollection<Post> _posts;
+        public ObservableCollection<Post> Posts { get { return _posts; } set { Set(ref _posts, value); } }
         private WordPressClient _client;
 
         public MainPageViewModel()
@@ -41,8 +42,8 @@ namespace WordPressUWPApp.ViewModels
                 {
                     post.Excerpt.Raw = HtmlTools.Strip(post.Excerpt.Rendered);
                 }
-                Posts.Add(post);
             }
+            Posts = new ObservableCollection<Post>(posts);
         }
 
         private Post _selectedPost;

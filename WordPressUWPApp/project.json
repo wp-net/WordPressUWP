@@ -3,6 +3,7 @@
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.0-beta2",
     "Microsoft.Toolkit.Uwp": "1.2.0",
     "Microsoft.Toolkit.Uwp.UI": "1.2.0",
+    "Microsoft.Toolkit.Uwp.UI.Controls": "1.2.0",
     "Microsoft.Xaml.Behaviors.Uwp.Managed": "2.0.0",
     "Newtonsoft.Json": "9.0.2-beta1",
     "Template10": "1.1.12",

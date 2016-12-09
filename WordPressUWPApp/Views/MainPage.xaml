@@ -5,6 +5,7 @@
       xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:controls="using:Template10.Controls"
+      xmlns:ctkcontrols="using:Microsoft.Toolkit.Uwp.UI.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:WordPressUWPApp.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -15,7 +16,7 @@
         <vm:MainPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
 
-    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
                 <VisualState x:Name="VisualStateNarrow">
@@ -46,11 +47,14 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-
-        <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
-                             RelativePanel.AlignRightWithPanel="True"
-                             RelativePanel.AlignTopWithPanel="True" Text="News">
+        <controls:PageHeader x:Name="pageHeader"
+                             Grid.Row="0"
+                             Text="News">
 
             <!--  secondary commands  -->
             <controls:PageHeader.SecondaryCommands>
@@ -61,32 +65,50 @@
 
         </controls:PageHeader>
 
-        <GridView ItemsSource="{x:Bind ViewModel.Posts, Mode=OneWay}" 
-                  RelativePanel.Below="pageHeader" 
-                  IsItemClickEnabled="True"
-                  SelectionMode="None"
-                  >
+        <ctkcontrols:AdaptiveGridView 
+            x:Name="AdaptiveGridViewControl"
+            Grid.Row="1"
+            ItemsSource="{x:Bind ViewModel.Posts, Mode=OneWay}" 
+            DesiredWidth="450"
+            IsItemClickEnabled="True"
+            ItemHeight="300"
+            SelectionMode="None">
             <Interactivity:Interaction.Behaviors>
                 <Core:EventTriggerBehavior EventName="ItemClick">
                     <Core:CallMethodAction MethodName="ClickCommand" 
                 TargetObject="{Binding Mode=OneWay}" />
                 </Core:EventTriggerBehavior>
             </Interactivity:Interaction.Behaviors>
-            <GridView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapGrid x:Name="GridViewPanel" HorizontalChildrenAlignment="Stretch" VerticalChildrenAlignment="Stretch" Orientation="Horizontal" MaximumRowsOrColumns="3"/>
-                </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-            <GridView.ItemTemplate>
+            <ctkcontrols:AdaptiveGridView.ItemTemplate>
                 <DataTemplate x:DataType="wp:Post">
-                    <StackPanel x:Name="PostWrapper" Width="300" Margin="10, 10, 0, 0">
-                        <Image Source="{x:Bind Embedded.WpFeaturedmedia[0].MediaDetails.Sizes.Medium.SourceUrl}" Stretch="UniformToFill" Height="150"></Image>
-                        <TextBlock Text="{x:Bind Title.Rendered}"/>
-                        <TextBlock Text="{x:Bind Excerpt.Raw}"/>
-                    </StackPanel>
+                    <Border BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="1">
+                        <Grid x:Name="PostWrapper" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <Image Source="{x:Bind Embedded.WpFeaturedmedia[0].MediaDetails.Sizes.Medium.SourceUrl}" Stretch="UniformToFill"></Image>
+                            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                        <GradientStop Color="#00000000" Offset="0.4" />
+                                        <GradientStop Color="#CC000000" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <StackPanel VerticalAlignment="Bottom" Margin="3">
+                                    <TextBlock 
+                                    FontSize="20" 
+                                    TextTrimming="WordEllipsis" 
+                                    TextWrapping="WrapWholeWords" 
+                                    LineStackingStrategy="BlockLineHeight"
+                                    LineHeight="22"
+                                    Height="44" 
+                                    Margin="0 0 0 40"  
+                                    FontWeight="Bold" 
+                                    Foreground="White" 
+                                    Text="{x:Bind Title.Rendered}"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
-
-    </RelativePanel>
+            </ctkcontrols:AdaptiveGridView.ItemTemplate>
+        </ctkcontrols:AdaptiveGridView>
+    </Grid>
 </Page>
