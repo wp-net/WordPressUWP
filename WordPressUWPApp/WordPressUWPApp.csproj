@@ -90,6 +90,8 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <PRIResource Include="Resources\en\Resources.resw" />
+    <PRIResource Include="Resources\de\Resources.resw" />
     <None Include="WordPressUWPApp_TemporaryKey.pfx" />
     <None Include="project.json" />
   </ItemGroup>

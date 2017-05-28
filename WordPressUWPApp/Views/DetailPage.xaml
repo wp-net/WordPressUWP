@@ -12,6 +12,7 @@
       xmlns:tools="using:WordPressUWPApp.Utility"
       xmlns:ctk="using:Microsoft.Toolkit.Uwp.UI"
       xmlns:wp="using:WordPressPCL.Models"
+      xmlns:as="using:AppStudio.Uwp.Controls"
       mc:Ignorable="d">
 
     <Page.DataContext>
@@ -69,13 +70,13 @@
                 <WebView Grid.Column="0" ctk:WebViewExtensions.Content="{x:Bind ViewModel.DetailsPost.Content.Rendered}" Height="Auto" />
 
         <StackPanel x:Name="CommentsPanel" Grid.Column="1">
-            <TextBlock Text="Comments" />
-            <ListView ItemsSource="{x:Bind ViewModel.PostComments}">
+            <TextBlock x:Uid="CommentsHeader" Text="|Comments|" Margin="10" />
+            <ListView ItemsSource="{x:Bind ViewModel.PostComments}" SelectionMode="None">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="wp:Comment">
-                            <StackPanel>
-                                <TextBlock Text="{x:Bind AuthorName}"/>
-                                <TextBlock Text="{x:Bind Content.Rendered}"/>
+                            <StackPanel Margin="0 0 0 10">
+                                <TextBlock FontWeight="SemiBold" Text="{x:Bind AuthorName}"/>
+                                <as:HtmlBlock Source="{x:Bind Content.Rendered}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
