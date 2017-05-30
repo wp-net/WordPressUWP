@@ -16,3 +16,5 @@ WordPressUWPTestApp/Utility/ApiCredentials.cs
 /WordPressUWPTestApp/obj/ARM/Debug
 WordPressUWPApp/project.lock.json
 WordPressUWPApp/WordPressUWPApp.nuget.props
+WordPressUWPApp/bin/
+.vs/

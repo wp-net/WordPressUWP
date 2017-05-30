@@ -11,8 +11,10 @@
       xmlns:vm="using:WordPressUWPApp.ViewModels" x:Name="ThisPage"
       xmlns:tools="using:WordPressUWPApp.Utility"
       xmlns:ctk="using:Microsoft.Toolkit.Uwp.UI"
+      xmlns:ctku="using:Microsoft.Toolkit.Uwp.UI.Controls"
       xmlns:wp="using:WordPressPCL.Models"
       xmlns:as="using:AppStudio.Uwp.Controls"
+      xmlns:converter="using:WordPressUWPApp.Converters"
       mc:Ignorable="d">
 
     <Page.DataContext>
@@ -28,8 +30,8 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="CommentsPanel.Visbility" Value="Visibility.Collapsed"/>
-                        <!--  TODO: change properties for narrow view  -->
+                        <!--<Setter Target="CommentsPanel.Visbility" Value="Visibility.Collapsed"/>-->
+                          <!--TODO: change properties for narrow view-->  
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateNormal">
@@ -37,7 +39,7 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <!--  TODO: change properties for normal view  -->
+                          <!--TODO: change properties for normal view-->  
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateWide">
@@ -45,7 +47,7 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <!--  TODO: change properties for wide view  -->
+                          <!--TODO: change properties for wide view-->  
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -67,21 +69,29 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!--<Image Grid.Column="0" Source="{x:Bind ViewModel.DetailsPost.Embedded.WpFeaturedmedia[0].SourceUrl}"/>-->
-                <WebView Grid.Column="0" ctk:WebViewExtensions.Content="{x:Bind ViewModel.DetailsPost.Content.Rendered}" Height="Auto" />
+                <WebView Grid.Column="0" ctk:WebViewExtensions.Content="{x:Bind ViewModel.ContentWrapped}" Height="Auto" />
 
-        <StackPanel x:Name="CommentsPanel" Grid.Column="1">
-            <TextBlock x:Uid="CommentsHeader" Text="|Comments|" Margin="10" />
-            <ListView ItemsSource="{x:Bind ViewModel.PostComments}" SelectionMode="None">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="wp:Comment">
-                            <StackPanel Margin="0 0 0 10">
+            <ListView Grid.Column="1" ItemsSource="{x:Bind ViewModel.PostComments}" Padding="10 10 20 10" x:Uid="CommentsHeader" x:Name="CommentsPanel" SelectionMode="None" Header="|Comments|" ItemContainerStyle="{StaticResource CommentsListViewItemStyle}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="wp:Comment">
+                        <Grid Margin="0 0 0 20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ctku:ImageEx Source="{x:Bind AuthorAvatarUrls.Size96}" PlaceholderSource="/assets/gravatar.jpg" Stretch="UniformToFill" Grid.Column="0" Height="50" Width="50" VerticalAlignment="Top" IsCacheEnabled="True"/>
+
+                            <!--<Image Source="{x:Bind AuthorAvatarUrls.Size96}" Stretch="UniformToFill" Grid.Column="0" Height="48" Width="48" VerticalAlignment="Top" HorizontalAlignment="Left"></Image>-->
+                            <StackPanel Grid.Column="1" Padding="10 0 0 0">
                                 <TextBlock FontWeight="SemiBold" Text="{x:Bind AuthorName}"/>
+                                <TextBlock Text="{x:Bind Date}" />
                                 <as:HtmlBlock Source="{x:Bind Content.Rendered}"/>
                             </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
-        </StackPanel>
+
 
         </Grid>
     </RelativePanel>

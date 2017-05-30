@@ -31,6 +31,10 @@ namespace WordPressUWPApp.ViewModels
         private Post _detailspost;
         public Post DetailsPost { get { return _detailspost; } set { Set(ref _detailspost, value); } }
 
+        private string _contentWrapped;
+        public string ContentWrapped { get { return _contentWrapped; } set { Set(ref _contentWrapped, value); } }
+
+
         private ObservableCollection<Comment> _postComments;
         public ObservableCollection<Comment> PostComments { get { return _postComments; } set { Set(ref _postComments, value); } }
 
@@ -43,8 +47,16 @@ namespace WordPressUWPApp.ViewModels
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
             DetailsPost = SessionState["selectedPost"] as Post;
+            ContentWrapped = WrapContent(DetailsPost.Content.Rendered);
             GetPostComments();
             await Task.CompletedTask;
+        }
+
+        private string WrapContent(string rendered)
+        {
+            var prepend = "<html><head><link rel=\"stylesheet\" href=\"ms-appx-web:///Assets/Web/Style.css\" type=\"text/css\" media=\"screen\" /></head><body>";
+            var append = "</body></html>";
+            return prepend + rendered + append;
         }
 
         public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)

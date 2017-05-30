@@ -5,7 +5,8 @@
                      RequestedTheme="Light">
 
     <Application.Resources>
-        <ResourceDictionary Source="Styles\Custom.xaml" />
+        <ResourceDictionary Source="Styles\Custom.xaml" >
+        </ResourceDictionary>
     </Application.Resources>
 
 </common:BootStrapper>
