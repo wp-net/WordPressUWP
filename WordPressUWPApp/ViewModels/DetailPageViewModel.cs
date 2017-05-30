@@ -54,7 +54,7 @@ namespace WordPressUWPApp.ViewModels
 
         private string WrapContent(string rendered)
         {
-            var prepend = "<html><head><link rel=\"stylesheet\" href=\"ms-appx-web:///Assets/Web/Style.css\" type=\"text/css\" media=\"screen\" /></head><body>";
+            var prepend = $"<html><head><link rel=\"stylesheet\" href=\"ms-appx-web:///Assets/Web/Style.css\" type=\"text/css\" media=\"screen\" /></head><body><img src=\"{DetailsPost.Embedded.WpFeaturedmedia[0].MediaDetails.Sizes.MediumLarge.SourceUrl}\">";
             var append = "</body></html>";
             return prepend + rendered + append;
         }

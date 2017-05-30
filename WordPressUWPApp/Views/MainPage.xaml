@@ -104,7 +104,9 @@
                                     FontWeight="Bold" 
                                     Foreground="White" 
                                     Text="{x:Bind Title.Rendered}"/>
-                                </StackPanel>
+                                <TextBlock Text="{x:Bind Embedded.Author[0].name}"/>
+                                <TextBlock Text="{x:Bind Categories}"/>
+                            </StackPanel>
                             </Border>
                         </Grid>
                     <!--</Border>-->
