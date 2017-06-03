@@ -46,15 +46,29 @@ namespace WordPressUWPApp.ViewModels
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
-            DetailsPost = SessionState["selectedPost"] as Post;
-            ContentWrapped = WrapContent(DetailsPost.Content.Rendered);
-            GetPostComments();
+            var selectedPost = SessionState["selectedPost"] as Post;
+            if (DetailsPost == null || DetailsPost.Id != selectedPost.Id)
+            {
+                DetailsPost = selectedPost;
+                ContentWrapped = WrapContent(DetailsPost.Content.Rendered);
+                GetPostComments();
+            }
             await Task.CompletedTask;
         }
 
         private string WrapContent(string rendered)
         {
-            var prepend = $"<html><head><link rel=\"stylesheet\" href=\"ms-appx-web:///Assets/Web/Style.css\" type=\"text/css\" media=\"screen\" /></head><body><img src=\"{DetailsPost.Embedded.WpFeaturedmedia[0].MediaDetails.Sizes.MediumLarge.SourceUrl}\">";
+            var img = DetailsPost.Embedded.WpFeaturedmedia[0].MediaDetails.Sizes;
+            string url = "";
+            if (img.ContainsKey("full"))
+            {
+                url = img["full"].SourceUrl;
+            } else
+            {
+                //var x = img[].SourceUrl;
+            }
+
+            var prepend = $"<html><head><link rel=\"stylesheet\" href=\"ms-appx-web:///Assets/Web/Style.css\" type=\"text/css\" media=\"screen\" /></head><body><a href=\"{url}\"><img id=\"featured\" src=\"{DetailsPost.Embedded.WpFeaturedmedia[0].MediaDetails.Sizes["full"].SourceUrl}\"></a>";
             var append = "</body></html>";
             return prepend + rendered + append;
         }

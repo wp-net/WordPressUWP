@@ -6,6 +6,7 @@
       xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:controls="using:Template10.Controls"
       xmlns:ctkcontrols="using:Microsoft.Toolkit.Uwp.UI.Controls"
+      xmlns:converter="using:Microsoft.Toolkit.Uwp.UI.Converters"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:WordPressUWPApp.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -83,7 +84,7 @@
                 <DataTemplate x:DataType="wp:Post">
                     <!--<Border BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="1">-->
                         <Grid x:Name="PostWrapper" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <ctkcontrols:ImageEx Source="{x:Bind Embedded.WpFeaturedmedia[0].MediaDetails.Sizes.MediumLarge.SourceUrl}" Stretch="UniformToFill" IsCacheEnabled="True"/>
+                        <ctkcontrols:ImageEx Source="{Binding Embedded.WpFeaturedmedia[0].MediaDetails.Sizes[full].SourceUrl}" Stretch="UniformToFill" IsCacheEnabled="True"/>
                         <!--<Image Source="{x:Bind Embedded.WpFeaturedmedia[0].MediaDetails.Sizes.MediumLarge.SourceUrl}" Stretch="UniformToFill"></Image>-->
                             <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <Border.Background>

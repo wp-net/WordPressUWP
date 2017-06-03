@@ -22,28 +22,24 @@ namespace WordPressUWPApp.ViewModels
 
         public MainPageViewModel()
         {
-            if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
-            {
-
-            }
-
-            Initialize();
         }
 
         public async void Initialize()
         {
-
             _client = new WordPressClient(ApiCredentials.WordPressUri);
             var posts = await _client.ListPosts(true);
-            foreach (var post in posts)
+            if(posts != null)
             {
-                // Clean excerpt
-                if (post?.Excerpt?.Rendered != null)
+                foreach (var post in posts)
                 {
-                    post.Excerpt.Raw = HtmlTools.Strip(post.Excerpt.Rendered);
+                    // Clean excerpt
+                    if (post?.Excerpt?.Rendered != null)
+                    {
+                        post.Excerpt.Raw = HtmlTools.Strip(post.Excerpt.Rendered);
+                    }
                 }
+                Posts = new ObservableCollection<Post>(posts);
             }
-            Posts = new ObservableCollection<Post>(posts);
         }
 
         private Post _selectedPost;
@@ -55,6 +51,7 @@ namespace WordPressUWPApp.ViewModels
             {
                 // save to suspensionState
             }
+            Initialize();
             await Task.CompletedTask;
         }
 

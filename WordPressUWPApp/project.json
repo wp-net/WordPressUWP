@@ -8,7 +8,7 @@
     "Newtonsoft.Json": "10.0.2",
     "Template10": "1.1.12",
     "WindowsAppStudio.Uwp": "1.5.3",
-    "WordPressPCL": "0.1.6"
+    "WordPressPCL": "0.1.7"
   },
   "frameworks": {
     "uap10.0": {}

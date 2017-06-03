@@ -2614,7 +2614,7 @@
           "lib/uap10.0/AppStudio.Uwp.dll": {}
         }
       },
-      "WordPressPCL/0.1.6": {
+      "WordPressPCL/0.1.7": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -5239,7 +5239,7 @@
           "lib/uap10.0/AppStudio.Uwp.dll": {}
         }
       },
-      "WordPressPCL/0.1.6": {
+      "WordPressPCL/0.1.7": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -7903,7 +7903,7 @@
           "lib/uap10.0/AppStudio.Uwp.dll": {}
         }
       },
-      "WordPressPCL/0.1.6": {
+      "WordPressPCL/0.1.7": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -10537,7 +10537,7 @@
           "lib/uap10.0/AppStudio.Uwp.dll": {}
         }
       },
-      "WordPressPCL/0.1.6": {
+      "WordPressPCL/0.1.7": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -13210,7 +13210,7 @@
           "lib/uap10.0/AppStudio.Uwp.dll": {}
         }
       },
-      "WordPressPCL/0.1.6": {
+      "WordPressPCL/0.1.7": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -15844,7 +15844,7 @@
           "lib/uap10.0/AppStudio.Uwp.dll": {}
         }
       },
-      "WordPressPCL/0.1.6": {
+      "WordPressPCL/0.1.7": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -18517,7 +18517,7 @@
           "lib/uap10.0/AppStudio.Uwp.dll": {}
         }
       },
-      "WordPressPCL/0.1.6": {
+      "WordPressPCL/0.1.7": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -27465,14 +27465,14 @@
         "windowsappstudio.uwp.nuspec"
       ]
     },
-    "WordPressPCL/0.1.6": {
-      "sha512": "tWzSRACjdzkuWTnj+EyjOA4SWEzNByJKw10ibuHifalTOnSYsu9ASjH4y20yFZGAAlbU9be0y7ODHlK29vkTWw==",
+    "WordPressPCL/0.1.7": {
+      "sha512": "nQnDUHIz/BrJmfJPS41mGs4aFLQc0efQRNigKd/K4mDaQ3GiXVt5JAcrlwS4Pi83tUXdd9PBcP63CADGSxXD/g==",
       "type": "package",
-      "path": "wordpresspcl/0.1.6",
+      "path": "wordpresspcl/0.1.7",
       "files": [
         "lib/netstandard1.1/WordPressPCL.dll",
         "lib/netstandard1.1/WordPressPCL.xml",
-        "wordpresspcl.0.1.6.nupkg.sha512",
+        "wordpresspcl.0.1.7.nupkg.sha512",
         "wordpresspcl.nuspec"
       ]
     }
@@ -27487,7 +27487,7 @@
       "Newtonsoft.Json >= 10.0.2",
       "Template10 >= 1.1.12",
       "WindowsAppStudio.Uwp >= 1.5.3",
-      "WordPressPCL >= 0.1.6"
+      "WordPressPCL >= 0.1.7"
     ],
     "UAP,Version=v10.0": []
   },
@@ -27511,7 +27511,7 @@
       "Newtonsoft.Json": "10.0.2",
       "Template10": "1.1.12",
       "WindowsAppStudio.Uwp": "1.5.3",
-      "WordPressPCL": "0.1.6"
+      "WordPressPCL": "0.1.7"
     },
     "frameworks": {
       "uap10.0": {}
