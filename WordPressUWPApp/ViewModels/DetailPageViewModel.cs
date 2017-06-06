@@ -34,7 +34,6 @@ namespace WordPressUWPApp.ViewModels
         private string _contentWrapped;
         public string ContentWrapped { get { return _contentWrapped; } set { Set(ref _contentWrapped, value); } }
 
-
         private ObservableCollection<Comment> _postComments;
         public ObservableCollection<Comment> PostComments { get { return _postComments; } set { Set(ref _postComments, value); } }
 

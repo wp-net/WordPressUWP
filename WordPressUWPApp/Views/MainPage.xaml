@@ -6,7 +6,7 @@
       xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:controls="using:Template10.Controls"
       xmlns:ctkcontrols="using:Microsoft.Toolkit.Uwp.UI.Controls"
-      xmlns:converter="using:Microsoft.Toolkit.Uwp.UI.Converters"
+      xmlns:converter="using:WordPressUWPApp.Converters"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:WordPressUWPApp.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -16,7 +16,9 @@
     <Page.DataContext>
         <vm:MainPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
-
+    <Page.Resources>
+        <converter:DisplayTermsConverter x:Key="DisplayTermsConverter"/>
+    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
@@ -93,21 +95,20 @@
                                         <GradientStop Color="#CC000000" Offset="1" />
                                     </LinearGradientBrush>
                                 </Border.Background>
-                                <StackPanel VerticalAlignment="Bottom" Margin="3">
+                                <StackPanel VerticalAlignment="Bottom" Margin="12 24">
+                                    <TextBlock Text="{x:Bind Embedded.Author[0].name}"/>
+                                    <TextBlock Text="{x:Bind Embedded.WpTerm, Converter={StaticResource DisplayTermsConverter}}"/>
                                     <TextBlock 
-                                    FontSize="20" 
-                                    TextTrimming="WordEllipsis" 
-                                    TextWrapping="WrapWholeWords" 
-                                    LineStackingStrategy="BlockLineHeight"
-                                    LineHeight="22"
-                                    Height="44" 
-                                    Margin="0 0 0 40"  
-                                    FontWeight="Bold" 
-                                    Foreground="White" 
-                                    Text="{x:Bind Title.Rendered}"/>
-                                <TextBlock Text="{x:Bind Embedded.Author[0].name}"/>
-                                <TextBlock Text="{x:Bind Categories}"/>
-                            </StackPanel>
+                                            FontSize="20" 
+                                            TextTrimming="WordEllipsis" 
+                                            TextWrapping="WrapWholeWords" 
+                                            LineStackingStrategy="BlockLineHeight"
+                                            LineHeight="22"
+                                            Height="44" 
+                                            FontWeight="Bold" 
+                                            Foreground="White" 
+                                            Text="{x:Bind Title.Rendered}"/>
+                                </StackPanel>
                             </Border>
                         </Grid>
                     <!--</Border>-->
