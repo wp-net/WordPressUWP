@@ -72,9 +72,10 @@
             x:Name="AdaptiveGridViewControl"
             Grid.Row="1"
             ItemsSource="{x:Bind ViewModel.Posts, Mode=OneWay}" 
-            DesiredWidth="450"
+            DesiredWidth="370"
             IsItemClickEnabled="True"
-            ItemHeight="300"
+            ItemHeight="320"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
             SelectionMode="None">
             <Interactivity:Interaction.Behaviors>
                 <Core:EventTriggerBehavior EventName="ItemClick">
@@ -84,34 +85,40 @@
             </Interactivity:Interaction.Behaviors>
             <ctkcontrols:AdaptiveGridView.ItemTemplate>
                 <DataTemplate x:DataType="wp:Post">
-                    <!--<Border BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="1">-->
-                        <Grid x:Name="PostWrapper" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <ctkcontrols:ImageEx Source="{Binding Embedded.WpFeaturedmedia[0].MediaDetails.Sizes[full].SourceUrl}" Stretch="UniformToFill" IsCacheEnabled="True"/>
-                        <!--<Image Source="{x:Bind Embedded.WpFeaturedmedia[0].MediaDetails.Sizes.MediumLarge.SourceUrl}" Stretch="UniformToFill"></Image>-->
-                            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <Border.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
-                                        <GradientStop Color="#00000000" Offset="0.4" />
-                                        <GradientStop Color="#CC000000" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                                <StackPanel VerticalAlignment="Bottom" Margin="12 24">
-                                    <!--<TextBlock Text="{x:Bind Embedded.Author[0].name}"/>-->
-                                    <TextBlock Text="{x:Bind Embedded.WpTerm, Converter={StaticResource DisplayTermsConverter}}"/>
-                                    <TextBlock 
-                                            FontSize="20" 
-                                            TextTrimming="WordEllipsis" 
-                                            TextWrapping="WrapWholeWords" 
-                                            LineStackingStrategy="BlockLineHeight"
-                                            LineHeight="22"
-                                            Height="44" 
-                                            FontWeight="Bold" 
-                                            Foreground="White" 
-                                            Text="{x:Bind Title.Rendered}"/>
-                                </StackPanel>
-                            </Border>
-                        </Grid>
-                    <!--</Border>-->
+                    <Grid x:Name="PostWrapper" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <ctkcontrols:ImageEx 
+                            Source="{Binding Embedded.WpFeaturedmedia[0].MediaDetails.Sizes[full].SourceUrl}" 
+                            Stretch="UniformToFill" 
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Center"
+                            IsCacheEnabled="True"/>
+                        <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                    <GradientStop Color="#00000000" Offset="0.4" />
+                                    <GradientStop Color="#CC000000" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <StackPanel VerticalAlignment="Bottom" Margin="12 48">
+                                <!--<TextBlock Text="{x:Bind Embedded.Author[0].name}"/>-->
+                                <TextBlock 
+                                    Text="{x:Bind Embedded.WpTerm, Converter={StaticResource DisplayTermsConverter}}"
+                                    FontSize="12"
+                                    FontWeight="ExtraBold"
+                                    Foreground="White"/>
+                                <TextBlock 
+                                    FontSize="20" 
+                                    TextTrimming="WordEllipsis" 
+                                    TextWrapping="WrapWholeWords" 
+                                    LineStackingStrategy="BlockLineHeight"
+                                    LineHeight="22"
+                                    Height="44" 
+                                    FontWeight="Bold" 
+                                    Foreground="White" 
+                                    Text="{x:Bind Title.Rendered}"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
                 </DataTemplate>
             </ctkcontrols:AdaptiveGridView.ItemTemplate>
         </ctkcontrols:AdaptiveGridView>

@@ -6,9 +6,13 @@
     <x:Double x:Key="NormalMinWidth">521</x:Double>
     <x:Double x:Key="WideMinWidth">1200</x:Double>
 
-    <Color x:Key="CustomColor">SteelBlue</Color>
+    <Color x:Key="CustomColor">#1e73be</Color>
     <Color x:Key="ContrastColor">White</Color>
-    <Color x:Key="SystemAccentColor">SteelBlue</Color>
+    <Color x:Key="SystemAccentColor">#1e73be</Color>
+    <Color x:Key="ShellPrimary">#ececec</Color>
+    <Color x:Key="ShellSecondary">#f5f5f5</Color>
+    <Color x:Key="LightForeground">Black</Color>
+    <Color x:Key="DarkForeground">White</Color>
 
     <Style x:Key="CommentsListViewItemStyle" TargetType="ListViewItem">
         <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
@@ -57,10 +61,12 @@
 
         <ResourceDictionary x:Key="Light">
 
+            <SolidColorBrush x:Key="ForegroundBrush" Color="{ThemeResource LightForeground}"/>
             <SolidColorBrush x:Key="CustomColorBrush" Color="{ThemeResource CustomColor}" />
             <SolidColorBrush x:Key="ContrastColorBrush" Color="{ThemeResource ContrastColor}" />
             <SolidColorBrush x:Key="ExtendedSplashBackground" Color="{ThemeResource CustomColor}" />
             <SolidColorBrush x:Key="ExtendedSplashForeground" Color="{ThemeResource ContrastColor}" />
+            <SolidColorBrush x:Key="ShellPrimaryBrush" Color="{ThemeResource ShellPrimary}"/>
 
             <Style TargetType="controls:HamburgerMenu">
                 <Setter Property="AccentColor" Value="{ThemeResource CustomColor}" />
@@ -70,8 +76,8 @@
             </Style>
 
             <Style TargetType="controls:PageHeader">
-                <Setter Property="Background" Value="{ThemeResource CustomColorBrush}" />
-                <Setter Property="Foreground" Value="{ThemeResource ContrastColorBrush}" />
+                <Setter Property="Background" Value="{ThemeResource ShellPrimaryBrush}" />
+                <Setter Property="Foreground" Value="{ThemeResource ForegroundBrush}" />
                 <Setter Property="VisualStateNarrowMinWidth" Value="{ThemeResource NarrowMinWidth}" />
                 <Setter Property="VisualStateNormalMinWidth" Value="{ThemeResource NormalMinWidth}" />
             </Style>
