@@ -92,13 +92,15 @@
                                 <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <ctku:ImageEx Source="{x:Bind AuthorAvatarUrls.Size96}" 
-                                          PlaceholderSource="/assets/gravatar.jpg" 
-                                          Stretch="UniformToFill" 
-                                          Grid.Column="0" 
-                                          Height="50" Width="50" 
-                                          VerticalAlignment="Top" 
-                                          IsCacheEnabled="True"/>
+                            <ctku:RoundImageEx 
+                                Source="{x:Bind AuthorAvatarUrls.Size96}" 
+                                PlaceholderSource="/assets/gravatar.jpg" 
+                                Stretch="UniformToFill" 
+                                Grid.Column="0" 
+                                Height="50" Width="50" 
+                                VerticalAlignment="Top" 
+                                CornerRadius="999"
+                                IsCacheEnabled="True"/>
                             <StackPanel Grid.Column="1" Padding="10 0 0 0">
                                 <TextBlock FontWeight="SemiBold" Text="{x:Bind AuthorName}"/>
                                 <TextBlock Text="{x:Bind Date, Converter={StaticResource FormatStringConverter}, ConverterParameter='{}dd/MM/yyy HH\\\\:mm'}" />

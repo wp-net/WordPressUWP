@@ -39,7 +39,7 @@ namespace WordPressUWPApp.ViewModels
 
         private async void GetPostComments()
         {
-            var comments = await _client.GetCommentsForPost(DetailsPost.Id.ToString());
+            var comments = await _client.Comments.GetCommentsForPost(DetailsPost.Id.ToString());
             PostComments.AddRange(comments);
         }
 
@@ -57,7 +57,7 @@ namespace WordPressUWPApp.ViewModels
 
         private string WrapContent(string rendered)
         {
-            var img = DetailsPost.Embedded.WpFeaturedmedia[0].MediaDetails.Sizes;
+            var img = DetailsPost.Embedded.WpFeaturedmedia.FirstOrDefault().MediaDetails.Sizes;
             string url = "";
             if (img.ContainsKey("full"))
             {
@@ -67,7 +67,7 @@ namespace WordPressUWPApp.ViewModels
                 //var x = img[].SourceUrl;
             }
 
-            var prepend = $"<html><head><link rel=\"stylesheet\" href=\"ms-appx-web:///Assets/Web/Style.css\" type=\"text/css\" media=\"screen\" /></head><body><a href=\"{url}\"><img id=\"featured\" src=\"{DetailsPost.Embedded.WpFeaturedmedia[0].MediaDetails.Sizes["full"].SourceUrl}\"></a>";
+            var prepend = $"<html><head><link rel=\"stylesheet\" href=\"ms-appx-web:///Assets/Web/Style.css\" type=\"text/css\" media=\"screen\" /></head><body><a href=\"{url}\"><img id=\"featured\" src=\"{DetailsPost.Embedded.WpFeaturedmedia.FirstOrDefault().MediaDetails.Sizes["full"].SourceUrl}\"></a>";
             var append = "</body></html>";
             return prepend + rendered + append;
         }

@@ -11,6 +11,7 @@ using WordPressPCL;
 using WordPressUWPApp.Utility;
 using Template10.Utils;
 using Windows.UI.Popups;
+using WordPressPCL.Utility;
 
 namespace WordPressUWPApp.ViewModels
 {
@@ -27,7 +28,12 @@ namespace WordPressUWPApp.ViewModels
         public async void Initialize()
         {
             _client = new WordPressClient(ApiCredentials.WordPressUri);
-            var posts = await _client.ListPosts(true);
+            var posts = await _client.Posts.Query(new PostsQueryBuilder()
+            {
+                Embed = true,
+                PerPage = 20,
+                Page = 0
+            });
             if(posts != null)
             {
                 foreach (var post in posts)
@@ -70,7 +76,7 @@ namespace WordPressUWPApp.ViewModels
             await Task.CompletedTask;
         }
 
-        public async void ClickCommand(object sender, object parameter)
+        public void ClickCommand(object sender, object parameter)
         {
             var arg = parameter as Windows.UI.Xaml.Controls.ItemClickEventArgs;
             SelectedPost = arg.ClickedItem as Post;

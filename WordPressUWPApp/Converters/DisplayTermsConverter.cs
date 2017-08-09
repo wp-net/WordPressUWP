@@ -14,7 +14,7 @@ namespace WordPressUWPApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var terms = value as IList<IList<Term>>;
+            var terms = value as IEnumerable<IEnumerable<Term>>;
             var taxonomy = parameter as string;
             if (String.IsNullOrEmpty(taxonomy))
                 taxonomy = "category";

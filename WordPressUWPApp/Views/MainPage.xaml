@@ -96,7 +96,7 @@
                                     </LinearGradientBrush>
                                 </Border.Background>
                                 <StackPanel VerticalAlignment="Bottom" Margin="12 24">
-                                    <TextBlock Text="{x:Bind Embedded.Author[0].name}"/>
+                                    <!--<TextBlock Text="{x:Bind Embedded.Author[0].name}"/>-->
                                     <TextBlock Text="{x:Bind Embedded.WpTerm, Converter={StaticResource DisplayTermsConverter}}"/>
                                     <TextBlock 
                                             FontSize="20" 
