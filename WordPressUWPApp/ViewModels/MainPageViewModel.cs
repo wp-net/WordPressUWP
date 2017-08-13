@@ -12,6 +12,8 @@ using WordPressUWPApp.Utility;
 using Template10.Utils;
 using Windows.UI.Popups;
 using WordPressPCL.Utility;
+using Windows.UI;
+using Windows.Foundation.Metadata;
 
 namespace WordPressUWPApp.ViewModels
 {

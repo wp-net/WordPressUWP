@@ -6,13 +6,21 @@
     <x:Double x:Key="NormalMinWidth">521</x:Double>
     <x:Double x:Key="WideMinWidth">1200</x:Double>
 
-    <Color x:Key="CustomColor">#1e73be</Color>
     <Color x:Key="ContrastColor">White</Color>
     <Color x:Key="SystemAccentColor">#1e73be</Color>
-    <Color x:Key="ShellPrimary">#ececec</Color>
+    <Color x:Key="CustomColor">#1e73be</Color>
+    <Color x:Key="ShellBackground">#f2f2f2</Color>
+    <Color x:Key="PageHeaderBackground">#e6e6e6</Color>
     <Color x:Key="ShellSecondary">#f5f5f5</Color>
     <Color x:Key="LightForeground">Black</Color>
     <Color x:Key="DarkForeground">White</Color>
+    <Color x:Key="LightBackground">#ececec</Color>
+    <Color x:Key="DarkBackground">#333333</Color>
+
+    <SolidColorBrush x:Key="ShellBackgroundBrush" Color="{ThemeResource ShellBackground}"/>
+    <SolidColorBrush x:Key="PageHeaderBackgroundBrush" Color="{ThemeResource PageHeaderBackground}"/>
+    <SolidColorBrush x:Key="AccentColorBrush" Color="{ThemeResource SystemAccentColor}"/>
+    <SolidColorBrush x:Key="CustomColorBrush" Color="{ThemeResource SystemAccentColor}"/>
 
     <Style x:Key="CommentsListViewItemStyle" TargetType="ListViewItem">
         <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
@@ -66,7 +74,6 @@
             <SolidColorBrush x:Key="ContrastColorBrush" Color="{ThemeResource ContrastColor}" />
             <SolidColorBrush x:Key="ExtendedSplashBackground" Color="{ThemeResource CustomColor}" />
             <SolidColorBrush x:Key="ExtendedSplashForeground" Color="{ThemeResource ContrastColor}" />
-            <SolidColorBrush x:Key="ShellPrimaryBrush" Color="{ThemeResource ShellPrimary}"/>
 
             <Style TargetType="controls:HamburgerMenu">
                 <Setter Property="AccentColor" Value="{ThemeResource CustomColor}" />
@@ -76,7 +83,7 @@
             </Style>
 
             <Style TargetType="controls:PageHeader">
-                <Setter Property="Background" Value="{ThemeResource ShellPrimaryBrush}" />
+                <Setter Property="Background" Value="{ThemeResource PageHeaderBackgroundBrush}" />
                 <Setter Property="Foreground" Value="{ThemeResource ForegroundBrush}" />
                 <Setter Property="VisualStateNarrowMinWidth" Value="{ThemeResource NarrowMinWidth}" />
                 <Setter Property="VisualStateNormalMinWidth" Value="{ThemeResource NormalMinWidth}" />
@@ -95,7 +102,8 @@
             <SolidColorBrush x:Key="ContrastColorBrush" Color="{ThemeResource ContrastColor}" />
             <SolidColorBrush x:Key="ExtendedSplashBackground" Color="{ThemeResource CustomColor}" />
             <SolidColorBrush x:Key="ExtendedSplashForeground" Color="{ThemeResource ContrastColor}" />
-
+            <SolidColorBrush x:Key="ShellBackgroundBrush" Color="{ThemeResource ShellBackground}"/>
+            
             <Style TargetType="controls:HamburgerMenu">
                 <Setter Property="AccentColor" Value="{ThemeResource CustomColor}" />
                 <Setter Property="VisualStateNarrowMinWidth" Value="{ThemeResource NarrowMinWidth}" />
@@ -104,7 +112,7 @@
             </Style>
 
             <Style TargetType="controls:PageHeader">
-                <Setter Property="Background" Value="{ThemeResource CustomColorBrush}" />
+                <Setter Property="Background" Value="{ThemeResource PageHeaderBackgroundBrush}" />
                 <Setter Property="Foreground" Value="{ThemeResource ContrastColorBrush}" />
                 <Setter Property="VisualStateNarrowMinWidth" Value="{ThemeResource NarrowMinWidth}" />
                 <Setter Property="VisualStateNormalMinWidth" Value="{ThemeResource NormalMinWidth}" />

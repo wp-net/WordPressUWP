@@ -11,7 +11,14 @@
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       mc:Ignorable="d">
 
-    <Controls:HamburgerMenu x:Name="MyHamburgerMenu">
+    <Controls:HamburgerMenu x:Name="MyHamburgerMenu"
+                            NavAreaBackground="{ThemeResource ShellBackgroundBrush}"
+                            HamburgerBackground="{ThemeResource ShellBackgroundBrush}"
+                            HamburgerForeground="{ThemeResource AccentColorBrush}"
+                            NavButtonCheckedForeground="{ThemeResource AccentColorBrush}"
+                            NavButtonCheckedIndicatorBrush="{ThemeResource AccentColorBrush}"
+                            NavButtonForeground="Black"
+                            AccentColor="AliceBlue">
 
         <Controls:HamburgerMenu.PrimaryButtons>
             <!--  mainpage button  -->

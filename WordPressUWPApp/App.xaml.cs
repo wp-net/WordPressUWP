@@ -6,6 +6,8 @@ using Template10.Controls;
 using Template10.Common;
 using System;
 using System.Linq;
+using Windows.Foundation.Metadata;
+using Windows.UI;
 
 namespace WordPressUWPApp
 {
@@ -43,6 +45,33 @@ namespace WordPressUWPApp
                     ModalContent = new Views.Busy(),
                 };
             }
+
+            //PC customization
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.ApplicationView"))
+            {
+
+                var titleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
+                if (titleBar != null)
+                {
+                    titleBar.BackgroundColor = (Color)App.Current.Resources["PageHeaderBackground"];
+                    titleBar.ForegroundColor = Colors.Black;
+                    titleBar.ButtonBackgroundColor = (Color)App.Current.Resources["PageHeaderBackground"];
+                    titleBar.ButtonForegroundColor = Colors.Black;
+                }
+            }
+
+            //Mobile customization
+            //if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            //{
+            //    StatusBar.Set
+            //    var statusBar = StatusBar.GetForCurrentView();
+            //    if (statusBar != null)
+            //    {
+            //        statusBar.BackgroundOpacity = 1;
+            //        statusBar.BackgroundColor = Colors.DarkBlue;
+            //        statusBar.ForegroundColor = Colors.White;
+            //    }
+            //}
             await Task.CompletedTask;
         }
 
@@ -52,6 +81,7 @@ namespace WordPressUWPApp
 
             NavigationService.Navigate(typeof(Views.MainPage));
             await Task.CompletedTask;
+
         }
     }
 }
