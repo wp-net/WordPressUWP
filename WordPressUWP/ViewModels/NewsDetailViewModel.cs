@@ -5,9 +5,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
 using Windows.UI.Xaml;
-
-using WordPressUWP.Models;
 using WordPressUWP.Services;
+using WordPressPCL.Models;
 
 namespace WordPressUWP.ViewModels
 {
@@ -40,9 +39,9 @@ namespace WordPressUWP.ViewModels
             }
         }
 
-        private SampleOrder _item;
+        private Post _item;
 
-        public SampleOrder Item
+        public Post Item
         {
             get { return _item; }
             set { Set(ref _item, value); }

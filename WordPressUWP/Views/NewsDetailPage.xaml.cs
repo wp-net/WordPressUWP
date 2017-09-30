@@ -2,8 +2,6 @@
 
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-
-using WordPressUWP.Models;
 using WordPressUWP.ViewModels;
 
 namespace WordPressUWP.Views
@@ -23,7 +21,7 @@ namespace WordPressUWP.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            ViewModel.Item = e.Parameter as SampleOrder;
+            ViewModel.Item = e.Parameter as WordPressPCL.Models.Post;
         }
     }
 }

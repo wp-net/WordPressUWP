@@ -2,20 +2,19 @@
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
-using WordPressUWP.Models;
+using WordPressPCL.Models;
 
 namespace WordPressUWP.Views
 {
     public sealed partial class NewsDetailControl : UserControl
     {
-        public SampleOrder MasterMenuItem
+        public Post MasterMenuItem
         {
-            get { return GetValue(MasterMenuItemProperty) as SampleOrder; }
+            get { return GetValue(MasterMenuItemProperty) as Post; }
             set { SetValue(MasterMenuItemProperty, value); }
         }
 
-        public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(SampleOrder), typeof(NewsDetailControl), new PropertyMetadata(null));
+        public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(Post), typeof(NewsDetailControl), new PropertyMetadata(null));
 
         public NewsDetailControl()
         {

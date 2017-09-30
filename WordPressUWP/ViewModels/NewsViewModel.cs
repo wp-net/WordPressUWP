@@ -9,8 +9,6 @@ using GalaSoft.MvvmLight.Command;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
-using WordPressUWP.Models;
 using WordPressUWP.Services;
 using WordPressPCL.Models;
 using WordPressUWP.Interfaces;
@@ -33,15 +31,6 @@ namespace WordPressUWP.ViewModels
         private const string WideStateName = "WideState";
 
         private VisualState _currentState;
-
-        private SampleOrder _selected;
-
-        public SampleOrder Selected
-        {
-            get { return _selected; }
-            set { Set(ref _selected, value); }
-        }
-
 
         private ICommand _itemClickCommand;
 
@@ -72,8 +61,15 @@ namespace WordPressUWP.ViewModels
                 return _stateChangedCommand;
             }
         }
+        
+        public ObservableCollection<Post> Posts { get; private set; } = new ObservableCollection<Post>();
+        private Post _selectedPost;
 
-        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+        public Post SelectedPost
+        {
+            get { return _selectedPost; }
+            set { Set(ref _selectedPost, value); }
+        }
 
         public NewsViewModel(IWordPressService wordPressService)
         {
@@ -83,18 +79,15 @@ namespace WordPressUWP.ViewModels
         public async Task LoadDataAsync(VisualState currentState)
         {
             _currentState = currentState;
-            SampleItems.Clear();
-
-            var data = await SampleDataService.GetSampleModelDataAsync();
-
-            foreach (var item in data)
-            {
-                SampleItems.Add(item);
-            }
-
-            Selected = SampleItems.First();
-
+            
+            Posts.Clear();
             var posts = await _wordPressService.GetLatestPosts();
+            foreach(var item in posts)
+            {
+                Posts.Add(item);
+            }
+            SelectedPost = Posts.First();
+
             Debug.WriteLine(posts.Count());
         }
 
@@ -105,8 +98,7 @@ namespace WordPressUWP.ViewModels
 
         private void OnItemClick(ItemClickEventArgs args)
         {
-            SampleOrder item = args?.ClickedItem as SampleOrder;
-            if (item != null)
+            if (args?.ClickedItem is Post item)
             {
                 if (_currentState.Name == NarrowStateName)
                 {
@@ -114,7 +106,7 @@ namespace WordPressUWP.ViewModels
                 }
                 else
                 {
-                    Selected = item;
+                    SelectedPost = item;
                 }
             }
         }
