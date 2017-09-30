@@ -13,11 +13,14 @@ using Windows.UI.Xaml.Controls;
 using WordPressUWP.Models;
 using WordPressUWP.Services;
 using WordPressPCL.Models;
+using WordPressUWP.Interfaces;
+using System.Diagnostics;
 
 namespace WordPressUWP.ViewModels
 {
     public class NewsViewModel : ViewModelBase
     {
+        private IWordPressService _wordPressService;
         public NavigationServiceEx NavigationService
         {
             get
@@ -72,8 +75,9 @@ namespace WordPressUWP.ViewModels
 
         public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
 
-        public NewsViewModel()
+        public NewsViewModel(IWordPressService wordPressService)
         {
+            _wordPressService = wordPressService;
         }
 
         public async Task LoadDataAsync(VisualState currentState)
@@ -89,6 +93,9 @@ namespace WordPressUWP.ViewModels
             }
 
             Selected = SampleItems.First();
+
+            var posts = await _wordPressService.GetLatestPosts();
+            Debug.WriteLine(posts.Count());
         }
 
         private void OnStateChanged(VisualStateChangedEventArgs args)
