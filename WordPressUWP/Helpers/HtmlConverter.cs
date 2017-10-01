@@ -8,15 +8,14 @@ using WordPressPCL.Models;
 
 namespace WordPressUWP.Helpers
 {
-    public class FeaturedImageConverter : IValueConverter
+    public class HtmlConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is Embedded)
+            if (value is Post)
             {
-                var p = (Embedded)value;
-                var l = new List<MediaItem>(p.WpFeaturedmedia);
-                return l.First().SourceUrl;
+                var post = (Post)value;
+                return HtmlTools.WrapContent(post.Content.Rendered);
             }
             return String.Empty;
         }

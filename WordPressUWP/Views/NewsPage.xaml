@@ -5,9 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding NewsViewModel, Source={StaticResource Locator}}"
-    xmlns:model="using:WordPressUWP.Models"
     xmlns:wpmodel="using:WordPressPCL.Models"
     xmlns:views="using:WordPressUWP.Views"
+    xmlns:ctk="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:helper="using:WordPressUWP.Helpers"
@@ -24,16 +24,16 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-
-                <TextBlock 
-                    Text="{x:Bind Id}" 
-                    Style="{StaticResource ListTitleStyle}" />
-                <Image Source="{x:Bind Embedded.WpFeaturedmedia, Converter={StaticResource FeaturedImageConverter}}"></Image>
-
+                <ctk:ImageEx Source="{x:Bind Embedded, Converter={StaticResource FeaturedImageConverter}, Mode=OneWay}" Height="170" IsCacheEnabled="True" Stretch="UniformToFill" ></ctk:ImageEx>
                 <TextBlock
                     Grid.Row="1"
-                    Text="{x:Bind Title.Rendered}"
+                    Text="{x:Bind Title.Rendered}" 
+                    Style="{StaticResource ListTitleStyle}" />
+                <TextBlock
+                    Grid.Row="2"
+                    Text="{x:Bind Date}"
                     Style="{StaticResource ListSubTitleStyle}" />
             </Grid>
         </DataTemplate>
@@ -80,6 +80,7 @@
                 Grid.Row="1"
                 ItemsSource="{x:Bind ViewModel.Posts, Mode=OneWay}"
                 SelectedItem="{x:Bind ViewModel.SelectedPost, Mode=OneWay}"
+                ScrollViewer.VerticalScrollBarVisibility="Hidden"
                 ItemContainerTransitions="{x:Null}"
                 ItemTemplate="{StaticResource MasterListViewItemTemplate}"
                 IsItemClickEnabled="True"

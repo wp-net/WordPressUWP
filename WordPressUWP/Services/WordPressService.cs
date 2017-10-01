@@ -25,7 +25,8 @@ namespace WordPressUWP.Services
             return await _client.Posts.Query(new PostsQueryBuilder()
             {
                 Page = 0,
-                PerPage = 20
+                PerPage = 20,
+                Embed = true
             });
         }
     }
