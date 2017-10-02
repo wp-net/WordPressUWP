@@ -20,6 +20,13 @@ namespace WordPressUWP.Services
             _client = new WordPressClient(ApiCredentials.WordPressUri);
         }
 
+        public async Task<bool> AuthenticateUser(string username, string password)
+        {
+            _client.AuthMethod = AuthMethod.JWT;
+            await _client.RequestJWToken(username, password);
+            return await _client.IsValidJWToken();
+        }
+
         public async Task<IEnumerable<Post>> GetLatestPosts()
         {
             return await _client.Posts.Query(new PostsQueryBuilder()
@@ -28,6 +35,16 @@ namespace WordPressUWP.Services
                 PerPage = 20,
                 Embed = true
             });
+        }
+
+        public async Task<User> GetUser()
+        {
+            return await _client.Users.GetCurrentUser();
+        }
+
+        public async Task<bool> IsUserAuthenticated()
+        {
+            return await _client.IsValidJWToken();
         }
     }
 }
