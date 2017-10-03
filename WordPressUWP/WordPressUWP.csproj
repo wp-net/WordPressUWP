@@ -108,6 +108,9 @@
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
       <Version>2.0.0</Version>
     </PackageReference>
+    <PackageReference Include="WindowsAppStudio.Uwp">
+      <Version>1.5.3</Version>
+    </PackageReference>
     <PackageReference Include="WindowsAzure.Messaging.Managed">
       <Version>0.1.7.9</Version>
     </PackageReference>
@@ -126,6 +129,7 @@
     <Compile Include="Helpers\ApiCredentials.cs" />
     <Compile Include="Helpers\ApiCredentials.sample.cs" />
     <Compile Include="Helpers\DisplayTermsConverter.cs" />
+    <Compile Include="Helpers\EmbeddedRepliesConverter.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\FeaturedImageConverter.cs" />
     <Compile Include="Helpers\HtmlConverter.cs" />

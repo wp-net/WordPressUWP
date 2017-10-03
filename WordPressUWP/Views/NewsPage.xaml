@@ -11,6 +11,7 @@
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:helper="using:WordPressUWP.Helpers"
+    xmlns:as="using:AppStudio.Uwp.Controls"
     mc:Ignorable="d">
     <Page.Transitions>
         <TransitionCollection>
@@ -19,6 +20,7 @@
     </Page.Transitions>
     <Page.Resources>
         <helper:FeaturedImageConverter x:Key="FeaturedImageConverter" />
+        <helper:EmbeddedRepliesConverter x:Key="EmbeddedRepliesConverter"/>
         <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="wpmodel:Post">
             <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
                 <Grid.RowDefinitions>
@@ -104,10 +106,40 @@
             Grid.Row="1"
             Grid.Column="1"
             Padding="24,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="400"/>
+            </Grid.ColumnDefinitions>
 
             <views:NewsDetailControl
                 x:Name="DetailControl"
                 MasterMenuItem="{x:Bind ViewModel.SelectedPost, Mode=OneWay}"/>
+            <Grid Grid.Column="1" Background="AliceBlue">
+                <ListView ItemsSource="{x:Bind ViewModel.SelectedPost.Embedded.Replies, Converter={StaticResource EmbeddedRepliesConverter}, Mode=OneWay}" SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="wpmodel:Comment">
+                            <Grid Margin="0 12 0 24" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <ctk:RoundImageEx Source="{x:Bind AuthorAvatarUrls.Size96, Mode=OneWay}"
+                                                  Height="60"
+                                                  Width="60"
+                                                  CornerRadius="999"
+                                                  PlaceholderSource="https://www.gravatar.com/avatar/?s=96&amp;d=mm"
+                                                  PlaceholderStretch="UniformToFill"
+                                                  Margin="0 0 12 0"
+                                                  VerticalAlignment="Top"/>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="{x:Bind AuthorName, Mode=OneWay}"/>
+                                    <as:HtmlBlock Source="{x:Bind Content.Rendered, Mode=OneWay}" HorizontalAlignment="Stretch"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
         </Grid>
 
         <!--  Adaptive triggers  -->
