@@ -21,5 +21,11 @@ namespace WordPressUWP.Views
             DataContext = ViewModel;
             ViewModel.Initialize(shellFrame);
         }
+
+        private void LoginBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            ViewModel.Login(UsernameTbx.Text, PasswordTbx.Password);
+            PasswordTbx.Password = String.Empty;
+        }
     }
 }

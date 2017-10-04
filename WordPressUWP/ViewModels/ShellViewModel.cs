@@ -70,6 +70,20 @@ namespace WordPressUWP.ViewModels
             set { Set(ref _secondaryItems, value); }
         }
 
+        private bool _isLoginPopupOpen;
+        public bool IsLoginPopupOpen
+        {
+            get { return _isLoginPopupOpen; }
+            set { Set(ref _isLoginPopupOpen, value); }
+        }
+
+        private bool _showLoginError;
+        public bool ShowLoginError
+        {
+            get { return _showLoginError; }
+            set { Set(ref _showLoginError, value); }
+        }
+
         private ICommand _openPaneCommand;
 
         public ICommand OpenPaneCommand
@@ -229,11 +243,29 @@ namespace WordPressUWP.ViewModels
                 if(navigationItem.ViewModelName == "Login")
                 {
                     Debug.WriteLine("Show login popup");
+                    IsLoginPopupOpen = true;
                 }
                 else
                 {
                     NavigationService.Navigate(navigationItem.ViewModelName);
                 }
+            }
+        }
+
+        public void CloseLoginPopup()
+        {
+            IsLoginPopupOpen = false;
+        }
+
+        public async void Login(string username, string password)
+        {
+            var isAuth = await _wordPressService.AuthenticateUser(username, password);
+            if (isAuth)
+            {
+                CloseLoginPopup();
+            } else
+            {
+                ShowLoginError = true;
             }
         }
     }

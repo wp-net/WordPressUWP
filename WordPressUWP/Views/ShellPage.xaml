@@ -93,8 +93,8 @@
             </Grid>
         </DataTemplate>
     </Page.Resources>
-
-    <controls:HamburgerMenu
+    <Grid>
+        <controls:HamburgerMenu
             x:Name="NavigationMenu"
             DisplayMode="{x:Bind ViewModel.DisplayMode, Mode=OneWay}"
             IsPaneOpen="{x:Bind ViewModel.IsPaneOpen, Mode=TwoWay}"
@@ -105,40 +105,60 @@
             PaneBackground="{ThemeResource SystemControlBackgroundAltHighBrush}"
             PaneForeground="{ThemeResource SystemControlForegroundBaseHighBrush}"
             >
-        <i:Interaction.Behaviors>
-            <ic:EventTriggerBehavior EventName="ItemClick">
-                <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemSelectedCommand}" />
-            </ic:EventTriggerBehavior>
-            <ic:EventTriggerBehavior EventName="OptionsItemClick">
-                <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemSelectedCommand}" />
-            </ic:EventTriggerBehavior>
-        </i:Interaction.Behaviors>
-        <Grid Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
-            <Frame x:Name="shellFrame"/>
-        </Grid>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="WindowStates">
-                <i:Interaction.Behaviors>
-                    <ic:EventTriggerBehavior EventName="CurrentStateChanged">
-                        <ic:InvokeCommandAction Command="{x:Bind ViewModel.StateChangedCommand}"/>
-                    </ic:EventTriggerBehavior>
-                </i:Interaction.Behaviors>
-                <VisualState x:Name="PanoramicState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1024"/>
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="WideState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="640"/>
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="NarrowState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"/>
-                    </VisualState.StateTriggers>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-    </controls:HamburgerMenu>
+            <i:Interaction.Behaviors>
+                <ic:EventTriggerBehavior EventName="ItemClick">
+                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemSelectedCommand}" />
+                </ic:EventTriggerBehavior>
+                <ic:EventTriggerBehavior EventName="OptionsItemClick">
+                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemSelectedCommand}" />
+                </ic:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+            <Grid Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+                <Frame x:Name="shellFrame"/>
+            </Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="WindowStates">
+                    <i:Interaction.Behaviors>
+                        <ic:EventTriggerBehavior EventName="CurrentStateChanged">
+                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.StateChangedCommand}"/>
+                        </ic:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                    <VisualState x:Name="PanoramicState">
+                        <VisualState.StateTriggers>
+                            <AdaptiveTrigger MinWindowWidth="1024"/>
+                        </VisualState.StateTriggers>
+                    </VisualState>
+                    <VisualState x:Name="WideState">
+                        <VisualState.StateTriggers>
+                            <AdaptiveTrigger MinWindowWidth="640"/>
+                        </VisualState.StateTriggers>
+                    </VisualState>
+                    <VisualState x:Name="NarrowState">
+                        <VisualState.StateTriggers>
+                            <AdaptiveTrigger MinWindowWidth="0"/>
+                        </VisualState.StateTriggers>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </controls:HamburgerMenu>
+        <Popup x:Name="LoginPopup"
+               IsOpen="{x:Bind ViewModel.IsLoginPopupOpen, Mode=TwoWay}"
+               IsLightDismissEnabled="True"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center">
+            <Grid Background="{ThemeResource SystemControlBackgroundAltHighBrush}"
+                  Height="500"
+                  Width="350">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="12">
+                    <TextBox x:Name="UsernameTbx" Header="Username" PlaceholderText="Username" HorizontalAlignment="Stretch" Margin="0 0 0 12"></TextBox>
+                    <PasswordBox x:Name="PasswordTbx" Header="Password" PlaceholderText="Password" HorizontalAlignment="Stretch" Margin="0 0 0 12"></PasswordBox>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="LoginBtn" Content="[Login]" Margin="0 0 12 0" Click="LoginBtn_Click"></Button>
+                        <Button x:Name="CancelBtn" Content="[Cancel]" Click="{x:Bind ViewModel.CloseLoginPopup}"></Button>
+                    </StackPanel>
+                    <TextBlock x:Name="LoginErrorMessage" Visibility="{x:Bind ViewModel.ShowLoginError, Mode=OneWay}" Text="[Error loggin in]"></TextBlock>
+                </StackPanel>
+            </Grid>
+        </Popup>
+    </Grid>
 </Page>
