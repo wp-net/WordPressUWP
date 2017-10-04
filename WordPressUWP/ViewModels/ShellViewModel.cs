@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Navigation;
 using WordPressUWP.Helpers;
 using WordPressUWP.Services;
 using WordPressUWP.Views;
+using WordPressUWP.Interfaces;
+using System.Diagnostics;
 
 namespace WordPressUWP.ViewModels
 {
@@ -30,7 +32,7 @@ namespace WordPressUWP.ViewModels
         {
             get
             {
-                return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+                return ServiceLocator.Current.GetInstance<NavigationServiceEx>();
             }
         }
 
@@ -99,6 +101,7 @@ namespace WordPressUWP.ViewModels
         }
 
         private ICommand _stateChangedCommand;
+        private IWordPressService _wordPressService;
 
         public ICommand StateChangedCommand
         {
@@ -111,6 +114,11 @@ namespace WordPressUWP.ViewModels
 
                 return _stateChangedCommand;
             }
+        }
+
+        public ShellViewModel(IWordPressService wordPressService)
+        {
+            _wordPressService = wordPressService;
         }
 
         private void GoToState(string stateName)
@@ -169,6 +177,7 @@ namespace WordPressUWP.ViewModels
             // Edit String/en-US/Resources.resw: Add a menu item title for each page
             _primaryItems.Add(new ShellNavigationItem("Shell_News".GetLocalized(), Symbol.Document, typeof(NewsViewModel).FullName));
             _secondaryItems.Add(new ShellNavigationItem("Shell_Settings".GetLocalized(), Symbol.Setting, typeof(SettingsViewModel).FullName));
+            _secondaryItems.Add(new ShellNavigationItem("Me", Symbol.Contact, "Login"));
         }
 
         private void ItemSelected(ItemClickEventArgs args)
@@ -177,7 +186,6 @@ namespace WordPressUWP.ViewModels
             {
                 IsPaneOpen = false;
             }
-
             Navigate(args.ClickedItem);
         }
 
@@ -218,7 +226,14 @@ namespace WordPressUWP.ViewModels
             var navigationItem = item as ShellNavigationItem;
             if (navigationItem != null)
             {
-                NavigationService.Navigate(navigationItem.ViewModelName);
+                if(navigationItem.ViewModelName == "Login")
+                {
+                    Debug.WriteLine("Show login popup");
+                }
+                else
+                {
+                    NavigationService.Navigate(navigationItem.ViewModelName);
+                }
             }
         }
     }
