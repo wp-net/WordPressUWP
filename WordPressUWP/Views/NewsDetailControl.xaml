@@ -26,7 +26,11 @@
 
         <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your detail content.-->
         <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}" Grid.Row="1">
-            <WebView ctk:WebViewExtensions.Content="{x:Bind MasterMenuItem, Converter={StaticResource HtmlConverter}, Mode=OneWay}" Height="Auto" NavigationStarting="WebView_NavigationStarting" UnsafeContentWarningDisplaying="WebView_UnsafeContentWarningDisplaying" />
+            <WebView x:Name="PostWebView"
+                     ctk:WebViewExtensions.Content="{x:Bind MasterMenuItem, Converter={StaticResource HtmlConverter}, Mode=OneWay}"
+                     Height="Auto"
+                     NavigationStarting="WebView_NavigationStarting"
+                     UnsafeContentWarningDisplaying="WebView_UnsafeContentWarningDisplaying" />
         </Grid>
         <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>
