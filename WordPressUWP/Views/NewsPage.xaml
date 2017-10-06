@@ -8,6 +8,7 @@
     xmlns:wpmodel="using:WordPressPCL.Models"
     xmlns:views="using:WordPressUWP.Views"
     xmlns:ctk="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:ctkconv="using:Microsoft.Toolkit.Uwp.UI.Converters"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:helper="using:WordPressUWP.Helpers"
@@ -21,6 +22,7 @@
     <Page.Resources>
         <helper:FeaturedImageConverter x:Key="FeaturedImageConverter" />
         <helper:EmbeddedRepliesConverter x:Key="EmbeddedRepliesConverter"/>
+        <ctkconv:StringFormatConverter x:Key="StringFormatConverter"/>
         <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="wpmodel:Post">
             <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
                 <Grid.RowDefinitions>
@@ -105,7 +107,7 @@
             x:Name="DetailContentPresenter"
             Grid.Row="1"
             Grid.Column="1"
-            Padding="24,0,0,0">
+            Padding="0,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="400"/>
@@ -114,11 +116,12 @@
             <views:NewsDetailControl
                 x:Name="DetailControl"
                 MasterMenuItem="{x:Bind ViewModel.SelectedPost, Mode=OneWay}"/>
-            <Grid Grid.Column="1" Background="AliceBlue">
+            <Grid Grid.Column="1">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="48"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock
                         x:Name="TitleComments"
@@ -127,6 +130,7 @@
                         Style="{StaticResource PageTitleStyle}" />
                     <ListView Grid.Row="1"
                               ItemsSource="{x:Bind ViewModel.SelectedPost.Embedded.Replies, Converter={StaticResource EmbeddedRepliesConverter}, Mode=OneWay}"
+                               Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
                               SelectionMode="None">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="wpmodel:Comment">
@@ -144,13 +148,16 @@
                                                   Margin="0 0 12 0"
                                                   VerticalAlignment="Top"/>
                                     <StackPanel Grid.Column="1">
-                                        <TextBlock Text="{x:Bind AuthorName, Mode=OneWay}"/>
-                                        <as:HtmlBlock Source="{x:Bind Content.Rendered, Mode=OneWay}" HorizontalAlignment="Stretch"/>
+                                        <TextBlock FontWeight="Bold" Text="{x:Bind AuthorName, Mode=OneWay}"/>
+                                        <as:HtmlBlock Source="{x:Bind Content.Rendered, Mode=OneWay}" Foreground="{ThemeResource SystemBaseHighColor}" HorizontalAlignment="Stretch"/>
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+                    <CommandBar Grid.Row="2">
+                        <AppBarButton Icon="Refresh" Label="Refresh" />
+                    </CommandBar>
                 </Grid>
             </Grid>
         </Grid>

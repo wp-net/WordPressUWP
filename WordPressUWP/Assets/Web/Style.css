@@ -6,8 +6,8 @@
     box-sizing: border-box;
 }
 
-p img {
-    max-width: calc(100% + 30px);
+img {
+    max-width: calc(100% + 30px) !important;
     height: auto;
     margin-left: calc(-15px);
     margin-right: calc(-15px);

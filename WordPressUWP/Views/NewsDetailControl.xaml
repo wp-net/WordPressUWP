@@ -17,10 +17,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock
             x:Name="TitlePage"
+            HorizontalAlignment="Center"
             Text="{x:Bind MasterMenuItem.Title.Rendered, Mode=OneWay}"
             Style="{StaticResource PageTitleStyle}" />
 
@@ -32,6 +34,20 @@
                      NavigationStarting="WebView_NavigationStarting"
                      UnsafeContentWarningDisplaying="WebView_UnsafeContentWarningDisplaying" />
         </Grid>
+        <CommandBar Grid.Row="2">
+            <AppBarButton Icon="ReShare" Label="Share" />
+            <AppBarToggleButton x:Name="CommentToggleButton" Icon="Comment" Label="Toggle Comments"/>
+
+
+            <!--<CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Like" Label="Like"/>
+                <AppBarButton Icon="Dislike" Label="Dislike"/>
+            </CommandBar.SecondaryCommands>-->
+
+            <CommandBar.Content>
+                <TextBlock Text="" Margin="12,14"/>
+            </CommandBar.Content>
+        </CommandBar>
         <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">
@@ -39,6 +55,8 @@
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="640"/>
                     </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                    </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NarrowState">
                     <VisualState.StateTriggers>

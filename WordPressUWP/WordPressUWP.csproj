@@ -259,6 +259,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
+    <PRIResource Include="Strings\de\Resources.resw" />
     <None Include="WordPressUWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
