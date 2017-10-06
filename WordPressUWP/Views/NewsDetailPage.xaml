@@ -16,7 +16,7 @@
 
         <views:NewsDetailControl
             MasterMenuItem="{x:Bind ViewModel.Item}"
-            Margin="{StaticResource MediumLeftRightMargin}" />
+            Margin="0" />
 
         <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>

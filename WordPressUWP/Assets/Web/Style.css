@@ -24,3 +24,11 @@ iframe {
     margin-left: calc(-15px);
     margin-right: calc(-15px);
 }
+
+@media (max-width: 639px) {
+    img {
+        width: calc(100% + 25px);
+        margin-left: calc(-15px);
+        margin-right: calc(-15px);
+    }
+}
