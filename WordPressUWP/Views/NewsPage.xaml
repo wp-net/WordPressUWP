@@ -149,6 +149,7 @@
                                                   VerticalAlignment="Top"/>
                                     <StackPanel Grid.Column="1">
                                         <TextBlock FontWeight="Bold" Text="{x:Bind AuthorName, Mode=OneWay}"/>
+                                        <TextBlock Text="{x:Bind Date, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:g}'}" Foreground="{ThemeResource SystemBaseMediumColor}" />
                                         <as:HtmlBlock Source="{x:Bind Content.Rendered, Mode=OneWay}" Foreground="{ThemeResource SystemBaseHighColor}" HorizontalAlignment="Stretch"/>
                                     </StackPanel>
                                 </Grid>
