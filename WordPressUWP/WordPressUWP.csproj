@@ -135,6 +135,7 @@
     <Compile Include="Helpers\HtmlTools.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Helpers\TheadedCommentMarginConverter.cs" />
     <Compile Include="Interfaces\IWordPressService.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
