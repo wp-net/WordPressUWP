@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WordPressPCL.Models;
+using WordPressUWP.Models;
 
 namespace WordPressUWP.Interfaces
 {
@@ -16,5 +17,7 @@ namespace WordPressUWP.Interfaces
         Task<bool> IsUserAuthenticated();
 
         Task<User> GetUser();
+
+        Task<List<CommentThreaded>> GetCommentsForPost(int postid);
     }
 }

@@ -12,6 +12,8 @@ using WordPressPCL.Models;
 using WordPressUWP.Interfaces;
 using System.Diagnostics;
 using System.Collections.Generic;
+using WordPressUWP.Models;
+using WordPressUWP.Helpers;
 
 namespace WordPressUWP.ViewModels
 {
@@ -62,17 +64,42 @@ namespace WordPressUWP.ViewModels
         }
         
         public ObservableCollection<Post> Posts { get; private set; } = new ObservableCollection<Post>();
-        private Post _selectedPost;
 
+        private Post _selectedPost;
         public Post SelectedPost
         {
             get { return _selectedPost; }
             set { Set(ref _selectedPost, value); }
         }
 
+        private List<CommentThreaded> _comments;
+        public List<CommentThreaded> Comments
+        {
+            get { return _comments; }
+            set { Set(ref _comments, value); }
+        }
+
         public NewsViewModel(IWordPressService wordPressService)
         {
             _wordPressService = wordPressService;
+        }
+
+        internal async Task Init(VisualState currentState)
+        {
+            await LoadDataAsync(currentState);
+        }
+
+        private async Task GetComments(int postid)
+        {
+            var comments = await _wordPressService.GetCommentsForPost(postid);
+            if(Comments != null)
+            {
+                Comments.Clear();
+            }
+            if(comments != null)
+            {
+                Comments = comments;
+            }
         }
 
         public async Task LoadDataAsync(VisualState currentState)
@@ -86,6 +113,10 @@ namespace WordPressUWP.ViewModels
                 Posts.Add(item);
             }
             SelectedPost = Posts.First();
+            //if (SelectedPost != null)
+            //{
+            //    await GetComments(SelectedPost.Id);
+            //}
 
             Debug.WriteLine(posts.Count());
         }
@@ -95,7 +126,7 @@ namespace WordPressUWP.ViewModels
             _currentState = args.NewState;
         }
 
-        private void OnItemClick(ItemClickEventArgs args)
+        private async void OnItemClick(ItemClickEventArgs args)
         {
             if (args?.ClickedItem is Post item)
             {
@@ -106,6 +137,7 @@ namespace WordPressUWP.ViewModels
                 else
                 {
                     SelectedPost = item;
+                    await GetComments(item.Id);
                 }
             }
         }

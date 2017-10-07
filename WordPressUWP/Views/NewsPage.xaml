@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding NewsViewModel, Source={StaticResource Locator}}"
     xmlns:wpmodel="using:WordPressPCL.Models"
+    xmlns:model="using:WordPressUWP.Models"
     xmlns:views="using:WordPressUWP.Views"
     xmlns:ctk="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:ctkconv="using:Microsoft.Toolkit.Uwp.UI.Converters"
@@ -21,7 +22,6 @@
     </Page.Transitions>
     <Page.Resources>
         <helper:FeaturedImageConverter x:Key="FeaturedImageConverter" />
-        <helper:EmbeddedRepliesConverter x:Key="EmbeddedRepliesConverter"/>
         <ctkconv:StringFormatConverter x:Key="StringFormatConverter"/>
         <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="wpmodel:Post">
             <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
@@ -30,7 +30,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <ctk:ImageEx Source="{x:Bind Embedded, Converter={StaticResource FeaturedImageConverter}, Mode=OneWay}" Height="170" IsCacheEnabled="True" Stretch="UniformToFill" ></ctk:ImageEx>
+                <ctk:ImageEx Source="{x:Bind Embedded, Converter={StaticResource FeaturedImageConverter}, Mode=OneWay}" Height="170" IsCacheEnabled="False" Stretch="UniformToFill" ></ctk:ImageEx>
                 <TextBlock
                     Grid.Row="1"
                     Text="{x:Bind Title.Rendered}" 
@@ -129,11 +129,11 @@
                         Text="[Kommentare]"
                         Style="{StaticResource PageTitleStyle}" />
                     <ListView Grid.Row="1"
-                              ItemsSource="{x:Bind ViewModel.SelectedPost.Embedded.Replies, Converter={StaticResource EmbeddedRepliesConverter}, Mode=OneWay}"
+                              ItemsSource="{x:Bind ViewModel.Comments, Mode=OneWay}"
                                Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
                               SelectionMode="None">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="wpmodel:Comment">
+                            <DataTemplate x:DataType="model:CommentThreaded">
                                 <Grid Margin="0 12 12 24" HorizontalAlignment="Stretch">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>

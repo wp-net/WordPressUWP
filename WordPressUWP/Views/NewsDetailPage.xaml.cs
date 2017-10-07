@@ -18,10 +18,11 @@ namespace WordPressUWP.Views
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             ViewModel.Item = e.Parameter as WordPressPCL.Models.Post;
+            await ViewModel.Init();
         }
     }
 }

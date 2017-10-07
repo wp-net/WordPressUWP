@@ -1,12 +1,14 @@
-﻿using System;
-using System.Windows.Input;
-
+﻿using System.Windows.Input;
+using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
 using Windows.UI.Xaml;
 using WordPressUWP.Services;
 using WordPressPCL.Models;
+using WordPressUWP.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace WordPressUWP.ViewModels
 {
@@ -21,6 +23,16 @@ namespace WordPressUWP.ViewModels
         }
 
         private const string NarrowStateName = "NarrowState";
+
+        internal async Task Init()
+        {
+            //var comments = Item.Embedded.Replies.ToList().FirstOrDefault();
+            //var threadedComments = await Task.Run(async () =>
+            //{
+            //    return Helpers.ThreadedCommentsHelper.GetThreadedComments(comments);
+            //});
+            //Comments = threadedComments;
+        }
 
         private const string WideStateName = "WideState";
 
@@ -44,7 +56,14 @@ namespace WordPressUWP.ViewModels
         public Post Item
         {
             get { return _item; }
-            set { Set(ref _item, value); }
+            set { Set(ref _item, value);}
+        }
+
+        private List<CommentThreaded> _comments;
+        public List<CommentThreaded> Comments
+        {
+            get { return _comments; }
+            set { Set(ref _comments, value); }
         }
 
         public NewsDetailViewModel()

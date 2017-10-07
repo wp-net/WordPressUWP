@@ -8,6 +8,7 @@ using WordPressPCL.Models;
 using WordPressPCL.Utility;
 using WordPressUWP.Helpers;
 using WordPressUWP.Interfaces;
+using WordPressUWP.Models;
 
 namespace WordPressUWP.Services
 {
@@ -25,6 +26,18 @@ namespace WordPressUWP.Services
             _client.AuthMethod = AuthMethod.JWT;
             await _client.RequestJWToken(username, password);
             return await _client.IsValidJWToken();
+        }
+
+        public async Task<List<CommentThreaded>> GetCommentsForPost(int postid)
+        {
+            var comments = await _client.Comments.Query(new CommentsQueryBuilder()
+            {
+                Posts = new int[] { postid },
+                Page = 1,
+                PerPage = 100
+            });
+
+            return ThreadedCommentsHelper.GetThreadedComments(comments);
         }
 
         public async Task<IEnumerable<Post>> GetLatestPosts()
@@ -46,5 +59,7 @@ namespace WordPressUWP.Services
         {
             return await _client.IsValidJWToken();
         }
+
+
     }
 }
