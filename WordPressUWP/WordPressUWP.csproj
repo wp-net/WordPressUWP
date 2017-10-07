@@ -118,7 +118,7 @@
       <Version>10.0.3</Version>
     </PackageReference>
     <PackageReference Include="WordPressPCL">
-      <Version>1.1.1</Version>
+      <Version>1.2.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -135,9 +135,7 @@
     <Compile Include="Helpers\HtmlTools.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
-    <Compile Include="Helpers\ThreadedCommentsHelper.cs" />
     <Compile Include="Interfaces\IWordPressService.cs" />
-    <Compile Include="Models\CommentThreaded.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\FirstRunDisplayService.cs" />
@@ -244,7 +242,9 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Web\Dark.css" />
     <Content Include="Assets\Web\Light.css" />

@@ -12,8 +12,6 @@ using WordPressPCL.Models;
 using WordPressUWP.Interfaces;
 using System.Diagnostics;
 using System.Collections.Generic;
-using WordPressUWP.Models;
-using WordPressUWP.Helpers;
 
 namespace WordPressUWP.ViewModels
 {

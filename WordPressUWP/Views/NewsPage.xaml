@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding NewsViewModel, Source={StaticResource Locator}}"
     xmlns:wpmodel="using:WordPressPCL.Models"
-    xmlns:model="using:WordPressUWP.Models"
     xmlns:views="using:WordPressUWP.Views"
     xmlns:ctk="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:ctkconv="using:Microsoft.Toolkit.Uwp.UI.Converters"
@@ -133,7 +132,7 @@
                                Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
                               SelectionMode="None">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="model:CommentThreaded">
+                            <DataTemplate x:DataType="wpmodel:CommentThreaded">
                                 <Grid Margin="0 12 12 24" HorizontalAlignment="Stretch">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>

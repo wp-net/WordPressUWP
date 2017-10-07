@@ -1,12 +1,9 @@
 ﻿using System.Windows.Input;
-using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-
 using Windows.UI.Xaml;
 using WordPressUWP.Services;
 using WordPressPCL.Models;
-using WordPressUWP.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
