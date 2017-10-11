@@ -8,7 +8,7 @@ namespace WordPressUWP.Services
         public event EventHandler<string> InAppNotificationRaised;
 
 
-        public void RaiseInAppNotification(string text)
+        public void ShowInAppNotification(string text)
         {
             InAppNotificationRaised.Invoke(null, text);
         }

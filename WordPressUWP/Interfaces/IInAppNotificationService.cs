@@ -5,6 +5,6 @@ namespace WordPressUWP.Interfaces
     public interface IInAppNotificationService
     {
         event EventHandler<string> InAppNotificationRaised;
-        void RaiseInAppNotification(string text);
+        void ShowInAppNotification(string text);
     }
 }

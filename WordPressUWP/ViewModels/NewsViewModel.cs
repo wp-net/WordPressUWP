@@ -62,7 +62,7 @@ namespace WordPressUWP.ViewModels
                 return _stateChangedCommand;
             }
         }
-        
+
         public ObservableCollection<Post> Posts { get; private set; } = new ObservableCollection<Post>();
 
         private Post _selectedPost;
@@ -72,11 +72,19 @@ namespace WordPressUWP.ViewModels
             set { Set(ref _selectedPost, value); }
         }
 
-        private List<CommentThreaded> _comments;
-        public List<CommentThreaded> Comments
+        private ObservableCollection<CommentThreaded> _comments;
+        public ObservableCollection<CommentThreaded> Comments
         {
             get { return _comments; }
             set { Set(ref _comments, value); }
+        }
+
+        private string _commentInput;
+
+        public string CommentInput
+        {
+            get { return _commentInput; }
+            set { Set(ref _commentInput, value); }
         }
 
         public NewsViewModel(IWordPressService wordPressService, IInAppNotificationService inAppNotificationService)
@@ -92,24 +100,46 @@ namespace WordPressUWP.ViewModels
 
         private async Task GetComments(int postid)
         {
-            var comments = await _wordPressService.GetCommentsForPost(postid);
-            if(Comments != null)
+            if (Comments != null)
             {
                 Comments.Clear();
             }
-            if(comments != null)
+
+            var comments = await _wordPressService.GetCommentsForPost(postid);
+            if (comments != null)
             {
-                Comments = comments;
+                Comments = new ObservableCollection<CommentThreaded>(comments);
+            }
+        }
+
+        public async Task PostComment()
+        {
+            if (await _wordPressService.IsUserAuthenticated())
+            {
+                var comment = await _wordPressService.PostComment(SelectedPost.Id, CommentInput);
+                if (comment != null)
+                {
+                    _inAppNotificationService.ShowInAppNotification("successfully posted comment");
+                    CommentInput = String.Empty;
+                }
+                else
+                {
+                    _inAppNotificationService.ShowInAppNotification("something went wrong...");
+                }
+            }
+            else
+            {
+                _inAppNotificationService.ShowInAppNotification("You have to log in first.");
             }
         }
 
         public async Task LoadDataAsync(VisualState currentState)
         {
             _currentState = currentState;
-            
+
             Posts.Clear();
             var posts = await _wordPressService.GetLatestPosts();
-            foreach(var item in posts)
+            foreach (var item in posts)
             {
                 Posts.Add(item);
             }
@@ -135,6 +165,11 @@ namespace WordPressUWP.ViewModels
                     await GetComments(item.Id);
                 }
             }
+        }
+
+        public async void RefreshComments()
+        {
+            await GetComments(SelectedPost.Id);
         }
     }
 }

@@ -274,9 +274,11 @@ namespace WordPressUWP.ViewModels
             if (isAuth)
             {
                 CloseLoginPopup();
+                _inAppNotificationService.ShowInAppNotification("Logged in successfully!");
             } else
             {
                 ShowLoginError = true;
+                _inAppNotificationService.ShowInAppNotification("Failed to log in");
             }
         }
     }

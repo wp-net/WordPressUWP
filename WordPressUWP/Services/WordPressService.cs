@@ -56,6 +56,9 @@ namespace WordPressUWP.Services
             return await _client.IsValidJWToken();
         }
 
-
+        public async Task<Comment> PostComment(int postId, string text)
+        {
+            return await _client.Comments.Create(new Comment(postId, text));
+        }
     }
 }

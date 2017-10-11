@@ -122,6 +122,7 @@
                         <RowDefinition Height="48"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock
                         x:Name="TitleComments"
@@ -156,8 +157,17 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <CommandBar Grid.Row="2">
-                        <AppBarButton Icon="Refresh" Label="Refresh" />
+                    <StackPanel Grid.Row="2" Margin="12">
+                        <TextBox x:Name="CommentInput"
+                                 PlaceholderText="[Comment]"
+                                 Header="[In response to]"
+                                 MaxHeight="120"
+                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                 TextWrapping="Wrap" AcceptsReturn="True" Text="{x:Bind ViewModel.CommentInput, Mode=TwoWay}"></TextBox>
+                        <Button Content="[Send]" x:Uid="SendCommentBtn" x:Name="SendCommentBtn" Click="{x:Bind ViewModel.PostComment, Mode=OneWay}" Margin="0 12 0 0"></Button>
+                    </StackPanel>
+                    <CommandBar Grid.Row="3">
+                        <AppBarButton Icon="Refresh" Label="Refresh" Click="{x:Bind ViewModel.RefreshComments, Mode=OneWay}" />
                     </CommandBar>
                 </Grid>
             </Grid>
