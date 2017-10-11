@@ -18,6 +18,8 @@ namespace WordPressUWP.ViewModels
     public class NewsViewModel : ViewModelBase
     {
         private IWordPressService _wordPressService;
+        private IInAppNotificationService _inAppNotificationService;
+
         public NavigationServiceEx NavigationService
         {
             get
@@ -77,9 +79,10 @@ namespace WordPressUWP.ViewModels
             set { Set(ref _comments, value); }
         }
 
-        public NewsViewModel(IWordPressService wordPressService)
+        public NewsViewModel(IWordPressService wordPressService, IInAppNotificationService inAppNotificationService)
         {
             _wordPressService = wordPressService;
+            _inAppNotificationService = inAppNotificationService;
         }
 
         internal async Task Init(VisualState currentState)
@@ -111,12 +114,6 @@ namespace WordPressUWP.ViewModels
                 Posts.Add(item);
             }
             SelectedPost = Posts.First();
-            //if (SelectedPost != null)
-            //{
-            //    await GetComments(SelectedPost.Id);
-            //}
-
-            Debug.WriteLine(posts.Count());
         }
 
         private void OnStateChanged(VisualStateChangedEventArgs args)

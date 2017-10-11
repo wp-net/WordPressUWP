@@ -9,7 +9,7 @@
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Loaded="Page_Loaded">
     <Page.Resources>
         <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="vm:ShellNavigationItem">
             <Grid Width="320" Height="40" Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
@@ -160,5 +160,6 @@
                 </StackPanel>
             </Grid>
         </Popup>
+        <controls:InAppNotification x:Name="GlobalInAppNotification" Content="Testnotification" />
     </Grid>
 </Page>

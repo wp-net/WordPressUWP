@@ -23,12 +23,6 @@ namespace WordPressUWP.ViewModels
 
         internal async Task Init()
         {
-            //var comments = Item.Embedded.Replies.ToList().FirstOrDefault();
-            //var threadedComments = await Task.Run(async () =>
-            //{
-            //    return Helpers.ThreadedCommentsHelper.GetThreadedComments(comments);
-            //});
-            //Comments = threadedComments;
         }
 
         private const string WideStateName = "WideState";

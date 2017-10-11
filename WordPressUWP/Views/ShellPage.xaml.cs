@@ -1,9 +1,6 @@
 ﻿using System;
 
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-
-using WordPressUWP.Services;
 using WordPressUWP.ViewModels;
 
 namespace WordPressUWP.Views
@@ -22,10 +19,21 @@ namespace WordPressUWP.Views
             ViewModel.Initialize(shellFrame);
         }
 
+        private void Page_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            ViewModel.InAppNotificationRaised += ViewModel_InAppNotificationRaised;
+        }
+
+        private void ViewModel_InAppNotificationRaised(object sender, string e)
+        {
+            GlobalInAppNotification.Show(e);
+        }
+
         private void LoginBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             ViewModel.Login(UsernameTbx.Text, PasswordTbx.Password);
             PasswordTbx.Password = String.Empty;
         }
+
     }
 }
