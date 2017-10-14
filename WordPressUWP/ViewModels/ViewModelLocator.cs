@@ -7,6 +7,8 @@ using Microsoft.Practices.ServiceLocation;
 using WordPressUWP.Services;
 using WordPressUWP.Views;
 using WordPressUWP.Interfaces;
+using Microsoft.Toolkit.Collections;
+using WordPressPCL.Models;
 
 namespace WordPressUWP.ViewModels
 {
@@ -19,13 +21,14 @@ namespace WordPressUWP.ViewModels
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
             SimpleIoc.Default.Register<IWordPressService, WordPressService>();
             SimpleIoc.Default.Register<IInAppNotificationService, InAppNotificationService>();
+            SimpleIoc.Default.Register<IIncrementalSource<Post>, PostsService>();
             SimpleIoc.Default.Register<ShellViewModel>();
             Register<NewsViewModel, NewsPage>();
             Register<NewsDetailViewModel, NewsDetailPage>();
             Register<SettingsViewModel, SettingsPage>();
         }
 
-        public WordPressService WordPressService => ServiceLocator.Current.GetInstance<WordPressService>();
+        public IWordPressService WordPressService => ServiceLocator.Current.GetInstance<IWordPressService>();
 
         public SettingsViewModel SettingsViewModel => ServiceLocator.Current.GetInstance<SettingsViewModel>();
 

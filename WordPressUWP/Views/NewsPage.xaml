@@ -23,6 +23,7 @@
         <helper:FeaturedImageConverter x:Key="FeaturedImageConverter" />
         <helper:TheadedCommentMarginConverter x:Key="TheadedCommentMarginConverter"/>
         <ctkconv:StringFormatConverter x:Key="StringFormatConverter"/>
+        <ctkconv:BoolToObjectConverter x:Key="BoolToVisibilityConverter" TrueValue="Visible" FalseValue="Collapsed"/>
         <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="wpmodel:Post">
             <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
                 <Grid.RowDefinitions>
@@ -101,6 +102,11 @@
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>
+            <ProgressBar IsIndeterminate="{x:Bind ViewModel.Posts.IsLoading, Mode=OneWay}"
+                         Grid.Row="1"
+                         Background="Transparent"
+                         VerticalAlignment="Bottom"/>
+
         </Grid>
 
         <Grid
@@ -157,7 +163,12 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <StackPanel Grid.Row="2" Margin="12">
+                    <ProgressBar IsIndeterminate="{x:Bind ViewModel.IsCommentsLoading, Mode=OneWay}"
+                                 Grid.Row="1"
+                                 Background="Transparent"
+                                 VerticalAlignment="Bottom"/>
+
+                    <StackPanel Grid.Row="2" Margin="12" DataContext="{Binding WordPressService, Source={StaticResource Locator}}" Visibility="{Binding IsLoggedIn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <TextBox x:Name="CommentInput"
                                  PlaceholderText="[Comment]"
                                  Header="[In response to]"

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using WordPressPCL.Models;
 
@@ -6,7 +7,7 @@ namespace WordPressUWP.Interfaces
 {
     public interface IWordPressService
     {
-        Task<IEnumerable<Post>> GetLatestPosts();
+        Task<IEnumerable<Post>> GetLatestPosts(int page = 0, int perPage = 20);
 
         Task<bool> AuthenticateUser(string username, string password);
 

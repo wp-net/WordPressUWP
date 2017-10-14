@@ -12,6 +12,7 @@ using WordPressPCL.Models;
 using WordPressUWP.Interfaces;
 using System.Diagnostics;
 using System.Collections.Generic;
+using Microsoft.Toolkit.Uwp;
 
 namespace WordPressUWP.ViewModels
 {
@@ -63,7 +64,7 @@ namespace WordPressUWP.ViewModels
             }
         }
 
-        public ObservableCollection<Post> Posts { get; private set; } = new ObservableCollection<Post>();
+        public IncrementalLoadingCollection<PostsService, Post> Posts;
 
         private Post _selectedPost;
         public Post SelectedPost
@@ -87,6 +88,13 @@ namespace WordPressUWP.ViewModels
             set { Set(ref _commentInput, value); }
         }
 
+        private bool _isCommentsLoading;
+        public bool IsCommentsLoading
+        {
+            get { return _isCommentsLoading; }
+            set { Set(ref _isCommentsLoading, value); }
+        }
+
         public NewsViewModel(IWordPressService wordPressService, IInAppNotificationService inAppNotificationService)
         {
             _wordPressService = wordPressService;
@@ -100,6 +108,7 @@ namespace WordPressUWP.ViewModels
 
         private async Task GetComments(int postid)
         {
+            IsCommentsLoading = true;
             if (Comments != null)
             {
                 Comments.Clear();
@@ -110,6 +119,7 @@ namespace WordPressUWP.ViewModels
             {
                 Comments = new ObservableCollection<CommentThreaded>(comments);
             }
+            IsCommentsLoading = false;
         }
 
         public async Task PostComment()
@@ -137,13 +147,7 @@ namespace WordPressUWP.ViewModels
         {
             _currentState = currentState;
 
-            Posts.Clear();
-            var posts = await _wordPressService.GetLatestPosts();
-            foreach (var item in posts)
-            {
-                Posts.Add(item);
-            }
-            SelectedPost = Posts.First();
+            Posts = new IncrementalLoadingCollection<PostsService, Post>();
         }
 
         private void OnStateChanged(VisualStateChangedEventArgs args)

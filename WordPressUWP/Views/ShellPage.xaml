@@ -144,11 +144,9 @@
         <Popup x:Name="LoginPopup"
                IsOpen="{x:Bind ViewModel.IsLoginPopupOpen, Mode=TwoWay}"
                IsLightDismissEnabled="True"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Center">
-            <Grid Background="{ThemeResource SystemControlBackgroundAltHighBrush}"
-                  Height="500"
-                  Width="350">
+               VerticalAlignment="Stretch"
+               HorizontalAlignment="Stretch">
+            <Grid Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="12">
                     <TextBox x:Name="UsernameTbx" Header="Username" PlaceholderText="Username" HorizontalAlignment="Stretch" Margin="0 0 0 12"></TextBox>
                     <PasswordBox x:Name="PasswordTbx" Header="Password" PlaceholderText="Password" HorizontalAlignment="Stretch" Margin="0 0 0 12"></PasswordBox>

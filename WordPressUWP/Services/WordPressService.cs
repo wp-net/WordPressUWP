@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using GalaSoft.MvvmLight;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using WordPressPCL;
 using WordPressPCL.Models;
@@ -8,20 +10,28 @@ using WordPressUWP.Interfaces;
 
 namespace WordPressUWP.Services
 {
-    public class WordPressService : IWordPressService
+    public class WordPressService : ViewModelBase, IWordPressService 
     {
         private WordPressClient _client;
+
+        private bool _isLoggedIn;
+        public bool IsLoggedIn
+        {
+            get { return _isLoggedIn; }
+            set { Set(ref _isLoggedIn, value); }
+        }
 
         public WordPressService()
         {
             _client = new WordPressClient(ApiCredentials.WordPressUri);
+            IsLoggedIn = false;
         }
 
         public async Task<bool> AuthenticateUser(string username, string password)
         {
             _client.AuthMethod = AuthMethod.JWT;
             await _client.RequestJWToken(username, password);
-            return await _client.IsValidJWToken();
+            return await IsUserAuthenticated();
         }
 
         public async Task<List<CommentThreaded>> GetCommentsForPost(int postid)
@@ -36,12 +46,12 @@ namespace WordPressUWP.Services
             return ThreadedCommentsHelper.GetThreadedComments(comments);
         }
 
-        public async Task<IEnumerable<Post>> GetLatestPosts()
+        public async Task<IEnumerable<Post>> GetLatestPosts(int page = 0, int perPage = 20)
         {
             return await _client.Posts.Query(new PostsQueryBuilder()
             {
-                Page = 0,
-                PerPage = 20,
+                Page = page,
+                PerPage = perPage,
                 Embed = true
             });
         }
@@ -53,7 +63,8 @@ namespace WordPressUWP.Services
 
         public async Task<bool> IsUserAuthenticated()
         {
-            return await _client.IsValidJWToken();
+            IsLoggedIn = await _client.IsValidJWToken();
+            return IsLoggedIn;
         }
 
         public async Task<Comment> PostComment(int postId, string text)
