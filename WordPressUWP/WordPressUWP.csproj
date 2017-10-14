@@ -132,6 +132,7 @@
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\FeaturedImageConverter.cs" />
     <Compile Include="Helpers\HtmlConverter.cs" />
+    <Compile Include="Helpers\HtmlDecodeConverter.cs" />
     <Compile Include="Helpers\HtmlTools.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />

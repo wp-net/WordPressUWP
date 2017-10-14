@@ -43,10 +43,5 @@ namespace WordPressUWP.Views
             //    //});
             //}
         }
-
-        private void WebView_UnsafeContentWarningDisplaying(WebView sender, object args)
-        {
-            Debug.WriteLine("error");
-        }
     }
 }

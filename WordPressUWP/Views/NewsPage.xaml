@@ -22,6 +22,7 @@
     <Page.Resources>
         <helper:FeaturedImageConverter x:Key="FeaturedImageConverter" />
         <helper:TheadedCommentMarginConverter x:Key="TheadedCommentMarginConverter"/>
+        <helper:HtmlDecodeConverter x:Key="HtmlDecodeConverter"/>
         <ctkconv:StringFormatConverter x:Key="StringFormatConverter"/>
         <ctkconv:BoolToObjectConverter x:Key="BoolToVisibilityConverter" TrueValue="Visible" FalseValue="Collapsed"/>
         <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="wpmodel:Post">
@@ -29,17 +30,15 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <ctk:ImageEx Source="{x:Bind Embedded, Converter={StaticResource FeaturedImageConverter}, Mode=OneWay}" Height="170" IsCacheEnabled="False" Stretch="UniformToFill" ></ctk:ImageEx>
+                <ctk:ImageEx Source="{x:Bind Embedded, Converter={StaticResource FeaturedImageConverter}, Mode=OneWay}" Height="200" IsCacheEnabled="False" Stretch="UniformToFill" ></ctk:ImageEx>
                 <TextBlock
                     Grid.Row="1"
-                    Text="{x:Bind Title.Rendered}" 
-                    Style="{StaticResource ListTitleStyle}" />
-                <TextBlock
-                    Grid.Row="2"
-                    Text="{x:Bind Date}"
-                    Style="{StaticResource ListSubTitleStyle}" />
+                    Margin="0 4 0 0"
+                    Text="{x:Bind Title.Rendered, Converter={StaticResource HtmlDecodeConverter}, Mode=OneWay}" 
+                    Style="{StaticResource ListTitleStyle}"
+                    TextWrapping="Wrap"
+                    MaxLines="2"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -54,7 +53,7 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="MasterColumn" Width="296" />
+            <ColumnDefinition x:Name="MasterColumn" Width="350" />
             <ColumnDefinition x:Name="DetailColumn" Width="*" />
         </Grid.ColumnDefinitions>
 
@@ -115,14 +114,32 @@
             Grid.Column="1"
             Padding="0,0,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
             <views:NewsDetailControl
+                Grid.Column="0"
                 x:Name="DetailControl"
                 MasterMenuItem="{x:Bind ViewModel.SelectedPost, Mode=OneWay}"/>
-            <Grid Grid.Column="1">
+            <CommandBar Grid.Row="1" Grid.Column="0">
+                <AppBarButton Icon="ReShare" Label="Share" />
+                <AppBarToggleButton x:Name="CommentToggleButton" Icon="Comment" Label="Toggle Comments"/>
+
+
+                <!--<CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Like" Label="Like"/>
+                <AppBarButton Icon="Dislike" Label="Dislike"/>
+            </CommandBar.SecondaryCommands>-->
+
+                <CommandBar.Content>
+                    <TextBlock Text="" Margin="12,14"/>
+                </CommandBar.Content>
+            </CommandBar>
+            <Grid Grid.Column="1" Grid.RowSpan="2" x:Name="CommentsColumn" Width="400">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="48"/>
@@ -130,11 +147,11 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock
+                    <!--<TextBlock
                         x:Name="TitleComments"
                         x:Uid="TitleComments"
                         Text="[Kommentare]"
-                        Style="{StaticResource PageTitleStyle}" />
+                        Style="{StaticResource PageTitleStyle}" />-->
                     <ListView Grid.Row="1"
                               ItemsSource="{x:Bind ViewModel.Comments, Mode=OneWay}"
                                Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
@@ -166,7 +183,7 @@
                     <ProgressBar IsIndeterminate="{x:Bind ViewModel.IsCommentsLoading, Mode=OneWay}"
                                  Grid.Row="1"
                                  Background="Transparent"
-                                 VerticalAlignment="Bottom"/>
+                                 VerticalAlignment="Top"/>
 
                     <StackPanel Grid.Row="2" Margin="12" DataContext="{Binding WordPressService, Source={StaticResource Locator}}" Visibility="{Binding IsLoggedIn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <TextBox x:Name="CommentInput"
@@ -192,13 +209,25 @@
                         <ic:InvokeCommandAction Command="{x:Bind ViewModel.StateChangedCommand}"/>
                     </ic:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
+                <VisualState x:Name="XWideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1300"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ContentArea.Padding" Value="12,0,0,0"/>
+                        <Setter Target="MasterColumn.Width" Value="350" />
+                        <Setter Target="CommentToggleButton.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
                 <VisualState x:Name="WideState">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="640"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="ContentArea.Padding" Value="12,0,0,0"/>
-                        <Setter Target="MasterColumn.Width" Value="296" />
+                        <Setter Target="MasterColumn.Width" Value="350" />
+                        <Setter Target="CommentsColumn.Width" Value="0"/>
+                        <Setter Target="CommentToggleButton.Visibility" Value="Visible"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NarrowState">

@@ -12,6 +12,7 @@
     d:DesignWidth="400">
     <UserControl.Resources>
         <helper:HtmlConverter x:Key="HtmlConverter" />
+        <helper:HtmlDecodeConverter x:Key="HtmlDecodeConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -23,7 +24,7 @@
         <TextBlock
             x:Name="TitlePage"
             HorizontalAlignment="Center"
-            Text="{x:Bind MasterMenuItem.Title.Rendered, Mode=OneWay}"
+            Text="{x:Bind MasterMenuItem.Title.Rendered, Converter={StaticResource HtmlDecodeConverter}, Mode=OneWay}"
             Style="{StaticResource PageTitleStyle}" />
 
         <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your detail content.-->
@@ -31,23 +32,8 @@
             <WebView x:Name="PostWebView"
                      ctk:WebViewExtensions.Content="{x:Bind MasterMenuItem, Converter={StaticResource HtmlConverter}, Mode=OneWay}"
                      Height="Auto"
-                     NavigationStarting="WebView_NavigationStarting"
-                     UnsafeContentWarningDisplaying="WebView_UnsafeContentWarningDisplaying" />
+                     NavigationStarting="WebView_NavigationStarting" />
         </Grid>
-        <CommandBar Grid.Row="2">
-            <AppBarButton Icon="ReShare" Label="Share" />
-            <AppBarToggleButton x:Name="CommentToggleButton" Icon="Comment" Label="Toggle Comments"/>
-
-
-            <!--<CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Like" Label="Like"/>
-                <AppBarButton Icon="Dislike" Label="Dislike"/>
-            </CommandBar.SecondaryCommands>-->
-
-            <CommandBar.Content>
-                <TextBlock Text="" Margin="12,14"/>
-            </CommandBar.Content>
-        </CommandBar>
         <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">
