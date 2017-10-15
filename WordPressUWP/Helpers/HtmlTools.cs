@@ -27,6 +27,7 @@ namespace WordPressUWP.Helpers
             content = Regex.Replace(content, "^<p><img.*?</p>", "");
 
             sb.Append("<html><head>");
+            sb.Append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">");
             sb.Append("<link rel=\"stylesheet\" href=\"ms-appx-web:///Assets/Web/Style.css\" type=\"text/css\" media=\"screen\" />");
             if (isDark)
             {
