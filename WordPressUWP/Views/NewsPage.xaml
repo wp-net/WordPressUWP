@@ -128,16 +128,6 @@
             <CommandBar Grid.Row="1" Grid.Column="0">
                 <AppBarButton Icon="ReShare" Label="Share" />
                 <AppBarToggleButton x:Name="CommentToggleButton" Icon="Comment" Label="Toggle Comments"/>
-
-
-                <!--<CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Like" Label="Like"/>
-                <AppBarButton Icon="Dislike" Label="Dislike"/>
-            </CommandBar.SecondaryCommands>-->
-
-                <CommandBar.Content>
-                    <TextBlock Text="" Margin="12,14"/>
-                </CommandBar.Content>
             </CommandBar>
             <Grid Grid.Column="1" Grid.RowSpan="2" x:Name="CommentsColumn" Width="400">
                 <Grid>

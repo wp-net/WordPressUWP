@@ -201,6 +201,10 @@ namespace WordPressUWP.ViewModels
             // Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
             // Edit String/en-US/Resources.resw: Add a menu item title for each page
             _primaryItems.Add(new ShellNavigationItem("Shell_News".GetLocalized(), Symbol.Home, typeof(NewsViewModel).FullName));
+            if (Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.IsSupported())
+            {
+                _secondaryItems.Add(new ShellNavigationItem("Feedback", Symbol.Comment, "Feedback"));
+            }
             _secondaryItems.Add(new ShellNavigationItem("Shell_Settings".GetLocalized(), Symbol.Setting, typeof(SettingsViewModel).FullName));
             _secondaryItems.Add(new ShellNavigationItem("Me", Symbol.Contact, "Login"));
         }
@@ -246,7 +250,7 @@ namespace WordPressUWP.ViewModels
             }
         }
 
-        private void Navigate(object item)
+        private async void Navigate(object item)
         {
             var navigationItem = item as ShellNavigationItem;
             if (navigationItem != null)
@@ -255,6 +259,11 @@ namespace WordPressUWP.ViewModels
                 {
                     Debug.WriteLine("Show login popup");
                     IsLoginPopupOpen = true;
+                }
+                else if(navigationItem.ViewModelName == "Feedback")
+                {
+                    var launcher = Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.GetDefault();
+                    await launcher.LaunchAsync();
                 }
                 else
                 {
