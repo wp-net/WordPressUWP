@@ -13,6 +13,8 @@ using WordPressUWP.Interfaces;
 using System.Diagnostics;
 using System.Collections.Generic;
 using Microsoft.Toolkit.Uwp;
+using Windows.ApplicationModel.DataTransfer;
+using System.Net;
 
 namespace WordPressUWP.ViewModels
 {
@@ -20,6 +22,8 @@ namespace WordPressUWP.ViewModels
     {
         private IWordPressService _wordPressService;
         private IInAppNotificationService _inAppNotificationService;
+
+        private DataTransferManager dataTransferManager;
 
         public NavigationServiceEx NavigationService
         {
@@ -103,6 +107,8 @@ namespace WordPressUWP.ViewModels
 
         internal async Task Init(VisualState currentState)
         {
+            dataTransferManager = DataTransferManager.GetForCurrentView();
+            dataTransferManager.DataRequested += DataTransferManager_DataRequested;
             await LoadDataAsync(currentState);
         }
 
@@ -174,6 +180,27 @@ namespace WordPressUWP.ViewModels
         public async void RefreshComments()
         {
             await GetComments(SelectedPost.Id);
+        }
+
+        public void SharePost()
+        {
+            DataTransferManager.ShowShareUI();
+        }
+
+        private void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+
+            DataRequest request = args.Request;
+            try
+            {
+                request.Data.SetWebLink(new Uri(SelectedPost.Link));
+                request.Data.Properties.Title = WebUtility.HtmlDecode(SelectedPost.Title.Rendered);
+            }
+            catch
+            {
+                Debug.WriteLine("Share Failed");
+                //request.FailWithDisplayText("Enter the web link you would like to share and try again.");
+            }
         }
     }
 }

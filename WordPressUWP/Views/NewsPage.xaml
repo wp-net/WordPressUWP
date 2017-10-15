@@ -126,7 +126,7 @@
                 x:Name="DetailControl"
                 MasterMenuItem="{x:Bind ViewModel.SelectedPost, Mode=OneWay}"/>
             <CommandBar Grid.Row="1" Grid.Column="0">
-                <AppBarButton Icon="ReShare" Label="Share" />
+                <AppBarButton Icon="ReShare" Label="Share" Click="{x:Bind ViewModel.SharePost, Mode=OneWay}" />
                 <AppBarToggleButton x:Name="CommentToggleButton" Icon="Comment" Label="Toggle Comments"/>
             </CommandBar>
             <Grid Grid.Column="1" Grid.RowSpan="2" x:Name="CommentsColumn" Width="400">
