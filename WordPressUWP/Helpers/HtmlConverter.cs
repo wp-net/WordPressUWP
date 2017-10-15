@@ -15,7 +15,7 @@ namespace WordPressUWP.Helpers
             if (value is Post)
             {
                 var post = (Post)value;
-                return HtmlTools.WrapContent(post.Content.Rendered);
+                return HtmlTools.WrapContent(post);
             }
             return String.Empty;
         }
