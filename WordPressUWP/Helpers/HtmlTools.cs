@@ -40,6 +40,10 @@ namespace WordPressUWP.Helpers
             sb.Append("</head><body>");
 
             sb.Append(FeaturedImage(post));
+            sb.Append($"<h1>{post.Title.Rendered}</h1>");
+
+            var authors = new List<User>(post.Embedded.Author);
+            sb.Append($"<p id=\"postmeta\">{authors[0].Name} | {post.Date}</p>");
             sb.Append(content);
             sb.Append("</body></html>");
 

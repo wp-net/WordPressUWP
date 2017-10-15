@@ -258,7 +258,7 @@ namespace WordPressUWP.ViewModels
                 if(navigationItem.ViewModelName == "Login")
                 {
                     Debug.WriteLine("Show login popup");
-                    IsLoginPopupOpen = true;
+                    OpenLoginPopup();
                 }
                 else if(navigationItem.ViewModelName == "Feedback")
                 {
@@ -270,6 +270,12 @@ namespace WordPressUWP.ViewModels
                     NavigationService.Navigate(navigationItem.ViewModelName);
                 }
             }
+        }
+
+        public void OpenLoginPopup()
+        {
+
+            IsLoginPopupOpen = true;
         }
 
         public void CloseLoginPopup()

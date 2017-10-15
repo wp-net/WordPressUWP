@@ -19,6 +19,14 @@ img#featured {
     margin-right: calc(-15px);
 }
 
+h1 {
+    font-weight: lighter;
+}
+
+#postmeta {
+    font-style: italic;
+}
+
 iframe {
     width: calc(100% + 30px);
     margin-left: calc(-15px);
