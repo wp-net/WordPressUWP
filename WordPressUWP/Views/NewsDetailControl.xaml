@@ -15,20 +15,8 @@
         <helper:HtmlDecodeConverter x:Key="HtmlDecodeConverter"/>
     </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="48"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
-        <TextBlock
-            x:Name="TitlePage"
-            HorizontalAlignment="Center"
-            Text="{x:Bind MasterMenuItem.Title.Rendered, Converter={StaticResource HtmlDecodeConverter}, Mode=OneWay}"
-            Style="{StaticResource PageTitleStyle}" />
-
         <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your detail content.-->
-        <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}" Grid.Row="1">
+        <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}" Grid.Row="0">
             <WebView x:Name="PostWebView"
                      ctk:WebViewExtensions.Content="{x:Bind MasterMenuItem, Converter={StaticResource HtmlConverter}, Mode=OneWay}"
                      Height="Auto"

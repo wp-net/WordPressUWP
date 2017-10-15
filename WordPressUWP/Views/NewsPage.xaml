@@ -47,22 +47,10 @@
         x:Name="ContentArea"
         Padding="12,0,0,0">
 
-        <Grid.RowDefinitions>
-            <RowDefinition x:Name="TitleRow" Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn" Width="350" />
             <ColumnDefinition x:Name="DetailColumn" Width="*" />
         </Grid.ColumnDefinitions>
-
-        <TextBlock
-            x:Name="TitlePage"
-            x:Uid="NewsPage_Title"
-            Grid.ColumnSpan="2"
-            Style="{StaticResource PageTitleStyle}"
-            Visibility="Collapsed"/>
 
         <Grid
             x:Name="MasterArea"
@@ -108,43 +96,42 @@
 
         </Grid>
 
-        <Grid
-            x:Name="DetailContentPresenter"
-            Grid.Row="1"
-            Grid.Column="1"
-            Padding="0,0,0,0">
+        <Grid x:Name="DetailContentPresenter"
+              Grid.Row="1"
+              Grid.Column="1"
+              Padding="0,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="48"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <views:NewsDetailControl
                 Grid.Column="0"
+                Grid.Row="1"
                 x:Name="DetailControl"
                 MasterMenuItem="{x:Bind ViewModel.SelectedPost, Mode=OneWay}"/>
-            <CommandBar Grid.Row="1" Grid.Column="0">
+            <CommandBar Grid.Row="2" Grid.Column="0">
                 <AppBarButton Icon="ReShare" Label="Share" Click="{x:Bind ViewModel.SharePost, Mode=OneWay}" />
                 <AppBarToggleButton x:Name="CommentToggleButton" Icon="Comment" Label="Toggle Comments"/>
             </CommandBar>
-            <Grid Grid.Column="1" Grid.RowSpan="2" x:Name="CommentsColumn" Width="400">
+            <Grid Grid.Column="1"
+                  Grid.Row="0"
+                  Grid.RowSpan="3"
+                  x:Name="CommentsColumn"
+                  Width="400"
+                  Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="48"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <!--<TextBlock
-                        x:Name="TitleComments"
-                        x:Uid="TitleComments"
-                        Text="[Kommentare]"
-                        Style="{StaticResource PageTitleStyle}" />-->
-                    <ListView Grid.Row="1"
+                    <ListView Grid.Row="0"
                               ItemsSource="{x:Bind ViewModel.Comments, Mode=OneWay}"
-                               Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
                               SelectionMode="None">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="wpmodel:CommentThreaded">
@@ -175,7 +162,7 @@
                                  Background="Transparent"
                                  VerticalAlignment="Top"/>
 
-                    <StackPanel Grid.Row="2" Margin="12" DataContext="{Binding WordPressService, Source={StaticResource Locator}}" Visibility="{Binding IsLoggedIn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <StackPanel Grid.Row="1" Margin="12" DataContext="{Binding WordPressService, Source={StaticResource Locator}}" Visibility="{Binding IsLoggedIn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <TextBox x:Name="CommentInput"
                                  PlaceholderText="[Comment]"
                                  Header="[In response to]"
@@ -184,7 +171,7 @@
                                  TextWrapping="Wrap" AcceptsReturn="True" Text="{x:Bind ViewModel.CommentInput, Mode=TwoWay}"></TextBox>
                         <Button Content="[Send]" x:Uid="SendCommentBtn" x:Name="SendCommentBtn" Click="{x:Bind ViewModel.PostComment, Mode=OneWay}" Margin="0 12 0 0"></Button>
                     </StackPanel>
-                    <CommandBar Grid.Row="3">
+                    <CommandBar Grid.Row="2">
                         <AppBarButton Icon="Refresh" Label="Refresh" Click="{x:Bind ViewModel.RefreshComments, Mode=OneWay}" />
                     </CommandBar>
                 </Grid>
@@ -225,17 +212,14 @@
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
-                        <Setter Target="TitleRow.Height" Value="48"/>
-                        <Setter Target="MasterRow.Height" Value="Auto"/>
-                        <Setter Target="TitlePage.Visibility" Value="Visible"/>
-                        <Setter Target="Title.Visibility" Value="Collapsed"/>
+                        <Setter Target="MasterRow.Height" Value="48"/>
                         <Setter Target="ContentArea.Padding" Value="12,0,12,0"/>
                         <Setter Target="MasterColumn.Width" Value="*" />
                         <Setter Target="DetailColumn.Width" Value="0" />
                         <Setter Target="MasterListView.SelectionMode" Value="None" />
                         <Setter Target="MasterArea.Background" Value="{ThemeResource SystemControlBackgroundAltHighBrush}"/>
                         <Setter Target="MasterListView.Margin" Value="-12,0"/>
+                        <Setter Target="Title.Margin" Value="-12,0"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
