@@ -202,7 +202,7 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
     <value>Settings</value>
     <comment>Navigation view item name for Settings</comment>
   </data>
-  <data name="TitleComments.Text" xml:space="preserve">
+  <data name="CommentsListTitle.Text" xml:space="preserve">
     <value>Comments</value>
   </data>
 </root>

@@ -138,6 +138,15 @@
                     <ListView Grid.Row="0"
                               ItemsSource="{x:Bind ViewModel.Comments, Mode=OneWay}"
                               SelectionMode="None">
+                        <ListView.Header>
+                            <Grid Height="48" Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+                                <TextBlock Text="Comments"
+                                           x:Uid="CommentsListTitle"
+                                           VerticalAlignment="Center"
+                                           Margin="12 0 0 0"
+                                           Style="{StaticResource PageTitleStyle}"/>
+                            </Grid>
+                        </ListView.Header>
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="wpmodel:CommentThreaded">
                                 <Grid Margin="{x:Bind Depth, Mode=OneWay, Converter={StaticResource TheadedCommentMarginConverter}}" HorizontalAlignment="Stretch">
@@ -161,6 +170,7 @@
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
+                        
                     </ListView>
                     <ProgressBar IsIndeterminate="{x:Bind ViewModel.IsCommentsLoading, Mode=OneWay}"
                                  Grid.Row="1"
