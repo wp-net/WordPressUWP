@@ -52,11 +52,10 @@ namespace WordPressUWP.Helpers
 
         public static string FeaturedImage(Post post)
         {
-            var images = new List<MediaItem>(post.Embedded.WpFeaturedmedia);
-            if (images == null)
-            {
+            if (post.Embedded.WpFeaturedmedia == null)
                 return string.Empty;
-            }
+
+            var images = new List<MediaItem>(post.Embedded.WpFeaturedmedia);
 
             var img = images[0];
             var imgSrc = img.SourceUrl;

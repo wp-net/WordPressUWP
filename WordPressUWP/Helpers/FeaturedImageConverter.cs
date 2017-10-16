@@ -13,8 +13,15 @@ namespace WordPressUWP.Helpers
             if (value is Embedded)
             {
                 var p = (Embedded)value;
-                var l = new List<MediaItem>(p.WpFeaturedmedia);
-                return l.First().SourceUrl;
+                if(p.WpFeaturedmedia != null)
+                {
+                    var l = new List<MediaItem>(p.WpFeaturedmedia);
+                    if(l.Count > 0)
+                    {
+                        return l.First().SourceUrl;
+                    }
+                }
+
             }
             return String.Empty;
         }
