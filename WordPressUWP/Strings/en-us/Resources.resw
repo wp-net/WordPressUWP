@@ -205,4 +205,26 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
   <data name="CommentsListTitle.Text" xml:space="preserve">
     <value>Comments</value>
   </data>
+  <data name="NoComments.Text" xml:space="preserve">
+    <value>no comments</value>
+    <comment>Empty comments list placeholder</comment>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="LoginButton.Content" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="PasswordTextbox.Header" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordTextbox.PlaceholderText" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="UsernameTextbox.Header" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="UsernameTextbox.PlaceholderText" xml:space="preserve">
+    <value>Username</value>
+  </data>
 </root>

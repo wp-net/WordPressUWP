@@ -23,6 +23,7 @@
         <helper:FeaturedImageConverter x:Key="FeaturedImageConverter" />
         <helper:TheadedCommentMarginConverter x:Key="TheadedCommentMarginConverter"/>
         <helper:HtmlDecodeConverter x:Key="HtmlDecodeConverter"/>
+        <helper:VisibleWhenZeroConverter x:Key="VisibleWhenZeroConverter"/>
         <ctkconv:StringFormatConverter x:Key="StringFormatConverter"/>
         <ctkconv:BoolToObjectConverter x:Key="BoolToVisibilityConverter" TrueValue="Visible" FalseValue="Collapsed"/>
         <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="wpmodel:Post">
@@ -35,6 +36,8 @@
                              Height="200"
                              IsCacheEnabled="False"
                              Stretch="UniformToFill"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
                              PlaceholderSource="/Assets/Placeholder/placeholder.jpg"
                              PlaceholderStretch="UniformToFill"/>
                 <TextBlock
@@ -139,7 +142,7 @@
                               ItemsSource="{x:Bind ViewModel.Comments, Mode=OneWay}"
                               SelectionMode="None">
                         <ListView.Header>
-                            <Grid Height="48" Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+                            <Grid MinHeight="48" Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
                                 <TextBlock Text="Comments"
                                            x:Uid="CommentsListTitle"
                                            VerticalAlignment="Center"
@@ -172,8 +175,10 @@
                         </ListView.ItemTemplate>
                         
                     </ListView>
+                    <TextBlock Grid.Row="0" Margin="12 60 0 0" x:Uid="NoComments" Text="[No Comments]" Visibility="{x:Bind ViewModel.Comments.Count, Mode=OneWay, Converter={StaticResource VisibleWhenZeroConverter}}"></TextBlock>
                     <ProgressBar IsIndeterminate="{x:Bind ViewModel.IsCommentsLoading, Mode=OneWay}"
-                                 Grid.Row="1"
+                                 Grid.Row="0"
+                                 Margin="0 48 0 0"
                                  Background="Transparent"
                                  VerticalAlignment="Top"/>
 

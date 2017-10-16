@@ -122,15 +122,15 @@
     <comment>Page title for News</comment>
   </data>
   <data name="Settings_Title.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>Einstellungen</value>
     <comment>Page title for Settings</comment>
   </data>
   <data name="Settings_Theme.Text" xml:space="preserve">
-    <value>Choose Theme</value>
+    <value>Theme wählen</value>
     <comment>Choose theme text for Settings</comment>
   </data>
   <data name="Settings_Theme_Dark.Content" xml:space="preserve">
-    <value>Dark</value>
+    <value>Dunkel</value>
     <comment>Dark theme text for Settings</comment>
   </data>
   <data name="Settings_Theme_Default.Content" xml:space="preserve">
@@ -138,19 +138,19 @@
     <comment>Windows default theme text for Settings</comment>
   </data>
   <data name="Settings_Theme_Light.Content" xml:space="preserve">
-    <value>Light</value>
+    <value>Hell</value>
     <comment>Light theme text for Settings</comment>
   </data>
   <data name="Settings_About.Text" xml:space="preserve">
-    <value>About this application</value>
+    <value>Über diese App</value>
     <comment>About this application title for Settings</comment>
   </data>
   <data name="Settings_AboutDescription.Text" xml:space="preserve">
-    <value>Settings page placeholder text.  Your app description goes here.</value>
+    <value>Einstellungstext</value>
     <comment>About this application description for Settings</comment>
   </data>
   <data name="Settings_PrivacyTermsLink.Content" xml:space="preserve">
-    <value>Privacy Statement</value>
+    <value>Datenschutzerklärung</value>
     <comment>Privacy Statement link content for Settings</comment>
   </data>
   <data name="Settings_PrivacyTermsLink.NavigateUri" xml:space="preserve">
@@ -158,7 +158,7 @@
     <comment>Here is your Privacy Statement url for Settings</comment>
   </data>
   <data name="Settings_Personalization.Text" xml:space="preserve">
-    <value>Personalization</value>
+    <value>Personalisierung</value>
     <comment>Personalization text for Settings</comment>
   </data>
   <data name="FirstRun_Body.Text" xml:space="preserve">
@@ -176,7 +176,7 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
     <comment>First use prompt message body</comment>
   </data>
   <data name="FirstRun_Title.Text" xml:space="preserve">
-    <value>Welcome</value>
+    <value>Willkommen</value>
     <comment>First use prompt message title</comment>
   </data>
   <data name="AfterUpdate_Body.Text" xml:space="preserve">
@@ -191,7 +191,7 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
     <comment>What's new prompt message body</comment>
   </data>
   <data name="AfterUpdate_Title.Text" xml:space="preserve">
-    <value>What's new in this version</value>
+    <value>Neu in dieser Version</value>
     <comment>What's new prompt message title</comment>
   </data>
   <data name="Shell_News" xml:space="preserve">
@@ -199,10 +199,32 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
     <comment>Navigation view item name for News</comment>
   </data>
   <data name="Shell_Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Einstellungen</value>
     <comment>Navigation view item name for Settings</comment>
   </data>
   <data name="CommentsListTitle.Text" xml:space="preserve">
     <value>Kommentare</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="LoginButton.Content" xml:space="preserve">
+    <value>Einloggen</value>
+  </data>
+  <data name="NoComments.Text" xml:space="preserve">
+    <value>keine Kommentare</value>
+    <comment>Placeholder for empty comments list</comment>
+  </data>
+  <data name="PasswordTextbox.Header" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="PasswordTextbox.PlaceholderText" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="UsernameTextbox.Header" xml:space="preserve">
+    <value>Benutzername</value>
+  </data>
+  <data name="UsernameTextbox.PlaceholderText" xml:space="preserve">
+    <value>Benutzername</value>
   </data>
 </root>

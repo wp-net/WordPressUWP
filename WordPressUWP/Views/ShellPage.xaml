@@ -144,16 +144,20 @@
         <Popup x:Name="LoginPopup"
                IsOpen="{x:Bind ViewModel.IsLoginPopupOpen, Mode=TwoWay}"
                IsLightDismissEnabled="True">
-            <Grid x:Name="LoginPopupGrid" Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
-                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="12">
-                    <TextBox x:Name="UsernameTbx" Header="Username" PlaceholderText="Username" HorizontalAlignment="Stretch" Margin="0 0 0 12"></TextBox>
-                    <PasswordBox x:Name="PasswordTbx" Header="Password" PlaceholderText="Password" HorizontalAlignment="Stretch" Margin="0 0 0 12"></PasswordBox>
-                    <StackPanel Orientation="Horizontal">
-                        <Button x:Name="LoginBtn" Content="[Login]" Margin="0 0 12 0" Click="LoginBtn_Click"></Button>
-                        <Button x:Name="CancelBtn" Content="[Cancel]" Click="{x:Bind ViewModel.CloseLoginPopup}"></Button>
-                    </StackPanel>
-                    <TextBlock x:Name="LoginErrorMessage" Visibility="{x:Bind ViewModel.ShowLoginError, Mode=OneWay}" Text="[Error loggin in]"></TextBlock>
-                </StackPanel>
+            <Grid x:Name="LoginPopupWrapper" Background="{StaticResource PopupBackgroundBrush}">
+                <Border BorderBrush="{ThemeResource SystemControlBackgroundAltHighBrush}" BorderThickness="2">
+                    <Grid x:Name="LoginPopupGrid" Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="12">
+                            <TextBox x:Name="UsernameTbx" x:Uid="UsernameTextbox" Header="[Username]" PlaceholderText="[Username]" HorizontalAlignment="Stretch" Margin="0 0 0 12"></TextBox>
+                            <PasswordBox x:Name="PasswordTbx" x:Uid="PasswordTextbox" Header="[Password]" PlaceholderText="[Password]" HorizontalAlignment="Stretch" Margin="0 0 0 12"></PasswordBox>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="LoginBtn" x:Uid="LoginButton" Content="[Login]" Margin="0 0 12 0" Click="LoginBtn_Click"></Button>
+                                <Button x:Name="CancelBtn" x:Uid="CancelButton" Content="[Cancel]" Click="{x:Bind ViewModel.CloseLoginPopup}"></Button>
+                            </StackPanel>
+                            <TextBlock x:Name="LoginErrorMessage" Visibility="{x:Bind ViewModel.ShowLoginError, Mode=OneWay}" Text="[Error loggin in]"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Border>
             </Grid>
         </Popup>
         <controls:InAppNotification x:Name="GlobalInAppNotification" Content="Testnotification" />

@@ -35,22 +35,40 @@ namespace WordPressUWP.Views
         {
             var windowWidth = Window.Current.Bounds.Width;
             var windowHeight = Window.Current.Bounds.Height;
+            double popupWidth;
+            double popupHeight;
             double gridWidth;
             double gridHeight;
-            if (windowWidth > 700)
+
+            //if (windowWidth > 700)
+            //{
+            //    gridWidth = 300;
+            //    gridHeight = 400;
+            //}
+            //else
+            //{
+            //    gridWidth = windowWidth;
+            //    gridHeight = windowHeight;
+            //}
+            //LoginPopupGrid.Width = gridWidth;
+            //LoginPopupGrid.Height = gridHeight;
+            //LoginPopup.HorizontalOffset = (windowWidth / 2) - (gridWidth / 2);
+            //LoginPopup.VerticalOffset = (windowHeight / 2) - (gridHeight / 2);
+
+            popupHeight = windowHeight;
+            popupWidth = windowWidth;
+
+            if (windowWidth <= 700)
             {
-                gridWidth = 300;
-                gridHeight = 400;
+                LoginPopupGrid.Width = windowWidth;
+                LoginPopupGrid.Height = windowHeight;
             }
-            else
-            {
-                gridWidth = windowWidth;
-                gridHeight = windowHeight;
-            }
-            LoginPopupGrid.Width = gridWidth;
-            LoginPopupGrid.Height = gridHeight;
-            LoginPopup.HorizontalOffset = (windowWidth / 2) - (gridWidth / 2);
-            LoginPopup.VerticalOffset = (windowHeight / 2) - (gridHeight / 2);
+
+            LoginPopupWrapper.Width = popupWidth;
+            LoginPopupWrapper.Height = popupHeight;
+
+            LoginPopupGrid.VerticalAlignment = VerticalAlignment.Center;
+            LoginPopupGrid.HorizontalAlignment = HorizontalAlignment.Center;
         }
 
         private void ViewModel_InAppNotificationRaised(object sender, string e)
