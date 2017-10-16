@@ -24,7 +24,11 @@ namespace WordPressUWP.Helpers
 
 
             // remove first img from post if there's one
-            content = Regex.Replace(content, "^<p><img.*?</p>", "");
+            if(post.Embedded.WpFeaturedmedia != null)
+            {
+                content = Regex.Replace(content, "^<img.*?", "");
+                content = Regex.Replace(content, "^<p><img.*?</p>", "");
+            }
 
             sb.Append("<html><head>");
             sb.Append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">");
