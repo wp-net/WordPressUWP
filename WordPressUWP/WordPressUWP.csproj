@@ -254,6 +254,7 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Placeholder\placeholder.jpg" />
     <Content Include="Assets\Web\Dark.css" />
     <Content Include="Assets\Web\Light.css" />
     <Content Include="Assets\Web\Style.css" />

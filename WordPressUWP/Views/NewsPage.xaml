@@ -31,7 +31,12 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <ctk:ImageEx Source="{x:Bind Embedded, Converter={StaticResource FeaturedImageConverter}, Mode=OneWay}" Height="200" IsCacheEnabled="False" Stretch="UniformToFill" ></ctk:ImageEx>
+                <ctk:ImageEx Source="{x:Bind Embedded, Converter={StaticResource FeaturedImageConverter}, Mode=OneWay}"
+                             Height="200"
+                             IsCacheEnabled="False"
+                             Stretch="UniformToFill"
+                             PlaceholderSource="/Assets/Placeholder/placeholder.jpg"
+                             PlaceholderStretch="UniformToFill"/>
                 <TextBlock
                     Grid.Row="1"
                     Margin="0 4 0 0"
