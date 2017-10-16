@@ -10,7 +10,7 @@ namespace WordPressUWP.Helpers
         {
             if(value is string)
             {
-                return WebUtility.HtmlDecode(value.ToString());
+                return HtmlTools.Strip(WebUtility.HtmlDecode(value.ToString()));
             } else
             {
                 return String.Empty;
