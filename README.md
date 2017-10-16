@@ -3,7 +3,7 @@
 [![Join the chat at https://gitter.im/ThomasPe/WordPressUWP](https://badges.gitter.im/ThomasPe/WordPressUWP.svg)](https://gitter.im/ThomasPe/WordPressUWP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This is a Universal Windows Platform app framework designed to turn WordPress Blogs / Sites into nice little apps. It's built on
-* [Template10](https://github.com/Windows-XAML/Template10/wiki)
+* Windows Template Studio
 * [WordPressPCL (WordPress REST API Wrapper)](https://github.com/ThomasPe/WordPressPCL)
 
 #Features
