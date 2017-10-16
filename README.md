@@ -21,11 +21,10 @@ working and planned features for WordPressUWP:
 #Quickstart
 
 ## WordPress Plugins
-As the WP REST API (Version 2) Plugin is currently being integrated into WordPress core you'll still need to install the plugin on your site for the app to work. Also, there are two additional plugins for authentication.
+Since WordPress 4.7 the REST API has been integrated into the core so there's no need for any plugins to get basic functionality. If you want to access protected endpoints, this library supports authentication through JSON Web Tokens (JWT) (plugin required).
 
-* [WordPress REST API (Version 2)](https://wordpress.org/plugins/rest-api/)
-* [Basic Authentication handler](https://github.com/WP-API/Basic-Auth)
-* [WP REST API - OAuth 1.0a Server](https://github.com/WP-API/OAuth1)
+* [WordPress 4.7 or newer](https://wordpress.org/)
+* [JWT Authentication for WP REST API](https://wordpress.org/plugins/jwt-authentication-for-wp-rest-api/)
 
 ## Getting Started
 
