@@ -1,0 +1,12 @@
+﻿body {
+    background: #000000;
+    color: #ffffff;
+}
+
+a, a:link, a:visited, a:hover {
+    color: #ffffff;
+}
+
+#postmeta {
+    color: #ccc;
+}

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPressUWPApp", "WordPressUWPApp\WordPressUWPApp.csproj", "{175D0570-CDB4-4874-8A6C-4CD0D8757401}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPressUWP", "WordPressUWP\WordPressUWP.csproj", "{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,26 +15,29 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Debug|ARM.ActiveCfg = Debug|ARM
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Debug|ARM.Build.0 = Debug|ARM
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Debug|ARM.Deploy.0 = Debug|ARM
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Debug|x64.ActiveCfg = Debug|x64
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Debug|x64.Build.0 = Debug|x64
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Debug|x64.Deploy.0 = Debug|x64
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Debug|x86.ActiveCfg = Debug|x86
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Debug|x86.Build.0 = Debug|x86
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Debug|x86.Deploy.0 = Debug|x86
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Release|ARM.ActiveCfg = Release|ARM
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Release|ARM.Build.0 = Release|ARM
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Release|ARM.Deploy.0 = Release|ARM
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Release|x64.ActiveCfg = Release|x64
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Release|x64.Build.0 = Release|x64
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Release|x64.Deploy.0 = Release|x64
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Release|x86.ActiveCfg = Release|x86
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Release|x86.Build.0 = Release|x86
-		{175D0570-CDB4-4874-8A6C-4CD0D8757401}.Release|x86.Deploy.0 = Release|x86
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Debug|ARM.ActiveCfg = Debug|ARM
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Debug|ARM.Build.0 = Debug|ARM
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Debug|ARM.Deploy.0 = Debug|ARM
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Debug|x64.ActiveCfg = Debug|x64
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Debug|x64.Build.0 = Debug|x64
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Debug|x64.Deploy.0 = Debug|x64
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Debug|x86.ActiveCfg = Debug|x86
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Debug|x86.Build.0 = Debug|x86
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Debug|x86.Deploy.0 = Debug|x86
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Release|ARM.ActiveCfg = Release|ARM
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Release|ARM.Build.0 = Release|ARM
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Release|ARM.Deploy.0 = Release|ARM
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Release|x64.ActiveCfg = Release|x64
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Release|x64.Build.0 = Release|x64
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Release|x64.Deploy.0 = Release|x64
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Release|x86.ActiveCfg = Release|x86
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Release|x86.Build.0 = Release|x86
+		{84EF0AFE-443E-40DC-B9E5-F570F2FDAD2F}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E9F4414B-260F-472B-8B53-44E86876099F}
 	EndGlobalSection
 EndGlobal

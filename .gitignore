@@ -18,3 +18,4 @@ WordPressUWPApp/project.lock.json
 WordPressUWPApp/WordPressUWPApp.nuget.props
 WordPressUWPApp/bin/
 .vs/
+WordPressUWP/Helpers/ApiCredentials.cs
