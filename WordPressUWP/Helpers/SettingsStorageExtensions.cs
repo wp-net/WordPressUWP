@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-
+using Windows.ApplicationModel;
+using Windows.Security.Credentials;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
@@ -42,7 +43,12 @@ namespace WordPressUWP.Helpers
 
         public static async Task SaveAsync<T>(this ApplicationDataContainer settings, string key, T value)
         {
-            settings.Values[key] = await Json.StringifyAsync(value);
+            settings.SaveString(key, await Json.StringifyAsync(value));
+        }
+
+        public static void SaveString(this ApplicationDataContainer settings, string key, string value)
+        {
+            settings.Values[key] = value;
         }
 
         public static async Task<T> ReadAsync<T>(this ApplicationDataContainer settings, string key)
@@ -55,6 +61,11 @@ namespace WordPressUWP.Helpers
             }
 
             return default(T);
+        }
+
+        public static string ReadString(this ApplicationDataContainer settings, string key)
+        {
+            return settings.Values[key].ToString();
         }
 
         public static async Task<StorageFile> SaveFileAsync(this StorageFolder folder, byte[] content, string fileName, CreationCollisionOption options = CreationCollisionOption.ReplaceExisting)
@@ -105,6 +116,49 @@ namespace WordPressUWP.Helpers
             }
 
             return null;
+        }
+
+        public static void SaveCredentialsToLocker(string username, string password)
+        {
+
+            var vault = new PasswordVault();
+
+            //var credential = GetCredentialFromLocker(username);
+            //if(credential != null)
+            //{
+            //    vault.Remove(credential);
+            //}
+            
+            vault.Add(new PasswordCredential(
+                Package.Current.DisplayName, username, password));
+        }
+
+
+        public static PasswordCredential GetCredentialFromLocker(string username = "")
+        {
+            PasswordCredential credential = null;
+            var resourceName = Package.Current.DisplayName;
+            var vault = new PasswordVault();
+            var credentialList = vault.FindAllByResource(resourceName);
+            if (credentialList.Count > 0)
+            {
+                if (credentialList.Count == 1)
+                {
+                    credential = credentialList[0];
+                }
+                else
+                {
+                    // When there are multiple usernames,
+                    // retrieve the default username. If one doesn't
+                    // exist, then display UI to have the user select
+                    // a default username.
+
+                    credential = vault.Retrieve(resourceName, username);
+                }
+                credential.RetrievePassword();
+            }
+
+            return credential;
         }
 
         private static string GetFileName(string name)

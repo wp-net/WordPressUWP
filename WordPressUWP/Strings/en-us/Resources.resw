@@ -227,4 +227,8 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
   <data name="UsernameTextbox.PlaceholderText" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty" xml:space="preserve">
+    <value>File name is null or empty. Specify a valid file name</value>
+    <comment>File name is null or empty to save file in settings storage extensions</comment>
+  </data>
 </root>

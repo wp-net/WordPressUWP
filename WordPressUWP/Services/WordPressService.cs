@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
+using Windows.Storage;
 using WordPressPCL;
 using WordPressPCL.Models;
 using WordPressPCL.Utility;
@@ -13,6 +15,7 @@ namespace WordPressUWP.Services
     public class WordPressService : ViewModelBase, IWordPressService 
     {
         private WordPressClient _client;
+        private ApplicationDataContainer _localSettings;
 
         private bool _isLoggedIn;
         public bool IsLoggedIn
@@ -24,14 +27,46 @@ namespace WordPressUWP.Services
         public WordPressService()
         {
             _client = new WordPressClient(ApiCredentials.WordPressUri);
+            _localSettings = ApplicationData.Current.LocalSettings;
+            Init();
+        }
+
+        public async void Init()
+        {
+
             IsLoggedIn = false;
+            var username = _localSettings.ReadString("Username");
+            if(username != null)
+            {
+                // get password
+                var jwt = SettingsStorageExtensions.GetCredentialFromLocker(username);
+                if(!string.IsNullOrEmpty(jwt.Password))
+                {
+                    // set jwt
+                    _client.SetJWToken(jwt.Password);
+                    IsLoggedIn = await _client.IsValidJWToken();
+                }
+
+            }
+            
         }
 
         public async Task<bool> AuthenticateUser(string username, string password)
         {
             _client.AuthMethod = AuthMethod.JWT;
             await _client.RequestJWToken(username, password);
-            return await IsUserAuthenticated();
+            var isAuthenticated = await IsUserAuthenticated();
+
+            if (isAuthenticated)
+            {
+                // Store username & JWT token for logging in on next app launch
+                SettingsStorageExtensions.SaveString(_localSettings, "Username", username);
+
+                SettingsStorageExtensions.SaveCredentialsToLocker(username, _client.GetToken());
+
+            }
+
+            return isAuthenticated;
         }
 
         public async Task<List<CommentThreaded>> GetCommentsForPost(int postid)
