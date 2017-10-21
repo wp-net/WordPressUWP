@@ -40,15 +40,13 @@ namespace WordPressUWP.Services
             {
                 // get password
                 var jwt = SettingsStorageExtensions.GetCredentialFromLocker(username);
-                if(!string.IsNullOrEmpty(jwt.Password))
+                if(jwt != null && !string.IsNullOrEmpty(jwt.Password))
                 {
                     // set jwt
                     _client.SetJWToken(jwt.Password);
                     IsLoggedIn = await _client.IsValidJWToken();
                 }
-
             }
-            
         }
 
         public async Task<bool> AuthenticateUser(string username, string password)
@@ -61,9 +59,7 @@ namespace WordPressUWP.Services
             {
                 // Store username & JWT token for logging in on next app launch
                 SettingsStorageExtensions.SaveString(_localSettings, "Username", username);
-
                 SettingsStorageExtensions.SaveCredentialsToLocker(username, _client.GetToken());
-
             }
 
             return isAuthenticated;
@@ -83,6 +79,7 @@ namespace WordPressUWP.Services
 
         public async Task<IEnumerable<Post>> GetLatestPosts(int page = 0, int perPage = 20)
         {
+            page++;
             return await _client.Posts.Query(new PostsQueryBuilder()
             {
                 Page = page,
@@ -105,6 +102,14 @@ namespace WordPressUWP.Services
         public async Task<Comment> PostComment(int postId, string text)
         {
             return await _client.Comments.Create(new Comment(postId, text));
+        }
+
+        public async Task<bool> Logout()
+        {
+            _client.Logout();
+            IsLoggedIn = await _client.IsValidJWToken();
+            SettingsStorageExtensions.RemoveCredentialsFromLocker();
+            return IsLoggedIn;
         }
     }
 }

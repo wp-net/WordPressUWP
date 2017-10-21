@@ -296,5 +296,10 @@ namespace WordPressUWP.ViewModels
                 _inAppNotificationService.ShowInAppNotification("Failed to log in");
             }
         }
+
+        public async void Logout()
+        {
+            await _wordPressService.Logout();
+        }
     }
 }

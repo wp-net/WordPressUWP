@@ -18,5 +18,6 @@ namespace WordPressUWP.Interfaces
         Task<List<CommentThreaded>> GetCommentsForPost(int postid);
 
         Task<Comment> PostComment(int postId, string text);
+        Task<bool> Logout();
     }
 }

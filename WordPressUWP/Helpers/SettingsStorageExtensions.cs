@@ -128,7 +128,7 @@ namespace WordPressUWP.Helpers
             //{
             //    vault.Remove(credential);
             //}
-            
+
             vault.Add(new PasswordCredential(
                 Package.Current.DisplayName, username, password));
         }
@@ -139,26 +139,45 @@ namespace WordPressUWP.Helpers
             PasswordCredential credential = null;
             var resourceName = Package.Current.DisplayName;
             var vault = new PasswordVault();
-            var credentialList = vault.FindAllByResource(resourceName);
-            if (credentialList.Count > 0)
+            try
             {
-                if (credentialList.Count == 1)
-                {
-                    credential = credentialList[0];
-                }
-                else
-                {
-                    // When there are multiple usernames,
-                    // retrieve the default username. If one doesn't
-                    // exist, then display UI to have the user select
-                    // a default username.
 
-                    credential = vault.Retrieve(resourceName, username);
+                var credentialList = vault.FindAllByResource(resourceName);
+                if (credentialList.Count > 0)
+                {
+                    if (credentialList.Count == 1)
+                    {
+                        credential = credentialList[0];
+                    }
+                    else
+                    {
+                        // When there are multiple usernames,
+                        // retrieve the default username. If one doesn't
+                        // exist, then display UI to have the user select
+                        // a default username.
+
+                        credential = vault.Retrieve(resourceName, username);
+                    }
+                    credential.RetrievePassword();
                 }
-                credential.RetrievePassword();
+
+            } catch
+            {
+                //
             }
 
             return credential;
+        }
+
+        public static void RemoveCredentialsFromLocker()
+        {
+            var resourceName = Package.Current.DisplayName;
+            var vault = new PasswordVault();
+            var credentialList = vault.FindAllByResource(resourceName);
+            foreach (var credential in credentialList)
+            {
+                vault.Remove(credential);
+            }
         }
 
         private static string GetFileName(string name)

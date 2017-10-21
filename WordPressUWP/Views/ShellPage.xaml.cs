@@ -73,7 +73,7 @@ namespace WordPressUWP.Views
 
         private void ViewModel_InAppNotificationRaised(object sender, string e)
         {
-            GlobalInAppNotification.Show(e);
+            GlobalInAppNotification.Show(e, 3000);
         }
 
         private void LoginBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)

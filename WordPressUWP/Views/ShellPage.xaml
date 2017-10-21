@@ -169,6 +169,8 @@
                                     Margin="12"
                                     DataContext="{Binding WordPressService, Source={StaticResource Locator}}" Visibility="{Binding IsLoggedIn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                             <TextBlock Text="[Logged IN]"></TextBlock>
+                            <Button x:Uid="LogoutButton" Content="[Logout]" Click="{x:Bind ViewModel.Logout}"></Button>
+                            <Button x:Uid="CancelButton" Content="[Cancel]" Click="{x:Bind ViewModel.CloseLoginPopup}"></Button>
                         </StackPanel>
                     </Grid>
                 </Border>
