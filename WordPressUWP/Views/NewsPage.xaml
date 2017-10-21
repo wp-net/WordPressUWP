@@ -26,6 +26,7 @@
         <helper:VisibleWhenZeroConverter x:Key="VisibleWhenZeroConverter"/>
         <ctkconv:StringFormatConverter x:Key="StringFormatConverter"/>
         <ctkconv:BoolToObjectConverter x:Key="BoolToVisibilityConverter" TrueValue="Visible" FalseValue="Collapsed"/>
+        <ctkconv:EmptyObjectToObjectConverter x:Key="EmptyObjectToObjectConverter" EmptyValue="Collapsed" NotEmptyValue="Visible"/>
         <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="wpmodel:Post">
             <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
                 <Grid.RowDefinitions>
@@ -62,7 +63,7 @@
 
         <Grid
             x:Name="MasterArea"
-            Grid.Row="1"
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
             Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition x:Name="MasterRow" Height="48"/>
@@ -72,6 +73,7 @@
             <TextBlock
                 x:Name="Title"
                 x:Uid="NewsPage_Title"
+                Margin="12 0 0 0"
                 Style="{StaticResource PageTitleStyle}" />
 
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your master content.-->
@@ -83,8 +85,7 @@
                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
                 ItemContainerTransitions="{x:Null}"
                 ItemTemplate="{StaticResource MasterListViewItemTemplate}"
-                IsItemClickEnabled="True"
-                Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                IsItemClickEnabled="True">
                 <i:Interaction.Behaviors>
                     <ic:EventTriggerBehavior EventName="ItemClick">
                         <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemClickCommand}" />
@@ -107,32 +108,33 @@
         <Grid x:Name="DetailContentPresenter"
               Grid.Row="1"
               Grid.Column="1"
-              Padding="0,0,0,0">
+              Padding="0,0,0,0"
+              Visibility="{x:Bind ViewModel.SelectedPost, Mode=OneWay, Converter={StaticResource EmptyObjectToObjectConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="48"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <views:NewsDetailControl
                 Grid.Column="0"
-                Grid.Row="1"
+                Grid.Row="0"
                 x:Name="DetailControl"
                 MasterMenuItem="{x:Bind ViewModel.SelectedPost, Mode=OneWay}"/>
-            <CommandBar Grid.Row="2" Grid.Column="0">
+            <CommandBar Grid.Row="1" Grid.Column="0">
                 <AppBarButton Icon="ReShare" Label="Share" Click="{x:Bind ViewModel.SharePost, Mode=OneWay}" />
-                <AppBarToggleButton x:Name="CommentToggleButton" Icon="Comment" Label="Toggle Comments"/>
+                <AppBarToggleButton x:Name="CommentToggleButton" Click="CommentToggleButton_Click" Icon="Comment" Label="Toggle Comments"/>
             </CommandBar>
             <Grid Grid.Column="1"
                   Grid.Row="0"
-                  Grid.RowSpan="3"
+                  Grid.RowSpan="2"
                   x:Name="CommentsColumn"
                   Width="400"
-                  Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                <Grid>
+                  Margin="0"
+                  >
+                <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
@@ -142,7 +144,7 @@
                               ItemsSource="{x:Bind ViewModel.Comments, Mode=OneWay}"
                               SelectionMode="None">
                         <ListView.Header>
-                            <Grid MinHeight="48" Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+                            <Grid MinHeight="48">
                                 <TextBlock Text="Comments"
                                            x:Uid="CommentsListTitle"
                                            VerticalAlignment="Center"
@@ -223,7 +225,7 @@
                     <VisualState.Setters>
                         <Setter Target="ContentArea.Padding" Value="12,0,0,0"/>
                         <Setter Target="MasterColumn.Width" Value="350" />
-                        <Setter Target="CommentsColumn.Width" Value="0"/>
+                        <Setter Target="CommentsColumn.Margin" Value="0 0 -400 0"/>
                         <Setter Target="CommentToggleButton.Visibility" Value="Visible"/>
                     </VisualState.Setters>
                 </VisualState>
