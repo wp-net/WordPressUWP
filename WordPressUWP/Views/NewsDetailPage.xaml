@@ -13,10 +13,16 @@
     <Grid
         x:Name="ContentArea"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
-
-        <views:NewsDetailControl
-            MasterMenuItem="{x:Bind ViewModel.Item}"
-            Margin="0" />
+        <Pivot>
+            <PivotItem Header="[Post]" Margin="0">
+                <views:NewsDetailControl MasterMenuItem="{x:Bind ViewModel.Item}"
+                                         Margin="0" />
+            </PivotItem>
+            <PivotItem Header="[Comments]" Margin="0">
+                
+            </PivotItem>
+        </Pivot>
+ 
 
         <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>

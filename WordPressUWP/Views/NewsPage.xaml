@@ -54,7 +54,7 @@
 
     <Grid
         x:Name="ContentArea"
-        Padding="12,0,0,0">
+        Padding="0">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn" Width="350" />
@@ -213,7 +213,6 @@
                         <AdaptiveTrigger MinWindowWidth="1300"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="ContentArea.Padding" Value="12,0,0,0"/>
                         <Setter Target="MasterColumn.Width" Value="350" />
                         <Setter Target="CommentToggleButton.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
@@ -223,7 +222,6 @@
                         <AdaptiveTrigger MinWindowWidth="640"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="ContentArea.Padding" Value="12,0,0,0"/>
                         <Setter Target="MasterColumn.Width" Value="350" />
                         <Setter Target="CommentsColumn.Margin" Value="0 0 -400 0"/>
                         <Setter Target="CommentToggleButton.Visibility" Value="Visible"/>
