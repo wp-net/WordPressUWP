@@ -243,8 +243,16 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
     <value>Artikel</value>
     <comment>Header Text for Post Pivot in NewsDetailPage</comment>
   </data>
+  <data name="RefreshCommentButton.Label" xml:space="preserve">
+    <value>Aktualisieren</value>
+    <comment>AppBarButton for refreshing comment list</comment>
+  </data>
   <data name="SendCommentBtn.Content" xml:space="preserve">
     <value>Abschicken</value>
     <comment>Button Text for submitting new comments</comment>
+  </data>
+  <data name="ShowCommentInputButton.Label" xml:space="preserve">
+    <value>Kommentar schreiben</value>
+    <comment>AppBarButton for toggling comment input</comment>
   </data>
 </root>

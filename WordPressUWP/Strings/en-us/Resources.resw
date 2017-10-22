@@ -247,4 +247,12 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
     <value>Submit</value>
     <comment>Button Text for submitting new comments</comment>
   </data>
+  <data name="RefreshCommentButton.Label" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>AppBarButton for refreshing comment list</comment>
+  </data>
+  <data name="ShowCommentInputButton.Label" xml:space="preserve">
+    <value>Write comment</value>
+    <comment>AppBarButton for toggling comment input</comment>
+  </data>
 </root>

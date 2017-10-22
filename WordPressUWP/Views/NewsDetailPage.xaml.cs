@@ -24,5 +24,19 @@ namespace WordPressUWP.Views
             ViewModel.Item = e.Parameter as WordPressPCL.Models.Post;
             await ViewModel.Init();
         }
+
+        private void CommentToggleButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            bool showCommentInput = CommentToggleButton.IsChecked ?? false;
+            if (showCommentInput)
+            {
+                CommentInputSP.Height = double.NaN;
+            }
+            else
+            {
+                CommentInputSP.Height = 0;
+            }
+            
+        }
     }
 }

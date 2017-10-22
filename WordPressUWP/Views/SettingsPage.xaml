@@ -95,7 +95,7 @@
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="TitlePage.Margin" Value="0,0,12,7"/>
+                        <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
