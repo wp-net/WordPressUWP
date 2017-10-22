@@ -35,9 +35,7 @@ namespace WordPressUWPApp.Utility
 {
     public static class ApiCredentials
     {
-        public static string WordPressUri = "http://yoursite.com/wp-json/wp/v2/";
-        public static string Username = "Admin";
-        public static string Password = "Password";
+        public static string WordPressUri = "http://yoursite.com/wp-json/";
     }
 
 }
