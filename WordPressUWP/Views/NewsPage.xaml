@@ -101,7 +101,7 @@
             <ProgressBar IsIndeterminate="{x:Bind ViewModel.Posts.IsLoading, Mode=OneWay}"
                          Grid.Row="1"
                          Background="Transparent"
-                         VerticalAlignment="Bottom"/>
+                         VerticalAlignment="Top"/>
 
         </Grid>
 
