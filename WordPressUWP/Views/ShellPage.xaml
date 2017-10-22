@@ -10,10 +10,12 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:ctkconv="using:Microsoft.Toolkit.Uwp.UI.Converters"
+    xmlns:helpers="using:WordPressUWP.Helpers"
     mc:Ignorable="d" Loaded="Page_Loaded">
     <Page.Resources>
         <ctkconv:BoolToObjectConverter x:Key="BoolToVisibilityConverter" TrueValue="Visible" FalseValue="Collapsed"/>
         <ctkconv:BoolToObjectConverter x:Key="BoolToVisibilityConverterInv" TrueValue="Collapsed" FalseValue="Visible"/>
+        <helpers:ProtocolToURLConverter x:Key="ProtocolToURLConverter"/>
         <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="vm:ShellNavigationItem">
             <Grid Width="320" Height="40" Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
                 <Grid.ColumnDefinitions>
@@ -122,35 +124,85 @@
         </controls:HamburgerMenu>
         <Popup x:Name="LoginPopup"
                IsOpen="{x:Bind ViewModel.IsLoginPopupOpen, Mode=TwoWay}"
-               IsLightDismissEnabled="True">
-            <Grid x:Name="LoginPopupWrapper" Background="{StaticResource PopupBackgroundBrush}">
-                <Border BorderBrush="{ThemeResource SystemControlBackgroundAltHighBrush}" BorderThickness="2">
-                    <Grid x:Name="LoginPopupGrid" Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
-                        <StackPanel x:Name="NotLoggedInSP"
+               IsLightDismissEnabled="False">
+            <Grid x:Name="LoginPopupWrapper">
+                <Grid.Background>
+                    <SolidColorBrush Color="{ThemeResource SystemAltHighColor}" Opacity="0.8"/>
+                </Grid.Background>
+                <Grid x:Name="LoginPopupGrid" Background="{ThemeResource SystemControlBackgroundAltHighBrush}" Padding="48">
+                    <StackPanel x:Name="NotLoggedInSP"
                                     VerticalAlignment="Top"
                                     HorizontalAlignment="Stretch"
                                     Margin="12"
-                                    DataContext="{Binding WordPressService, Source={StaticResource Locator}}" Visibility="{Binding IsLoggedIn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverterInv}}">
-                            <TextBox x:Name="UsernameTbx" x:Uid="UsernameTextbox" Header="[Username]" PlaceholderText="[Username]" HorizontalAlignment="Stretch" Margin="0 0 0 12"></TextBox>
-                            <PasswordBox x:Name="PasswordTbx" x:Uid="PasswordTextbox" Header="[Password]" PlaceholderText="[Password]" HorizontalAlignment="Stretch" Margin="0 0 0 12"></PasswordBox>
-                            <StackPanel Orientation="Horizontal">
-                                <Button x:Name="LoginBtn" x:Uid="LoginButton" Content="[Login]" Margin="0 0 12 0" Click="LoginBtn_Click"></Button>
-                                <Button x:Name="CancelBtn" x:Uid="CancelButton" Content="[Cancel]" Click="{x:Bind ViewModel.CloseLoginPopup}"></Button>
-                            </StackPanel>
-                            <TextBlock x:Name="LoginErrorMessage" Visibility="{x:Bind ViewModel.ShowLoginError, Mode=OneWay}" Text="[Error loggin in]"></TextBlock>
+                                    DataContext="{Binding WordPressService, Source={StaticResource Locator}}"
+                                    Visibility="{Binding IsLoggedIn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverterInv}}">
+                        <TextBox x:Name="UsernameTbx"
+                                     x:Uid="UsernameTextbox"
+                                     Header="[Username]"
+                                     PlaceholderText="[Username]"
+                                     HorizontalAlignment="Stretch"
+                                     Margin="0 0 0 12"/>
+                        <PasswordBox x:Name="PasswordTbx"
+                                         x:Uid="PasswordTextbox"
+                                         Header="[Password]"
+                                         PlaceholderText="[Password]"
+                                         HorizontalAlignment="Stretch"
+                                         IsPasswordRevealButtonEnabled="True"
+                                         KeyDown="PasswordTbx_KeyDown"
+                                         Margin="0 0 0 12"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="LoginBtn"
+                                        x:Uid="LoginButton"
+                                        Content="[Login]"
+                                        Margin="0 0 12 0"
+                                        Click="LoginBtn_Click"/>
+                            <Button x:Name="CancelBtn"
+                                        x:Uid="CancelButton"
+                                        Content="[Cancel]"
+                                        Click="{x:Bind ViewModel.CloseLoginPopup}"/>
                         </StackPanel>
-                        <StackPanel x:Name="LoggedInSP"
+                        <ProgressBar IsIndeterminate="{x:Bind ViewModel.IsLoggingIn, Mode=OneWay}"
+                                 Grid.Row="0"
+                                 Margin="0 12 0 0"
+                                 Background="Transparent"/>
+                        <TextBlock x:Name="LoginErrorMessage"
+                                       x:Uid="LoginErrorMessage"
+                                       Foreground="Red"
+                                       Visibility="{x:Bind ViewModel.ShowLoginError, Mode=OneWay}"
+                                       Text="[Error loggin in]"/>
+                    </StackPanel>
+                    <StackPanel x:Name="LoggedInSP"
                                     VerticalAlignment="Top"
                                     HorizontalAlignment="Stretch"
                                     Margin="12"
-                                    DataContext="{Binding WordPressService, Source={StaticResource Locator}}" Visibility="{Binding IsLoggedIn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
-                            <controls:RoundImageEx Source="{Binding CurrentUser.AvatarUrls.Size96, Mode=OneWay}" Height="96" Width="96" CornerRadius="999"/>
-                            <TextBlock Text="{Binding CurrentUser.Name, Mode=OneWay}"></TextBlock>
-                            <Button x:Uid="LogoutButton" Content="[Logout]" Click="{x:Bind ViewModel.Logout}"></Button>
-                            <Button x:Uid="CancelButton" Content="[Cancel]" Click="{x:Bind ViewModel.CloseLoginPopup}"></Button>
-                        </StackPanel>
-                    </Grid>
-                </Border>
+                                    DataContext="{Binding WordPressService, Source={StaticResource Locator}}"
+                                    Visibility="{Binding IsLoggedIn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <controls:RoundImageEx Source="{Binding CurrentUser.AvatarUrls.Size96, Mode=OneWay, Converter={StaticResource ProtocolToURLConverter}}"
+                                                   Stretch="UniformToFill"
+                                                   PlaceholderSource="https://www.gravatar.com/avatar/?s=96&amp;d=mm"
+                                                   PlaceholderStretch="UniformToFill"
+                                                   Height="96"
+                                                   Width="96"
+                                                   Margin="0"
+                                                   HorizontalAlignment="Center"
+                                                   CornerRadius="999"/>
+                        <TextBlock Text="{Binding CurrentUser.Name, Mode=OneWay}"
+                                       HorizontalAlignment="Center"
+                                       Margin="0 12 0 0"/>
+                        <Button x:Uid="LogoutButton"
+                                    Margin="0 12 0 0"
+                                    MinWidth="100"
+                                    Content="[Logout]"
+                                    Click="{x:Bind ViewModel.Logout}"
+                                    HorizontalAlignment="Center"/>
+                        <Button x:Uid="CloseButton"
+                                    Margin="0 12 0 0"
+                                    MinWidth="100"
+                                    Content="[Close]"
+                                    Click="{x:Bind ViewModel.CloseLoginPopup}"
+                                    HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
             </Grid>
         </Popup>
         <controls:InAppNotification x:Name="GlobalInAppNotification" Content="Testnotification" />

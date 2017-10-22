@@ -153,7 +153,9 @@ namespace WordPressUWP.ViewModels
         {
             _currentState = currentState;
 
-            Posts = new IncrementalLoadingCollection<PostsService, Post>();
+            if(Posts == null)
+                Posts = new IncrementalLoadingCollection<PostsService, Post>();
+
         }
 
         private void OnStateChanged(VisualStateChangedEventArgs args)

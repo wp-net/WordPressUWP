@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WordPressUWP.ViewModels;
@@ -37,8 +38,8 @@ namespace WordPressUWP.Views
             var windowHeight = Window.Current.Bounds.Height;
             double popupWidth;
             double popupHeight;
-            double gridWidth;
-            double gridHeight;
+            //double gridWidth;
+            //double gridHeight;
 
             //if (windowWidth > 700)
             //{
@@ -78,9 +79,19 @@ namespace WordPressUWP.Views
 
         private void LoginBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            Login();
+        }
+
+        private void Login()
+        {
             ViewModel.Login(UsernameTbx.Text, PasswordTbx.Password);
             PasswordTbx.Password = String.Empty;
         }
 
+        private void PasswordTbx_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if(e.Key == Windows.System.VirtualKey.Enter)
+                Login();
+        }
     }
 }

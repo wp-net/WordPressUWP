@@ -78,6 +78,13 @@ namespace WordPressUWP.ViewModels
             set { Set(ref _isLoginPopupOpen, value); }
         }
 
+        private bool _isLoggingIn;
+        public bool IsLoggingIn
+        {
+            get { return _isLoggingIn; }
+            set { Set(ref _isLoggingIn, value); }
+        }
+
         private bool _showLoginError;
         public bool ShowLoginError
         {
@@ -287,16 +294,13 @@ namespace WordPressUWP.ViewModels
 
         public async void Login(string username, string password)
         {
+            IsLoggingIn = true;
             var isAuth = await _wordPressService.AuthenticateUser(username, password);
-            if (isAuth)
-            {
-                //CloseLoginPopup();
-                _inAppNotificationService.ShowInAppNotification("Logged in successfully!");
-            } else
+            if (!isAuth)
             {
                 ShowLoginError = true;
-                _inAppNotificationService.ShowInAppNotification("Failed to log in");
             }
+            IsLoggingIn = false;
         }
 
         public async void Logout()

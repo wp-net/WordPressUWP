@@ -255,4 +255,16 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
     <value>Kommentar schreiben</value>
     <comment>AppBarButton for toggling comment input</comment>
   </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Schließen</value>
+    <comment>Close Popup Button</comment>
+  </data>
+  <data name="LoginErrorMessage.Text" xml:space="preserve">
+    <value>Fehler beim einloggen</value>
+    <comment>Generic error message when login fails</comment>
+  </data>
+  <data name="LogoutButton.Content" xml:space="preserve">
+    <value>Logout</value>
+    <comment>Button for logging out</comment>
+  </data>
 </root>

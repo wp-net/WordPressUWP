@@ -5,12 +5,12 @@
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Light">
-            <Color x:Key="PopupBackgroundColor">#F2FFFFFF</Color>
-            <SolidColorBrush x:Key="PopupBackgroundBrush" Color="{ThemeResource PopupBackgroundColor}"/>
+            <!--<Color x:Key="PopupBackgroundColor">#F2FFFFFF</Color>
+            <SolidColorBrush x:Key="PopupBackgroundBrush" Color="{ThemeResource PopupBackgroundColor}"/>-->
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
-            <Color x:Key="PopupBackgroundColor">#F2000000</Color>
-            <SolidColorBrush x:Key="PopupBackgroundBrush" Color="{ThemeResource PopupBackgroundColor}"/>
+            <!--<Color x:Key="PopupBackgroundColor">#F2000000</Color>
+            <SolidColorBrush x:Key="PopupBackgroundBrush" Color="{ThemeResource PopupBackgroundColor}"/>-->
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

@@ -16,6 +16,8 @@ namespace WordPressUWP.Services
     {
         private WordPressClient _client;
         private ApplicationDataContainer _localSettings;
+        private IEnumerable<Post> _first20Posts;
+
 
         private bool _isLoggedIn;
         public bool IsLoggedIn
@@ -71,6 +73,7 @@ namespace WordPressUWP.Services
                 // Store username & JWT token for logging in on next app launch
                 SettingsStorageExtensions.SaveString(_localSettings, "Username", username);
                 SettingsStorageExtensions.SaveCredentialsToLocker(username, _client.GetToken());
+                CurrentUser = await _client.Users.GetCurrentUser();
             }
 
             return isAuthenticated;
@@ -91,12 +94,21 @@ namespace WordPressUWP.Services
         public async Task<IEnumerable<Post>> GetLatestPosts(int page = 0, int perPage = 20)
         {
             page++;
-            return await _client.Posts.Query(new PostsQueryBuilder()
+
+            if(_first20Posts != null && page == 1)
+                return _first20Posts;
+
+            var posts = await _client.Posts.Query(new PostsQueryBuilder()
             {
                 Page = page,
                 PerPage = perPage,
                 Embed = true
             });
+
+            if (page == 1)
+                _first20Posts = posts;
+
+            return posts;
         }
 
         public User GetUser()
