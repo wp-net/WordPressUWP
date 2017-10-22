@@ -19,7 +19,7 @@ namespace WordPressUWP.Helpers
         public static string WrapContent(Post post)
         {
             var sb = new StringBuilder();
-            var isDark = ThemeSelectorService.Theme == ElementTheme.Dark;
+            var isDark = ThemeSelectorService.IsDarkMode();
             var content = post.Content.Rendered;
 
 

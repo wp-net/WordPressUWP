@@ -210,12 +210,28 @@ namespace WordPressUWP.ViewModels
             // Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
             // Edit String/en-US/Resources.resw: Add a menu item title for each page
             _primaryItems.Add(new ShellNavigationItem("Shell_News".GetLocalized(), Symbol.Home, typeof(NewsViewModel).FullName));
+
+
             if (Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.IsSupported())
             {
-                _secondaryItems.Add(new ShellNavigationItem("Feedback", Symbol.Comment, "Feedback"));
+                _secondaryItems.Add(
+                    ShellNavigationItem.ForAction(
+                        "Feedback",
+                        Symbol.Comment,
+                        async() => {
+                            var launcher = Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.GetDefault();
+                            await launcher.LaunchAsync();
+                        }));
             }
             _secondaryItems.Add(new ShellNavigationItem("Shell_Settings".GetLocalized(), Symbol.Setting, typeof(SettingsViewModel).FullName));
-            _secondaryItems.Add(new ShellNavigationItem("Me", Symbol.Contact, "Login"));
+
+            _secondaryItems.Add(
+                ShellNavigationItem.ForAction(
+                    "Me",
+                    Symbol.Contact,
+                    () => {
+                        OpenLoginPopup();
+                    }));
         }
 
         private void ItemSelected(ItemClickEventArgs args)
@@ -264,15 +280,9 @@ namespace WordPressUWP.ViewModels
             var navigationItem = item as ShellNavigationItem;
             if (navigationItem != null)
             {
-                if(navigationItem.ViewModelName == "Login")
+                if (navigationItem.Action != null)
                 {
-                    Debug.WriteLine("Show login popup");
-                    OpenLoginPopup();
-                }
-                else if(navigationItem.ViewModelName == "Feedback")
-                {
-                    var launcher = Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.GetDefault();
-                    await launcher.LaunchAsync();
+                    navigationItem.Action.Invoke();
                 }
                 else
                 {

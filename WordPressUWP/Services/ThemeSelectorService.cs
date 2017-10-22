@@ -60,6 +60,11 @@ namespace WordPressUWP.Services
             return cacheTheme;
         }
 
+        public static bool IsDarkMode()
+        {
+            return Theme == ElementTheme.Dark || GetSystemControlForegroundForTheme().Color.ToString() == "#FFFFFFFF";
+        }
+
         private static async Task SaveThemeInSettingsAsync(ElementTheme theme)
         {
             await ApplicationData.Current.LocalSettings.SaveAsync(SettingsKey, theme.ToString());

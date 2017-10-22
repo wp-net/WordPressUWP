@@ -225,7 +225,6 @@
                     <VisualState.Setters>
                         <Setter Target="MasterColumn.Width" Value="350" />
                         <Setter Target="CommentsColumn.Margin" Value="0 0 -400 0"/>
-                        <Setter Target="CommentToggleButton.Visibility" Value="Visible"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NarrowState">

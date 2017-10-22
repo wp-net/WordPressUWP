@@ -13,6 +13,16 @@ namespace WordPressUWP.ViewModels
 {
     public class ShellNavigationItem : ViewModelBase
     {
+
+        public Action Action { get; private set; }
+
+        private ShellNavigationItem(string label, Symbol symbol, Action action)
+            : this(label, null)
+        {
+            Symbol = symbol;
+            Action = action;
+        }
+
         public string Label { get; set; }
 
         public Symbol Symbol { get; set; }
@@ -116,6 +126,11 @@ namespace WordPressUWP.ViewModels
                     SelectedForeground = GetStandardTextColorBrush();
                 }
             };
+        }
+
+        public static ShellNavigationItem ForAction(string label, Symbol symbol, Action action)
+        {
+            return new ShellNavigationItem(label, symbol, action);
         }
 
         private SolidColorBrush GetStandardTextColorBrush()
