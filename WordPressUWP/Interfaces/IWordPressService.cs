@@ -13,7 +13,7 @@ namespace WordPressUWP.Interfaces
 
         Task<bool> IsUserAuthenticated();
 
-        Task<User> GetUser();
+        User GetUser();
 
         Task<List<CommentThreaded>> GetCommentsForPost(int postid);
 

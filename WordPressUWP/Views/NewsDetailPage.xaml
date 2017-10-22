@@ -24,11 +24,15 @@
         x:Name="ContentArea"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <Pivot>
-            <PivotItem Header="[Post]" Margin="0">
+            <PivotItem x:Name="PostDetailsPostPivot" Margin="0">
+                <PivotItem.Header>
+                    <TextBlock x:Uid="PostDetailsPostPivot" Margin="48 0 0 0" Text="[Post]"></TextBlock>
+                    
+                </PivotItem.Header>
                 <views:NewsDetailControl MasterMenuItem="{x:Bind ViewModel.Item}"
                                          Margin="0" />
             </PivotItem>
-            <PivotItem Header="[Comments]" Margin="0">
+            <PivotItem Header="[Comments]" x:Uid="PostDetailsCommentsPivot" Margin="0">
                 <Grid Grid.Column="1"
                   Grid.Row="0"
                   Grid.RowSpan="2"
@@ -44,15 +48,6 @@
                         <ListView Grid.Row="0"
                               ItemsSource="{x:Bind ViewModel.Comments, Mode=OneWay}"
                               SelectionMode="None">
-                            <ListView.Header>
-                                <Grid MinHeight="48">
-                                    <TextBlock Text="Comments"
-                                           x:Uid="CommentsListTitle"
-                                           VerticalAlignment="Center"
-                                           Margin="12 0 0 0"
-                                           Style="{StaticResource PageTitleStyle}"/>
-                                </Grid>
-                            </ListView.Header>
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="wpmodel:CommentThreaded">
                                     <Grid Margin="{x:Bind Depth, Mode=OneWay, Converter={StaticResource TheadedCommentMarginConverter}}" HorizontalAlignment="Stretch">
@@ -87,11 +82,12 @@
 
                         <StackPanel Grid.Row="1" Margin="12" DataContext="{Binding WordPressService, Source={StaticResource Locator}}" Visibility="{Binding IsLoggedIn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                             <TextBox x:Name="CommentInput"
-                                 PlaceholderText="[Comment]"
-                                 Header="[In response to]"
-                                 MaxHeight="120"
-                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                 TextWrapping="Wrap" AcceptsReturn="True" Text="{x:Bind ViewModel.CommentInput, Mode=TwoWay}"></TextBox>
+                                     x:Uid="CommentInput"
+                                     PlaceholderText="[Comment]"
+                                     Header=""
+                                     MaxHeight="120"
+                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                     TextWrapping="Wrap" AcceptsReturn="True" Text="{x:Bind ViewModel.CommentInput, Mode=TwoWay}"></TextBox>
                             <Button Content="[Send]" x:Uid="SendCommentBtn" x:Name="SendCommentBtn" Click="{x:Bind ViewModel.PostComment, Mode=OneWay}" Margin="0 12 0 0"></Button>
                         </StackPanel>
                         <CommandBar Grid.Row="2">

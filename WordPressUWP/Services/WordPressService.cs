@@ -24,6 +24,13 @@ namespace WordPressUWP.Services
             set { Set(ref _isLoggedIn, value); }
         }
 
+        private User _currentUser;
+        public User CurrentUser
+        {
+            get { return _currentUser; }
+            set { Set(ref _currentUser, value); }
+        }
+
         public WordPressService()
         {
             _client = new WordPressClient(ApiCredentials.WordPressUri);
@@ -45,6 +52,10 @@ namespace WordPressUWP.Services
                     // set jwt
                     _client.SetJWToken(jwt.Password);
                     IsLoggedIn = await _client.IsValidJWToken();
+                    if (IsLoggedIn)
+                    {
+                        CurrentUser = await _client.Users.GetCurrentUser();
+                    }
                 }
             }
         }
@@ -88,9 +99,9 @@ namespace WordPressUWP.Services
             });
         }
 
-        public async Task<User> GetUser()
+        public User GetUser()
         {
-            return await _client.Users.GetCurrentUser();
+            return CurrentUser;
         }
 
         public async Task<bool> IsUserAuthenticated()

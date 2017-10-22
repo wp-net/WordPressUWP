@@ -231,4 +231,20 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
     <value>File name is null or empty. Specify a valid file name</value>
     <comment>File name is null or empty to save file in settings storage extensions</comment>
   </data>
+  <data name="CommentInput.PlaceholderText" xml:space="preserve">
+    <value>write your comment</value>
+    <comment>Placeholder Text for Comment Input Textbox</comment>
+  </data>
+  <data name="PostDetailsCommentsPivot.Header" xml:space="preserve">
+    <value>Comments</value>
+    <comment>Header Text for Comments Pivot in NewsDetailPage</comment>
+  </data>
+  <data name="PostDetailsPostPivot.Text" xml:space="preserve">
+    <value>Post</value>
+    <comment>Header Text for Post Pivot in NewsDetailPage</comment>
+  </data>
+  <data name="SendCommentBtn.Content" xml:space="preserve">
+    <value>Submit</value>
+    <comment>Button Text for submitting new comments</comment>
+  </data>
 </root>

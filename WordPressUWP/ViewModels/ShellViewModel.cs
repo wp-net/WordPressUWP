@@ -17,6 +17,7 @@ using WordPressUWP.Services;
 using WordPressUWP.Views;
 using WordPressUWP.Interfaces;
 using System.Diagnostics;
+using WordPressPCL.Models;
 
 namespace WordPressUWP.ViewModels
 {
@@ -153,13 +154,14 @@ namespace WordPressUWP.ViewModels
                 case NarrowStateName:
                     DisplayMode = SplitViewDisplayMode.Overlay;
                     IsPaneOpen = false;
+                    
                     break;
                 default:
                     break;
             }
         }
 
-        public void Initialize(Frame frame)
+        public async void Initialize(Frame frame)
         {
             NavigationService.Frame = frame;
             NavigationService.Navigated += Frame_Navigated;
@@ -288,7 +290,7 @@ namespace WordPressUWP.ViewModels
             var isAuth = await _wordPressService.AuthenticateUser(username, password);
             if (isAuth)
             {
-                CloseLoginPopup();
+                //CloseLoginPopup();
                 _inAppNotificationService.ShowInAppNotification("Logged in successfully!");
             } else
             {

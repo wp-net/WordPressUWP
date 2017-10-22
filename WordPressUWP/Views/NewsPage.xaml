@@ -186,8 +186,9 @@
 
                     <StackPanel Grid.Row="1" Margin="12" DataContext="{Binding WordPressService, Source={StaticResource Locator}}" Visibility="{Binding IsLoggedIn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <TextBox x:Name="CommentInput"
+                                 x:Uid="CommentInput"
                                  PlaceholderText="[Comment]"
-                                 Header="[In response to]"
+                                 Header=""
                                  MaxHeight="120"
                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
                                  TextWrapping="Wrap" AcceptsReturn="True" Text="{x:Bind ViewModel.CommentInput, Mode=TwoWay}"></TextBox>
@@ -239,7 +240,7 @@
                         <Setter Target="MasterListView.SelectionMode" Value="None" />
                         <Setter Target="MasterArea.Background" Value="{ThemeResource SystemControlBackgroundAltHighBrush}"/>
                         <Setter Target="MasterListView.Margin" Value="-12,0"/>
-                        <Setter Target="Title.Margin" Value="-12,0"/>
+                        <Setter Target="Title.Margin" Value="48,0,0,0"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

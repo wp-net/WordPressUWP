@@ -65,7 +65,15 @@ namespace WordPressUWP.Helpers
 
         public static string ReadString(this ApplicationDataContainer settings, string key)
         {
-            return settings.Values[key].ToString();
+            var st = settings.Values[key];
+            if(st != null)
+            {
+                return settings.Values[key].ToString();
+            }
+            else
+            {
+                return String.Empty;
+            }
         }
 
         public static async Task<StorageFile> SaveFileAsync(this StorageFolder folder, byte[] content, string fileName, CreationCollisionOption options = CreationCollisionOption.ReplaceExisting)
