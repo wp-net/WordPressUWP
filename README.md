@@ -28,7 +28,7 @@ Since WordPress 4.7 the REST API has been integrated into the core so there's no
 
 ## Getting Started
 
-Just clone or download the repo and open it in Visual Studio. Before you can build you'll need to create a `ApiCredentials.cs` class inside the `WordPressUWPApp.Utility` folder. Here you need to enter your site uri and admin credentials (if you want to do stuff that needs admin rights from your app).
+Just clone or download the repo and open it in Visual Studio. Before you can build you'll need to create a `ApiCredentials.cs` class inside the `WordPressUWPApp.Utility` folder. Here you need to enter your site uri.
 
 ```c#
 namespace WordPressUWPApp.Utility
