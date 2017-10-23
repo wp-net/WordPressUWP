@@ -6,7 +6,7 @@ This is a Universal Windows Platform app framework designed to turn WordPress Bl
 * Windows Template Studio
 * [WordPressPCL (WordPress REST API Wrapper)](https://github.com/ThomasPe/WordPressPCL)
 
-#Features
+## Features
 working and planned features for WordPressUWP:
 - [x] Show posts
 - [x] Show comments
