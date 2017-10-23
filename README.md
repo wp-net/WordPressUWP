@@ -18,7 +18,7 @@ working and planned features for WordPressUWP:
 - [x] Continuum Support
 - [ ] Enable Ads
 
-#Quickstart
+# Quickstart
 
 ## WordPress Plugins
 Since WordPress 4.7 the REST API has been integrated into the core so there's no need for any plugins to get basic functionality. If you want to access protected endpoints, this library supports authentication through JSON Web Tokens (JWT) (plugin required).
