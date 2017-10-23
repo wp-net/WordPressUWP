@@ -41,7 +41,3 @@ namespace WordPressUWPApp.Utility
 }
 
 ```
-    
-
-The full documentation will be made available here (but isn't yet...) 
-http://thomaspe.github.io/WordPressUWP
