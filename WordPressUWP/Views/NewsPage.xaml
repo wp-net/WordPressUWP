@@ -124,8 +124,21 @@
                 x:Name="DetailControl"
                 MasterMenuItem="{x:Bind ViewModel.SelectedPost, Mode=OneWay}"/>
             <CommandBar Grid.Row="1" Grid.Column="0">
-                <AppBarButton Icon="ReShare" Label="Share" Click="{x:Bind ViewModel.SharePost, Mode=OneWay}" />
-                <AppBarToggleButton x:Name="CommentToggleButton" Click="CommentToggleButton_Click" Icon="Comment" Label="Toggle Comments"/>
+                <AppBarButton Label="[Open in Browser]" Click="{x:Bind ViewModel.OpenInBrowser, Mode=OneWay}" x:Uid="BrowserAppBarButton">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE774;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Label="[Share]" Click="{x:Bind ViewModel.SharePost, Mode=OneWay}" x:Uid="ShareAppBarButton">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72D;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarToggleButton x:Name="CommentToggleButton"
+                                    Click="CommentToggleButton_Click"
+                                    Icon="Comment"
+                                    Label="[Toggle Comments]"
+                                    x:Uid="CommentAppBarButton"/>
             </CommandBar>
             <Grid Grid.Column="1"
                   Grid.Row="0"

@@ -184,6 +184,11 @@ namespace WordPressUWP.ViewModels
             await GetComments(SelectedPost.Id);
         }
 
+        public async void OpenInBrowser()
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri(SelectedPost.Link));
+        }
+
         public void SharePost()
         {
             DataTransferManager.ShowShareUI();

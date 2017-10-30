@@ -267,4 +267,16 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
     <value>Logout</value>
     <comment>Button for logging out</comment>
   </data>
+  <data name="BrowserAppBarButton.Label" xml:space="preserve">
+    <value>Im Browser öffnen</value>
+    <comment>AppBarButton for opening post in the browser</comment>
+  </data>
+  <data name="CommentAppBarButton.Label" xml:space="preserve">
+    <value>Kommentare</value>
+    <comment>AppBarButton for toggling the comments sidebar</comment>
+  </data>
+  <data name="ShareAppBarButton.Label" xml:space="preserve">
+    <value>Teilen</value>
+    <comment>AppBarButton for sharing the post</comment>
+  </data>
 </root>
