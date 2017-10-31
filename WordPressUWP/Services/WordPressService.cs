@@ -81,14 +81,8 @@ namespace WordPressUWP.Services
 
         public async Task<List<CommentThreaded>> GetCommentsForPost(int postid)
         {
-            var comments = await _client.Comments.Query(new CommentsQueryBuilder()
-            {
-                Posts = new int[] { postid },
-                Page = 1,
-                PerPage = 100
-            });
-
-            return ThreadedCommentsHelper.GetThreadedComments(comments);
+            var comments = await _client.Comments.GetAllCommentsForPost(postid);
+            return comments.ToThreaded();
         }
 
         public async Task<IEnumerable<Post>> GetLatestPosts(int page = 0, int perPage = 20)
