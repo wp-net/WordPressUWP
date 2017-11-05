@@ -63,9 +63,11 @@ namespace WordPressUWP.Helpers
 
             var img = images[0];
             var imgSrc = img.SourceUrl;
+            if (imgSrc == null)
+                return string.Empty;
 
             var sb = new StringBuilder();
-            sb.Append("<img class=\"alignnone size-full\" ");
+            sb.Append("<img class=\"alignnone size-full\" id=\"featured\" ");
             sb.Append($"src=\"{imgSrc}\" width=\"{img.MediaDetails.Width}\" height=\"{img.MediaDetails.Height}\" ");
 
             sb.Append("srcset=\"");
