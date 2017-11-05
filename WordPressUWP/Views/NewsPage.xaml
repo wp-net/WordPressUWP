@@ -13,6 +13,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:helper="using:WordPressUWP.Helpers"
     xmlns:as="using:AppStudio.Uwp.Controls"
+    NavigationCacheMode="Enabled"
     mc:Ignorable="d">
     <Page.Transitions>
         <TransitionCollection>

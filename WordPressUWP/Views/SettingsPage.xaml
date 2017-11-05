@@ -65,6 +65,11 @@
                             <TextBlock x:Uid="Settings_AboutDescription"
                                        Margin="{StaticResource EightTopMargin}" />
 
+                            <TextBlock x:Uid="Settings_Contact"
+                                       FontWeight="SemiBold"
+                                       Margin="0 24 0 0"/>
+                            <HyperlinkButton x:Uid="Settings_ContactLink"/>
+
                             <TextBlock x:Uid="Settings_DevelopedBy"
                                        FontWeight="SemiBold"
                                        Margin="0 24 0 0"/>
