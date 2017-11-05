@@ -13,74 +13,96 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid Margin="{StaticResource MediumLeftRightMargin}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="48"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <TextBlock
-                Grid.Row="0"
-                x:Uid="Settings_Title"
-                x:Name="TitlePage"
-                Style="{StaticResource PageTitleStyle}" />
+        <Grid Margin="12 0 0 0">
+            <Pivot x:Name="SettingsPivot">
+                <PivotItem Header="[Settings]" x:Uid="SettingsPivotItem">
+                    <StackPanel>
+                        <TextBlock x:Uid="Settings_Personalization"
+                                   Style="{StaticResource SubtitleTextBlockStyle}" />
 
-            <StackPanel Grid.Row="1">
-                <TextBlock
-                    x:Uid="Settings_Personalization"
-                    Style="{StaticResource SubtitleTextBlockStyle}" />
-
-                <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
-                    <TextBlock
+                        <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
+                            <TextBlock
                         x:Uid="Settings_Theme"
                         Style="{StaticResource BodyTextStyle}" />
 
-                    <StackPanel Margin="{StaticResource EightTopMargin}">
-                        <RadioButton 
+                            <StackPanel Margin="{StaticResource EightTopMargin}">
+                                <RadioButton 
                             x:Uid="Settings_Theme_Light" 
                             GroupName="AppTheme" 
                             IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=TwoWay}"
                             Command="{Binding SwitchThemeCommand}">
-                            <RadioButton.CommandParameter>
-                                <xaml:ElementTheme>Light</xaml:ElementTheme>
-                            </RadioButton.CommandParameter>
-                        </RadioButton>
-                        <RadioButton 
+                                    <RadioButton.CommandParameter>
+                                        <xaml:ElementTheme>Light</xaml:ElementTheme>
+                                    </RadioButton.CommandParameter>
+                                </RadioButton>
+                                <RadioButton 
                             x:Uid="Settings_Theme_Dark" 
                             GroupName="AppTheme"
                             IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=TwoWay}"
                             Command="{Binding SwitchThemeCommand}">
-                            <RadioButton.CommandParameter>
-                                <xaml:ElementTheme>Dark</xaml:ElementTheme>
-                            </RadioButton.CommandParameter>
-                        </RadioButton>
-                        <RadioButton 
+                                    <RadioButton.CommandParameter>
+                                        <xaml:ElementTheme>Dark</xaml:ElementTheme>
+                                    </RadioButton.CommandParameter>
+                                </RadioButton>
+                                <RadioButton 
                             x:Uid="Settings_Theme_Default"
                             GroupName="AppTheme"
                             IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=TwoWay}"
                             Command="{Binding SwitchThemeCommand}">
-                            <RadioButton.CommandParameter>
-                                <xaml:ElementTheme>Default</xaml:ElementTheme>
-                            </RadioButton.CommandParameter>
-                        </RadioButton>
-                    </StackPanel>
-                </StackPanel>
+                                    <RadioButton.CommandParameter>
+                                        <xaml:ElementTheme>Default</xaml:ElementTheme>
+                                    </RadioButton.CommandParameter>
+                                </RadioButton>
+                            </StackPanel>
+                        </StackPanel>
 
-                <TextBlock
+                        <TextBlock
                         x:Uid="Settings_About"
                         Style="{StaticResource SubtitleTextBlockStyle}"/>
 
-                <StackPanel Margin="{StaticResource EightTopMargin}">
-                    <TextBlock
-                        Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" />
-                    <TextBlock
-                        x:Uid="Settings_AboutDescription"
-                        Margin="{StaticResource EightTopMargin}" />
+                        <StackPanel Margin="{StaticResource EightTopMargin}">
+                            <TextBlock Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" />
+                            <TextBlock x:Uid="Settings_AboutDescription"
+                                       Margin="{StaticResource EightTopMargin}" />
 
-                    <HyperlinkButton
-                        x:Uid="Settings_PrivacyTermsLink" 
-                        Margin="{StaticResource EightTopMargin}" />
-                </StackPanel>
-            </StackPanel>
+                            <TextBlock x:Uid="Settings_DevelopedBy"
+                                       FontWeight="SemiBold"
+                                       Margin="0 24 0 0"/>
+                            <TextBlock x:Uid="Settings_DeveloperName"
+                                       Margin="{StaticResource EightTopMargin}"/>
+                            <HyperlinkButton x:Uid="Settings_DeveloperUrl"/>
+
+                            <TextBlock x:Uid="Settings_BasedOn"
+                                       FontWeight="SemiBold"
+                                       Margin="0 24 0 0"/>
+                            <HyperlinkButton x:Uid="Settings_BasedOnUrl"/>
+
+                            <HyperlinkButton x:Uid="Settings_PrivacyTermsLink"
+                                             Margin="{StaticResource EightTopMargin}" />
+                        </StackPanel>
+                    </StackPanel>
+                </PivotItem>
+                <PivotItem Header="[3rdParty]" x:Uid="3rdPartyPivotItem" Margin="12 0 0 0">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel MaxWidth="600" HorizontalAlignment="Left">
+                        <TextBlock Text="[Third Party Notice Title]" x:Uid="ThirdPartyNoticeTitle" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        <TextBlock Text="[Third Party Notice]" x:Uid="ThirdPartyNotice" />
+                            <TextBlock Text="WordPressPCL"
+                                       Style="{StaticResource SubtitleTextBlockStyle}"
+                                       Margin="0 24 0 12"/>
+                            <TextBlock xml:space="preserve" TextWrapping="Wrap" x:Uid="WordPressPCLLicense" Text="[License Text]"/>
+                            <TextBlock Text="Newtonsoft.Json"
+                                       Style="{StaticResource SubtitleTextBlockStyle}"
+                                       Margin="0 24 0 12"/>
+                            <TextBlock xml:space="preserve" TextWrapping="Wrap" x:Uid="JSONNETLicense" Text="[License Text]"/>
+                            <TextBlock Text="Windows App Studio Libraries"
+                                       Style="{StaticResource SubtitleTextBlockStyle}"
+                                       Margin="0 24 0 12"/>
+                            <TextBlock xml:space="preserve" TextWrapping="Wrap" x:Uid="WASLicense" Text="[License Text]"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </PivotItem>
+            </Pivot>
         </Grid>
         <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>
@@ -89,13 +111,16 @@
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="640"/>
                     </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SettingsPivot.Margin" Value="0"/>
+                    </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NarrowState">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
+                        <Setter Target="SettingsPivot.Margin" Value="24,0,0,0"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

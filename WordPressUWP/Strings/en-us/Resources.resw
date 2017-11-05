@@ -279,4 +279,78 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
     <value>Share</value>
     <comment>AppBarButton for sharing the post</comment>
   </data>
+  <data name="3rdPartyPivotItem.Header" xml:space="preserve">
+    <value>Licenses</value>
+    <comment>Header for 3rd Party Licenses Pivot Item</comment>
+  </data>
+  <data name="SettingsPivotItem.Header" xml:space="preserve">
+    <value>Settings</value>
+    <comment>Header for Settings Pivot Item</comment>
+  </data>
+  <data name="ThirdPartyNotice.Text" xml:space="preserve">
+    <value>This app contains source code developed by the third parties listed here.</value>
+  </data>
+  <data name="ThirdPartyNoticeTitle.Text" xml:space="preserve">
+    <value>Third Party Notices</value>
+  </data>
+  <data name="WordPressPCLLicense.Text" xml:space="preserve">
+    <value>Copyright (c) 2017 Thomas Pentenrieder
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</value>
+  </data>
+  <data name="JSONNETLicense.Text" xml:space="preserve">
+    <value>The MIT License (MIT)
+Copyright (c) 2007 James Newton-King
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</value>
+  </data>
+  <data name="Settings_BasedOn.Text" xml:space="preserve">
+    <value>Based on WordPressUWP</value>
+  </data>
+  <data name="Settings_BasedOnUrl.Content" xml:space="preserve">
+    <value>https://github.com/wp-net/WordPressUWP</value>
+  </data>
+  <data name="Settings_BasedOnUrl.NavigateUri" xml:space="preserve">
+    <value>https://github.com/wp-net/WordPressUWP</value>
+  </data>
+  <data name="Settings_DevelopedBy.Text" xml:space="preserve">
+    <value>Developed by</value>
+  </data>
+  <data name="Settings_DeveloperName.Text" xml:space="preserve">
+    <value>Thomas Pentenrieder</value>
+  </data>
+  <data name="Settings_DeveloperUrl.Content" xml:space="preserve">
+    <value>medienstudio.net</value>
+  </data>
+  <data name="Settings_DeveloperUrl.NavigateUri" xml:space="preserve">
+    <value>http://medienstudio.net</value>
+  </data>
+  <data name="WASLicense.Text" xml:space="preserve">
+    <value>The MIT License (MIT)
+
+Copyright (c) 2016 WasTeam
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</value>
+  </data>
 </root>
