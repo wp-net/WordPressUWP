@@ -70,13 +70,18 @@
                 <RowDefinition x:Name="MasterRow" Height="48"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
+            <Grid>
             <TextBlock
                 x:Name="Title"
                 x:Uid="NewsPage_Title"
                 Margin="12 0 0 0"
                 Style="{StaticResource PageTitleStyle}" />
-
+                <Button HorizontalAlignment="Right"
+                        Style="{StaticResource IconButtonStyle}"
+                        Click="{x:Bind ViewModel.RefreshPosts}">
+                    <SymbolIcon x:Name="play" Symbol="Refresh"/>
+                </Button>
+            </Grid>
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your master content.-->
             <ListView
                 x:Name="MasterListView"

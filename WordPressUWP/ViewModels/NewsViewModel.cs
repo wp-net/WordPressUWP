@@ -105,11 +105,17 @@ namespace WordPressUWP.ViewModels
             _inAppNotificationService = inAppNotificationService;
         }
 
-        internal async Task Init(VisualState currentState)
+        internal void Init(VisualState currentState)
         {
             dataTransferManager = DataTransferManager.GetForCurrentView();
             dataTransferManager.DataRequested += DataTransferManager_DataRequested;
-            await LoadDataAsync(currentState);
+            LoadDataAsync(currentState);
+        }
+
+        public async Task RefreshPosts()
+        {
+            await Posts.RefreshAsync();
+            //Posts = new IncrementalLoadingCollection<PostsService, Post>();
         }
 
         private async Task GetComments(int postid)
@@ -149,13 +155,11 @@ namespace WordPressUWP.ViewModels
             }
         }
 
-        public async Task LoadDataAsync(VisualState currentState)
+        public void LoadDataAsync(VisualState currentState)
         {
             _currentState = currentState;
-
             if(Posts == null)
                 Posts = new IncrementalLoadingCollection<PostsService, Post>();
-
         }
 
         private void OnStateChanged(VisualStateChangedEventArgs args)
@@ -196,7 +200,6 @@ namespace WordPressUWP.ViewModels
 
         private void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
-
             DataRequest request = args.Request;
             try
             {

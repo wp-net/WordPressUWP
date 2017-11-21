@@ -22,7 +22,7 @@ namespace WordPressUWP.Views
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            await ViewModel.Init(WindowStates.CurrentState);
+            ViewModel.Init(WindowStates.CurrentState);
             Window.Current.SizeChanged += Current_SizeChanged;
         }
 
