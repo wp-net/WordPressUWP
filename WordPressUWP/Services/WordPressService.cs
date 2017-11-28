@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Storage;
@@ -16,8 +17,6 @@ namespace WordPressUWP.Services
     {
         private WordPressClient _client;
         private ApplicationDataContainer _localSettings;
-        private IEnumerable<Post> _first20Posts;
-
 
         private bool _isLoggedIn;
         public bool IsLoggedIn
@@ -87,10 +86,8 @@ namespace WordPressUWP.Services
 
         public async Task<IEnumerable<Post>> GetLatestPosts(int page = 0, int perPage = 20)
         {
+            Debug.WriteLine($"loading page {page}");
             page++;
-
-            if(_first20Posts != null && page == 1)
-                return _first20Posts;
 
             var posts = await _client.Posts.Query(new PostsQueryBuilder()
             {
@@ -98,9 +95,6 @@ namespace WordPressUWP.Services
                 PerPage = perPage,
                 Embed = true
             });
-
-            if (page == 1)
-                _first20Posts = posts;
 
             return posts;
         }

@@ -8,6 +8,7 @@ using WordPressPCL.Models;
 using System.Threading;
 using WordPressUWP.Interfaces;
 using GalaSoft.MvvmLight.Ioc;
+using System.Diagnostics;
 
 namespace WordPressUWP.Services
 {
@@ -22,6 +23,7 @@ namespace WordPressUWP.Services
 
         public async Task<IEnumerable<Post>> GetPagedItemsAsync(int pageIndex, int pageSize, CancellationToken cancellationToken = default(CancellationToken))
         {
+            Debug.WriteLine("GetPagedItemsAsync");
             return await _wordPressService.GetLatestPosts(pageIndex, pageSize);
         }
     }

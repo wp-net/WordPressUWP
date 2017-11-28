@@ -115,6 +115,7 @@ namespace WordPressUWP.ViewModels
         public async Task RefreshPosts()
         {
             await Posts.RefreshAsync();
+            
             //Posts = new IncrementalLoadingCollection<PostsService, Post>();
         }
 
