@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-
 using WordPressUWP.ViewModels;
 
 namespace WordPressUWP.Views
@@ -44,6 +44,18 @@ namespace WordPressUWP.Views
             } else
             {
                 CommentsColumn.Margin = new Thickness(0, 0, -400, 0);
+            }
+        }
+
+        private void ReplyButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(sender is HyperlinkButton button){
+                if (button.Tag is WordPressPCL.Models.CommentThreaded comment)
+                {
+                    Debug.WriteLine(comment.Id);
+                    ViewModel.CommentReply = comment;
+                    ViewModel.Reply();
+                }
             }
         }
     }

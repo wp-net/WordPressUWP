@@ -186,10 +186,19 @@
                                                   PlaceholderStretch="UniformToFill"
                                                   Margin="0 0 12 0"
                                                   VerticalAlignment="Top"/>
-                                    <StackPanel Grid.Column="1">
-                                        <TextBlock FontWeight="Bold" Text="{x:Bind AuthorName, Mode=OneWay}"/>
-                                        <TextBlock Text="{x:Bind Date, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:g}'}" Foreground="{ThemeResource SystemBaseMediumColor}" />
+                                    <StackPanel Grid.Column="1" HorizontalAlignment="Stretch">
+                                        <Grid x:Name="CommentHeader" HorizontalAlignment="Stretch">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock FontWeight="Bold" Text="{x:Bind AuthorName, Mode=OneWay}"/>
+                                                <TextBlock Text="{x:Bind Date, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:g}'}" Foreground="{ThemeResource SystemBaseMediumColor}" />
+                                            </StackPanel>
+                                        </Grid>
                                         <as:HtmlBlock Source="{x:Bind Content.Rendered, Mode=OneWay}" Foreground="{ThemeResource SystemBaseHighColor}" HorizontalAlignment="Stretch"/>
+                                        <HyperlinkButton x:Name="ReplyButton" Content="[reply]" Tag="{x:Bind}" Click="ReplyButton_Click"/>
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
@@ -207,10 +216,11 @@
                         <TextBox x:Name="CommentInput"
                                  x:Uid="CommentInput"
                                  PlaceholderText="[Comment]"
-                                 Header=""
+                                 Header="{x:Bind ViewModel.CommentReply.AuthorName, Mode=OneWay}"
                                  MaxHeight="120"
                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                 TextWrapping="Wrap" AcceptsReturn="True" Text="{x:Bind ViewModel.CommentInput, Mode=TwoWay}"></TextBox>
+                                 TextWrapping="Wrap" AcceptsReturn="True" Text="{x:Bind ViewModel.CommentInput, Mode=TwoWay}">
+                        </TextBox>
                         <Button Content="[Send]" x:Uid="SendCommentBtn" x:Name="SendCommentBtn" Click="{x:Bind ViewModel.PostComment, Mode=OneWay}" Margin="0 12 0 0"></Button>
                     </StackPanel>
                     <CommandBar Grid.Row="2">

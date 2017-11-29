@@ -68,6 +68,18 @@ namespace WordPressUWP.ViewModels
             }
         }
 
+        internal async void Reply()
+        {
+            if(await _wordPressService.IsUserAuthenticated())
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
         public IncrementalLoadingCollection<PostsService, Post> Posts;
 
         private Post _selectedPost;
@@ -85,11 +97,17 @@ namespace WordPressUWP.ViewModels
         }
 
         private string _commentInput;
-
         public string CommentInput
         {
             get { return _commentInput; }
             set { Set(ref _commentInput, value); }
+        }
+
+        private Comment _commentReply;
+        public Comment CommentReply
+        {
+            get { return _commentReply; }
+            set { Set(ref _commentReply, value); }
         }
 
         private bool _isCommentsLoading;
@@ -134,6 +152,8 @@ namespace WordPressUWP.ViewModels
             }
             IsCommentsLoading = false;
         }
+
+
 
         public async Task PostComment()
         {
