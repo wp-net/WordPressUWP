@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using WordPressPCL.Models;
+using WordPressUWP.Helpers;
 
 namespace WordPressUWP.Interfaces
 {
     public interface IWordPressService
     {
+        bool IsAuthenticated { get; set; }
+
         Task<IEnumerable<Post>> GetLatestPosts(int page = 0, int perPage = 20);
 
         Task<bool> AuthenticateUser(string username, string password);
@@ -17,7 +21,7 @@ namespace WordPressUWP.Interfaces
 
         Task<List<CommentThreaded>> GetCommentsForPost(int postid);
 
-        Task<Comment> PostComment(int postId, string text);
+        Task<Comment> PostComment(int postId, string text, int replyto = 0);
         Task<bool> Logout();
     }
 }

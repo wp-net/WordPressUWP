@@ -139,6 +139,7 @@ namespace WordPressUWP.ViewModels
 
         private async Task GetComments(int postid)
         {
+            CommentReply = null;
             IsCommentsLoading = true;
             if (Comments != null)
             {
@@ -159,11 +160,15 @@ namespace WordPressUWP.ViewModels
         {
             if (await _wordPressService.IsUserAuthenticated())
             {
-                var comment = await _wordPressService.PostComment(SelectedPost.Id, CommentInput);
+                int replyto = 0;
+                if (CommentReply != null)
+                    replyto = CommentReply.Id;
+                var comment = await _wordPressService.PostComment(SelectedPost.Id, CommentInput, replyto);
                 if (comment != null)
                 {
                     _inAppNotificationService.ShowInAppNotification("successfully posted comment");
                     CommentInput = String.Empty;
+                    await GetComments(SelectedPost.Id);
                 }
                 else
                 {
@@ -217,6 +222,11 @@ namespace WordPressUWP.ViewModels
         public void SharePost()
         {
             DataTransferManager.ShowShareUI();
+        }
+
+        public void CommentReplyUnset()
+        {
+            CommentReply = null;
         }
 
         private void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)

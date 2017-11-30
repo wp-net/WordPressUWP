@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp.UI.Controls;
+using System;
 using System.Diagnostics;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -20,7 +21,7 @@ namespace WordPressUWP.Views
             InitializeComponent();
         }
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ViewModel.Init(WindowStates.CurrentState);
             Window.Current.SizeChanged += Current_SizeChanged;
@@ -57,6 +58,12 @@ namespace WordPressUWP.Views
                     ViewModel.Reply();
                 }
             }
+        }
+
+        private void RoundImageEx_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            var img = (RoundImageEx)sender;
+            Debug.WriteLine($"imageex error: {e.ErrorMessage} | {img.Source}");
         }
     }
 }

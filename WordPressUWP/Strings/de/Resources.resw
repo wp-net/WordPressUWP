@@ -279,4 +279,10 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
     <value>Teilen</value>
     <comment>AppBarButton for sharing the post</comment>
   </data>
+  <data name="CommentReply" xml:space="preserve">
+    <value>Antwort an {0}:</value>
+  </data>
+  <data name="ReplyButton.Content" xml:space="preserve">
+    <value>antworten</value>
+  </data>
 </root>

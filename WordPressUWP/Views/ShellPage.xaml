@@ -134,8 +134,7 @@
                                     VerticalAlignment="Top"
                                     HorizontalAlignment="Stretch"
                                     Margin="12"
-                                    DataContext="{Binding WordPressService, Source={StaticResource Locator}}"
-                                    Visibility="{Binding IsLoggedIn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverterInv}}">
+                                    Visibility="{Binding WordPressService.IsAuthenticated, Source={StaticResource Locator}, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverterInv}}">
                         <TextBox x:Name="UsernameTbx"
                                      x:Uid="UsernameTextbox"
                                      Header="[Username]"
@@ -176,7 +175,7 @@
                                     HorizontalAlignment="Stretch"
                                     Margin="12"
                                     DataContext="{Binding WordPressService, Source={StaticResource Locator}}"
-                                    Visibility="{Binding IsLoggedIn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                                    Visibility="{Binding IsAuthenticated, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <controls:RoundImageEx Source="{Binding CurrentUser.AvatarUrls.Size96, Mode=OneWay, Converter={StaticResource ProtocolToURLConverter}}"
                                                    Stretch="UniformToFill"
                                                    PlaceholderSource="https://www.gravatar.com/avatar/?s=96&amp;d=mm"

@@ -10,22 +10,23 @@ using WordPressPCL.Models;
 using WordPressPCL.Utility;
 using WordPressUWP.Helpers;
 using WordPressUWP.Interfaces;
+using System;
 
 namespace WordPressUWP.Services
 {
-    public class WordPressService : ViewModelBase, IWordPressService 
+    public class WordPressService : ViewModelBase, IWordPressService
     {
         private WordPressClient _client;
         private ApplicationDataContainer _localSettings;
+        private User _currentUser;
 
-        private bool _isLoggedIn;
-        public bool IsLoggedIn
+        private bool _isAuthenticated;
+        public bool IsAuthenticated
         {
-            get { return _isLoggedIn; }
-            set { Set(ref _isLoggedIn, value); }
+            get { return _isAuthenticated; }
+            set { Set(ref _isAuthenticated, value); }
         }
 
-        private User _currentUser;
         public User CurrentUser
         {
             get { return _currentUser; }
@@ -42,18 +43,18 @@ namespace WordPressUWP.Services
         public async void Init()
         {
 
-            IsLoggedIn = false;
+            IsAuthenticated = false;
             var username = _localSettings.ReadString("Username");
-            if(username != null)
+            if (username != null)
             {
                 // get password
                 var jwt = SettingsStorageExtensions.GetCredentialFromLocker(username);
-                if(jwt != null && !string.IsNullOrEmpty(jwt.Password))
+                if (jwt != null && !string.IsNullOrEmpty(jwt.Password))
                 {
                     // set jwt
                     _client.SetJWToken(jwt.Password);
-                    IsLoggedIn = await _client.IsValidJWToken();
-                    if (IsLoggedIn)
+                    IsAuthenticated = await _client.IsValidJWToken();
+                    if (IsAuthenticated)
                     {
                         CurrentUser = await _client.Users.GetCurrentUser();
                     }
@@ -106,21 +107,26 @@ namespace WordPressUWP.Services
 
         public async Task<bool> IsUserAuthenticated()
         {
-            IsLoggedIn = await _client.IsValidJWToken();
-            return IsLoggedIn;
+            IsAuthenticated = await _client.IsValidJWToken();
+            return IsAuthenticated;
         }
 
-        public async Task<Comment> PostComment(int postId, string text)
+        public async Task<Comment> PostComment(int postId, string text, int replyto = 0)
         {
-            return await _client.Comments.Create(new Comment(postId, text));
+            var comment = new Comment(postId, text);
+            if (replyto != 0)
+            {
+                comment.ParentId = replyto;
+            }
+            return await _client.Comments.Create(comment);
         }
 
         public async Task<bool> Logout()
         {
             _client.Logout();
-            IsLoggedIn = await _client.IsValidJWToken();
+            IsAuthenticated = await _client.IsValidJWToken();
             SettingsStorageExtensions.RemoveCredentialsFromLocker();
-            return IsLoggedIn;
+            return IsAuthenticated;
         }
     }
 }
