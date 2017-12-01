@@ -51,12 +51,19 @@ iframe {
 .wpappbox {
     width: 100%;
     display: block;
+    float: left;
+    padding: 15px;
 }
 
 .wpappbox img {
     float:left;
     display: inline-block;
-    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.wpappbox .qrcode {
+    margin-top: -10px;
+    float: left;
 }
 
 .applinks {
