@@ -29,6 +29,8 @@ namespace WordPressUWP.Helpers
                 content = Regex.Replace(content, "^<img.*?", "");
                 content = Regex.Replace(content, "^<p><img.*?</p>", "");
             }
+            // add missing protocols to img links
+            content = Regex.Replace(content, "src=\"//", "src=\"https://");
 
             sb.Append("<html><head>");
             sb.Append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">");

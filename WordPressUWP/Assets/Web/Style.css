@@ -45,3 +45,21 @@ iframe {
         margin-right: calc(-15px);
     }
 }
+
+/*custom plugin styles */
+
+.wpappbox {
+    width: 100%;
+    display: block;
+}
+
+.wpappbox img {
+    float:left;
+    display: inline-block;
+    margin-left: 12px;
+}
+
+.applinks {
+    display: block;
+    width: 100%;
+}
