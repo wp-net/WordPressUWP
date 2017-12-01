@@ -68,18 +68,6 @@ namespace WordPressUWP.ViewModels
             }
         }
 
-        internal async void Reply()
-        {
-            if(await _wordPressService.IsUserAuthenticated())
-            {
-
-            }
-            else
-            {
-
-            }
-        }
-
         public IncrementalLoadingCollection<PostsService, Post> Posts;
 
         private Post _selectedPost;

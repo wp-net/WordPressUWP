@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Diagnostics;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WordPressUWP.ViewModels;
@@ -21,7 +21,7 @@ namespace WordPressUWP.Views
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            ViewModel.Item = e.Parameter as WordPressPCL.Models.Post;
+            ViewModel.SelectedPost = e.Parameter as WordPressPCL.Models.Post;
             await ViewModel.Init();
         }
 
@@ -30,13 +30,25 @@ namespace WordPressUWP.Views
             bool showCommentInput = CommentToggleButton.IsChecked ?? false;
             if (showCommentInput)
             {
-                CommentInputSP.Height = double.NaN;
+                CommentInputGrid.Height = double.NaN;
             }
             else
             {
-                CommentInputSP.Height = 0;
+                CommentInputGrid.Height = 0;
             }
             
+        }
+
+        private void ReplyButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            if (sender is HyperlinkButton button)
+            {
+                if (button.Tag is WordPressPCL.Models.CommentThreaded comment)
+                {
+                    Debug.WriteLine(comment.Id);
+                    ViewModel.CommentReply = comment;
+                }
+            }
         }
     }
 }

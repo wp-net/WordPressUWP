@@ -55,7 +55,6 @@ namespace WordPressUWP.Views
                 {
                     Debug.WriteLine(comment.Id);
                     ViewModel.CommentReply = comment;
-                    ViewModel.Reply();
                 }
             }
         }

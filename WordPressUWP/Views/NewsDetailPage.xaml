@@ -17,6 +17,9 @@
     <Page.Resources>
         <helper:TheadedCommentMarginConverter x:Key="TheadedCommentMarginConverter"/>
         <helper:VisibleWhenZeroConverter x:Key="VisibleWhenZeroConverter"/>
+        <helper:ProtocolToURLConverter x:Key="ProtocolToURLConverter"/>
+        <helper:ReplyToConverter x:Key="ReplyToConverter"/>
+        <ctkconv:EmptyObjectToObjectConverter x:Key="EmptyObjectToObjectConverter" EmptyValue="Collapsed" NotEmptyValue="Visible"/>
         <ctkconv:BoolToObjectConverter x:Key="BoolToVisibilityConverter" TrueValue="Visible" FalseValue="Collapsed"/>
         <ctkconv:StringFormatConverter x:Key="StringFormatConverter"/>
     </Page.Resources>
@@ -29,7 +32,7 @@
                     <TextBlock x:Uid="PostDetailsPostPivot" Margin="48 0 0 0" Text="[Post]"></TextBlock>
                     
                 </PivotItem.Header>
-                <views:NewsDetailControl MasterMenuItem="{x:Bind ViewModel.Item}"
+                <views:NewsDetailControl MasterMenuItem="{x:Bind ViewModel.SelectedPost}"
                                          Margin="0" />
             </PivotItem>
             <PivotItem Header="[Comments]" x:Uid="PostDetailsCommentsPivot" Margin="0">
@@ -50,12 +53,12 @@
                               SelectionMode="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="wpmodel:CommentThreaded">
-                                    <Grid Margin="{x:Bind Depth, Mode=OneWay, Converter={StaticResource TheadedCommentMarginConverter}}" HorizontalAlignment="Stretch">
+                                    <Grid Margin="{x:Bind Depth, Mode=OneWay, Converter={StaticResource TheadedCommentMarginConverter}}">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
-                                        <ctk:RoundImageEx Source="{x:Bind AuthorAvatarUrls.Size96, Mode=OneWay}"
+                                        <ctk:RoundImageEx Source="{x:Bind AuthorAvatarUrls.Size96, Mode=OneWay, Converter={StaticResource ProtocolToURLConverter}}"
                                                   Height="60"
                                                   Width="60"
                                                   CornerRadius="999"
@@ -63,15 +66,22 @@
                                                   PlaceholderStretch="UniformToFill"
                                                   Margin="0 0 12 0"
                                                   VerticalAlignment="Top"/>
-                                        <StackPanel Grid.Column="1">
-                                            <TextBlock FontWeight="Bold" Text="{x:Bind AuthorName, Mode=OneWay}"/>
+                                        <StackPanel Grid.Column="1" HorizontalAlignment="Stretch">
+
+                                            <TextBlock FontWeight="Bold" Text="{x:Bind AuthorName, Mode=OneWay}" Width="400" HorizontalAlignment="Stretch"/>
                                             <TextBlock Text="{x:Bind Date, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:g}'}" Foreground="{ThemeResource SystemBaseMediumColor}" />
                                             <as:HtmlBlock Source="{x:Bind Content.Rendered, Mode=OneWay}" Foreground="{ThemeResource SystemBaseHighColor}" HorizontalAlignment="Stretch"/>
+                                            <HyperlinkButton x:Name="ReplyButton"
+                                                         x:Uid="ReplyButton"
+                                                         FontSize="12"
+                                                         Margin="0 -4 0 0"
+                                                         Content="[reply]" Tag="{x:Bind}"
+                                                         Visibility="{Binding WordPressService.IsAuthenticated, Source={StaticResource Locator}, Converter={StaticResource BoolToVisibilityConverter}}"
+                                                         Click="ReplyButton_Click"/>
                                         </StackPanel>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
-
                         </ListView>
                         <TextBlock Grid.Row="0" Margin="12 60 0 0" x:Uid="NoComments" Text="[No Comments]" Visibility="{x:Bind ViewModel.Comments.Count, Mode=OneWay, Converter={StaticResource VisibleWhenZeroConverter}}"></TextBlock>
                         <ProgressBar IsIndeterminate="{x:Bind ViewModel.IsCommentsLoading, Mode=OneWay}"
@@ -79,23 +89,49 @@
                                  Margin="0 48 0 0"
                                  Background="Transparent"
                                  VerticalAlignment="Top"/>
-                        <StackPanel Grid.Row="1"
-                                    Height="0"
-                                    Margin="0"
-                                    Padding="12"
-                                    x:Name="CommentInputSP"
-                                    Background="{ThemeResource SystemControlBackgroundAltHighBrush}"
-                                    DataContext="{Binding WordPressService, Source={StaticResource Locator}}"
-                                    Visibility="{Binding IsLoggedIn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Grid Grid.Row="1"
+                              Margin="12"
+                              x:Name="CommentInputGrid"
+                              Height="0"
+                              Visibility="{Binding WordPressService.IsAuthenticated, Source={StaticResource Locator}, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
                             <TextBox x:Name="CommentInput"
-                                     x:Uid="CommentInput"
-                                     PlaceholderText="[Comment]"
-                                     Header=""
-                                     MaxHeight="120"
-                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                     TextWrapping="Wrap" AcceptsReturn="True" Text="{x:Bind ViewModel.CommentInput, Mode=TwoWay}"></TextBox>
-                            <Button Content="[Send]" x:Uid="SendCommentBtn" x:Name="SendCommentBtn" Click="{x:Bind ViewModel.PostComment, Mode=OneWay}" Margin="0 12 0 0" HorizontalAlignment="Right"></Button>
-                        </StackPanel>
+                                 x:Uid="CommentInput"
+                                 Grid.Row="0"
+                                 PlaceholderText="[Comment]"
+                                 Header="{x:Bind ViewModel.CommentReply, Mode=OneWay, Converter={StaticResource ReplyToConverter}}"
+                                 MaxHeight="120"
+                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                 TextWrapping="Wrap" AcceptsReturn="True" Text="{x:Bind ViewModel.CommentInput, Mode=TwoWay}">
+                            </TextBox>
+                            <Button x:Name="UnsetReplyBtn"
+                                Grid.Row="0"
+                                Background="Transparent"
+                                Height="34"
+                                Width="34"
+                                Padding="2"
+                                HorizontalAlignment="Right"
+                                Margin="0 -4 -2 0"
+                                Style="{StaticResource IconButtonStyle}"
+                                Visibility="{x:Bind ViewModel.CommentReply, Mode=OneWay, Converter={StaticResource EmptyObjectToObjectConverter}}"
+                                Click="{x:Bind ViewModel.CommentReplyUnset}"
+                                VerticalAlignment="Top">
+                                <SymbolIcon Symbol="Clear" RenderTransformOrigin="0.5,0.5">
+                                    <SymbolIcon.RenderTransform>
+                                        <CompositeTransform ScaleX="0.5" ScaleY="0.5"/>
+                                    </SymbolIcon.RenderTransform>
+                                </SymbolIcon>
+                            </Button>
+                            <Button Content="[Send]"
+                                x:Uid="SendCommentBtn"
+                                x:Name="SendCommentBtn"
+                                Grid.Row="1"
+                                Click="{x:Bind ViewModel.PostComment, Mode=OneWay}"
+                                Margin="0 12 0 0"/>
+                        </Grid>
                         <CommandBar Grid.Row="2">
                             <AppBarToggleButton x:Name="CommentToggleButton"
                                                 x:Uid="ShowCommentInputButton"
@@ -103,7 +139,7 @@
                                                 Icon="Comment"
                                                 Label="[Write Comment]"
                                                 DataContext="{Binding WordPressService, Source={StaticResource Locator}}"
-                                                Visibility="{Binding IsLoggedIn, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                                Visibility="{Binding WordPressService.IsAuthenticated, Source={StaticResource Locator}, Converter={StaticResource BoolToVisibilityConverter}}"/>
                             <AppBarButton
                                 x:Uid="RefreshCommentButton"
                                 Icon="Refresh"

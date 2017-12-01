@@ -43,12 +43,12 @@ namespace WordPressUWP.ViewModels
             }
         }
 
-        private Post _item;
+        private Post _selectedPost;
 
-        public Post Item
+        public Post SelectedPost
         {
-            get { return _item; }
-            set { Set(ref _item, value);}
+            get { return _selectedPost; }
+            set { Set(ref _selectedPost, value);}
         }
 
         private ObservableCollection<CommentThreaded> _comments;
@@ -72,6 +72,13 @@ namespace WordPressUWP.ViewModels
             set { Set(ref _commentInput, value); }
         }
 
+        private Comment _commentReply;
+        public Comment CommentReply
+        {
+            get { return _commentReply; }
+            set { Set(ref _commentReply, value); }
+        }
+
         public NewsDetailViewModel(IWordPressService wordPressService, IInAppNotificationService inAppNotificationService)
         {
             _wordPressService = wordPressService;
@@ -80,7 +87,7 @@ namespace WordPressUWP.ViewModels
 
         internal async Task Init()
         {
-            await GetComments(Item.Id);
+            await GetComments(SelectedPost.Id);
         }
 
         private void OnStateChanged(VisualStateChangedEventArgs args)
@@ -109,19 +116,22 @@ namespace WordPressUWP.ViewModels
 
         public async void RefreshComments()
         {
-            await GetComments(Item.Id);
+            await GetComments(SelectedPost.Id);
         }
 
         public async Task PostComment()
         {
             if (await _wordPressService.IsUserAuthenticated())
             {
-                var comment = await _wordPressService.PostComment(Item.Id, CommentInput);
+                int replyto = 0;
+                if (CommentReply != null)
+                    replyto = CommentReply.Id;
+                var comment = await _wordPressService.PostComment(SelectedPost.Id, CommentInput, replyto);
                 if (comment != null)
                 {
                     _inAppNotificationService.ShowInAppNotification("successfully posted comment");
                     CommentInput = String.Empty;
-                    await GetComments(Item.Id);
+                    await GetComments(SelectedPost.Id);
                 }
                 else
                 {
@@ -132,6 +142,11 @@ namespace WordPressUWP.ViewModels
             {
                 _inAppNotificationService.ShowInAppNotification("You have to log in first.");
             }
+        }
+
+        public void CommentReplyUnset()
+        {
+            CommentReply = null;
         }
     }
 }

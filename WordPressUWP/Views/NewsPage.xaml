@@ -28,7 +28,6 @@
         <helper:ProtocolToURLConverter x:Key="ProtocolToURLConverter"/>
         <ctkconv:StringFormatConverter x:Key="StringFormatConverter"/>
         <helper:ReplyToConverter x:Key="ReplyToConverter"/>
-        <helper:DebugConverter x:Key="DebugConverter"/>
         <ctkconv:BoolToObjectConverter x:Key="BoolToVisibilityConverter" TrueValue="Visible" FalseValue="Collapsed"/>
         <ctkconv:EmptyObjectToObjectConverter x:Key="EmptyObjectToObjectConverter" EmptyValue="Collapsed" NotEmptyValue="Visible"/>
         <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="wpmodel:Post">
@@ -201,7 +200,7 @@
                                                          FontSize="12"
                                                          Margin="0 -4 0 0"
                                                          Content="[reply]" Tag="{x:Bind}"
-                                                         Visibility="{Binding WordPressService.IsAuthenticated, Source={StaticResource Locator}, Converter={StaticResource DebugConverter}}"
+                                                         Visibility="{Binding WordPressService.IsAuthenticated, Source={StaticResource Locator}, Converter={StaticResource BoolToVisibilityConverter}}"
                                                          Click="ReplyButton_Click"/>
                                     </StackPanel>
                                 </Grid>
@@ -218,7 +217,7 @@
 
                     <Grid Grid.Row="1"
                                 Margin="12"
-                                Visibility="{Binding WordPressService.IsLoggedIn, Source={StaticResource Locator}, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                                Visibility="{Binding WordPressService.IsAuthenticated, Source={StaticResource Locator}, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
