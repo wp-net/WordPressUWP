@@ -23,7 +23,7 @@ namespace WordPressUWP.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ViewModel.Init(WindowStates.CurrentState);
+            ViewModel.Init(WindowStates.CurrentState, e);
             Window.Current.SizeChanged += Current_SizeChanged;
         }
 
@@ -57,12 +57,6 @@ namespace WordPressUWP.Views
                     ViewModel.CommentReply = comment;
                 }
             }
-        }
-
-        private void RoundImageEx_ImageFailed(object sender, ExceptionRoutedEventArgs e)
-        {
-            var img = (RoundImageEx)sender;
-            Debug.WriteLine($"imageex error: {e.ErrorMessage} | {img.Source}");
         }
     }
 }

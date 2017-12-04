@@ -188,7 +188,6 @@
                                                   PlaceholderSource="https://www.gravatar.com/avatar/?s=96&amp;d=mm"
                                                   PlaceholderStretch="UniformToFill"
                                                   Margin="0 0 12 0"
-                                                  ImageFailed="RoundImageEx_ImageFailed"
                                                   VerticalAlignment="Top"/>
                                     <StackPanel Grid.Column="1" HorizontalAlignment="Stretch">
 

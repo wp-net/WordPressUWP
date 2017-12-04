@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
-
 using Microsoft.WindowsAzure.Messaging;
-
 using Windows.ApplicationModel.Activation;
 using Windows.Networking.PushNotifications;
-
 using WordPressUWP.Activation;
+using WordPressUWP.ViewModels;
+using Microsoft.Practices.ServiceLocation;
+using Windows.Storage;
+using WordPressUWP.Helpers;
 
 namespace WordPressUWP.Services
 {
@@ -17,19 +18,20 @@ namespace WordPressUWP.Services
             //// See more about adding push notifications to your Windows app at
             //// https://docs.microsoft.com/azure/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push
 
-            // Use your Hub Name here
-            var hubName = string.Empty;
-
-            // Use your DefaultListenSharedAccessSignature here
-            var accessSignature = string.Empty;
-
-            var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
-
-            var hub = new NotificationHub(hubName, accessSignature);
-            var result = await hub.RegisterNativeAsync(channel.Uri);
-            if (result.RegistrationId != null)
+            // check if push should be registered
+            var pushNotificationsEnabled = await ApplicationData.Current.LocalSettings.ReadAsync<bool>("PushNotificationsEnabled");
+            if (pushNotificationsEnabled)
             {
-                // RegistrationID let you know it was successful
+
+                //var result = await RegisterNotifications();
+                //if (result.RegistrationId != null)
+                //{
+                //    // RegistrationID let you know it was successful
+                //}
+            }
+            else
+            {
+                //await UnregisterNotifications();
             }
 
             // You can also send push notifications from Windows Developer Center targeting your app consumers
@@ -41,8 +43,25 @@ namespace WordPressUWP.Services
             //// TODO WTS: Handle activation from toast notification,
             //// For more info handling activation see documentation at
             //// https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/
+            var navigationService = ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+
+            navigationService.Navigate(typeof(NewsViewModel).FullName, args.Argument);
 
             await Task.CompletedTask;
+        }
+
+        private async Task<Registration> RegisterNotifications()
+        {
+            var hub = new NotificationHub(ApiCredentials.HubName, ApiCredentials.AccessSiganture);
+            var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
+            return await hub.RegisterNativeAsync(channel.Uri);
+        }
+
+        private async Task UnregisterNotifications()
+        {
+            var hub = new NotificationHub(ApiCredentials.HubName, ApiCredentials.AccessSiganture);
+            var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
+            await hub.UnregisterAllAsync(channel.Uri);
         }
     }
 }

@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using Microsoft.Toolkit.Uwp;
 using Windows.ApplicationModel.DataTransfer;
 using System.Net;
+using Windows.UI.Xaml.Navigation;
 
 namespace WordPressUWP.ViewModels
 {
@@ -22,6 +23,7 @@ namespace WordPressUWP.ViewModels
     {
         private IWordPressService _wordPressService;
         private IInAppNotificationService _inAppNotificationService;
+        private int _postid;
 
         private DataTransferManager dataTransferManager;
 
@@ -111,8 +113,18 @@ namespace WordPressUWP.ViewModels
             _inAppNotificationService = inAppNotificationService;
         }
 
-        internal void Init(VisualState currentState)
+        internal async void Init(VisualState currentState, NavigationEventArgs e)
         {
+            // Show post if there's an id being passed along
+            if (e != null && e.Parameter is string id)
+            {
+                if (!string.IsNullOrEmpty(id))
+                {
+                    Int32.TryParse(id, out _postid);
+                    await RefreshPosts();
+                }
+            }
+
             dataTransferManager = DataTransferManager.GetForCurrentView();
             dataTransferManager.DataRequested += DataTransferManager_DataRequested;
             LoadDataAsync(currentState);
@@ -120,9 +132,18 @@ namespace WordPressUWP.ViewModels
 
         public async Task RefreshPosts()
         {
-            await Posts.RefreshAsync();
-            
-            //Posts = new IncrementalLoadingCollection<PostsService, Post>();
+            Debug.WriteLine("RefreshPosts");
+            if (Posts != null && !Posts.IsLoading && Posts.Count > 0)
+            {
+                try
+                {
+                    await Posts.RefreshAsync();
+                }
+                catch (Exception ex)
+                {
+                    _inAppNotificationService.ShowInAppNotification("Refresh failed");
+                }
+            }
         }
 
         private async Task GetComments(int postid)

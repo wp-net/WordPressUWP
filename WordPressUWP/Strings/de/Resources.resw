@@ -285,4 +285,7 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
   <data name="ReplyButton.Content" xml:space="preserve">
     <value>antworten</value>
   </data>
+  <data name="Settings_PushNotifications.Text" xml:space="preserve">
+    <value>Push Notifications</value>
+  </data>
 </root>

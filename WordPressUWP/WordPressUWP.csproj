@@ -148,6 +148,7 @@
     <Compile Include="Helpers\TheadedCommentMarginConverter.cs" />
     <Compile Include="Helpers\VisibleWhenZeroConverter.cs" />
     <Compile Include="Interfaces\IInAppNotificationService.cs" />
+    <Compile Include="Interfaces\IPushNotificationService.cs" />
     <Compile Include="Interfaces\IWordPressService.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\OnBackgroundEnteringEventArgs.cs" />
     <Compile Include="Services\PostsService.cs" />
+    <Compile Include="Services\PushNotificationService.cs" />
     <Compile Include="Services\SuspendAndResumeService.cs" />
     <Compile Include="Services\SuspensionState.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
