@@ -28,7 +28,13 @@ namespace WordPressUWP.Views
         private void CommentToggleButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             bool showCommentInput = CommentToggleButton.IsChecked ?? false;
-            if (showCommentInput)
+            ToggleCommentInput(showCommentInput);
+        }
+
+        private void ToggleCommentInput(bool show)
+        {
+            CommentToggleButton.IsChecked = show;
+            if (show)
             {
                 CommentInputGrid.Height = double.NaN;
             }
@@ -36,7 +42,6 @@ namespace WordPressUWP.Views
             {
                 CommentInputGrid.Height = 0;
             }
-            
         }
 
         private void ReplyButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -45,8 +50,8 @@ namespace WordPressUWP.Views
             {
                 if (button.Tag is WordPressPCL.Models.CommentThreaded comment)
                 {
-                    Debug.WriteLine(comment.Id);
                     ViewModel.CommentReply = comment;
+                    ToggleCommentInput(true);
                 }
             }
         }
