@@ -1,7 +1,4 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Controls;
-using System;
-using System.Diagnostics;
-using Windows.UI.Core;
+﻿using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -53,8 +50,8 @@ namespace WordPressUWP.Views
             if(sender is HyperlinkButton button){
                 if (button.Tag is WordPressPCL.Models.CommentThreaded comment)
                 {
-                    Debug.WriteLine(comment.Id);
                     ViewModel.CommentReply = comment;
+                    CommentInput.Focus(FocusState.Pointer);
                 }
             }
         }

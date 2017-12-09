@@ -1,5 +1,5 @@
-﻿using System;
-using System.Diagnostics;
+﻿using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WordPressUWP.ViewModels;
@@ -52,6 +52,7 @@ namespace WordPressUWP.Views
                 {
                     ViewModel.CommentReply = comment;
                     ToggleCommentInput(true);
+                    CommentInput.Focus(FocusState.Pointer);
                 }
             }
         }

@@ -163,8 +163,6 @@ namespace WordPressUWP.ViewModels
             IsCommentsLoading = false;
         }
 
-
-
         public async Task PostComment()
         {
             if (await _wordPressService.IsUserAuthenticated())
@@ -194,7 +192,21 @@ namespace WordPressUWP.ViewModels
         {
             _currentState = currentState;
             if(Posts == null)
+            {
                 Posts = new IncrementalLoadingCollection<PostsService, Post>();
+                Posts.OnEndLoading = PostsOnEndLoading;
+            }
+        }
+
+        public void PostsOnEndLoading()
+        {
+            if (_postid != 0)
+            {
+                // a post id has been set by a push notification, show it
+                var selectedPost = Posts.Where(x => x.Id == _postid).FirstOrDefault();
+                if (selectedPost != null)
+                    ShowPost(selectedPost);
+            }
         }
 
         private void OnStateChanged(VisualStateChangedEventArgs args)
@@ -202,19 +214,24 @@ namespace WordPressUWP.ViewModels
             _currentState = args.NewState;
         }
 
-        private async void OnItemClick(ItemClickEventArgs args)
+        private void OnItemClick(ItemClickEventArgs args)
         {
             if (args?.ClickedItem is Post item)
             {
-                if (_currentState.Name == NarrowStateName)
-                {
-                    NavigationService.Navigate(typeof(NewsDetailViewModel).FullName, item);
-                }
-                else
-                {
-                    SelectedPost = item;
-                    await GetComments(item.Id);
-                }
+                ShowPost(item);
+            }
+        }
+
+        private async void ShowPost(Post post)
+        {
+            if (_currentState.Name == NarrowStateName)
+            {
+                NavigationService.Navigate(typeof(NewsDetailViewModel).FullName, post);
+            }
+            else
+            {
+                SelectedPost = post;
+                await GetComments(post.Id);
             }
         }
 
