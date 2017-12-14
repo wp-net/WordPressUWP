@@ -1,4 +1,9 @@
 function call_the_endpoint($new_status, $old_status, $post){
+	$pushurl = 'https://mypushfunction.azurewebsites.net/api/PostPushNotification'
+	
+    if('publish' === $new_status && 'publish' !== $old_status && $post->post_type === 'post') {
+        
+		$data = array();
         // Store the title into the array
         $data['title'] = get_the_title();
         // If there is a post thumbnail, get the link
@@ -12,6 +17,7 @@ function call_the_endpoint($new_status, $old_status, $post){
         // Encode the data to be sent
         $json_data = json_encode($data);
         // Initiate the cURL
+        $url = curl_init($pushurl);
         curl_setopt($url, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($url, CURLOPT_POSTFIELDS, $json_data);
         curl_setopt($url, CURLOPT_RETURNTRANSFER, true);
