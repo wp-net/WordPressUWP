@@ -25,6 +25,7 @@ function call_the_endpoint($new_status, $old_status, $post){
             'Content-Type: application/json',
             'Content-Length: ' . strlen($json_data))
         );
+		
         // The results of our request, to use later if we want.
         $result = curl_exec($url);
     }
