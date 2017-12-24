@@ -176,6 +176,7 @@ namespace WordPressUWP.ViewModels
                     _inAppNotificationService.ShowInAppNotification("successfully posted comment");
                     CommentInput = String.Empty;
                     await GetComments(SelectedPost.Id);
+                    CommentReplyUnset();
                 }
                 else
                 {
