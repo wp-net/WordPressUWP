@@ -41,3 +41,8 @@ namespace WordPressUWPApp.Utility
 }
 
 ```
+
+## Hall of Fame
+
+This is a list of apps based on the WordPressUWP framework. Feel free to add yours!
+- [WindowsArea](https://www.microsoft.com/de-de/store/p/windowsarea/9n9zxm79mqr7)
