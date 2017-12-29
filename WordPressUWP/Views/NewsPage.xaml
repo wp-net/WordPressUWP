@@ -85,9 +85,13 @@
                 </Button>
             </Grid>
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your master content.-->
-            <ListView
+            <ctk:PullToRefreshListView
                 x:Name="MasterListView"
                 Grid.Row="1"
+                OverscrollLimit="0.4"
+                PullThreshold="100"
+                IsPullToRefreshWithMouseEnabled="True"
+                RefreshRequested="{x:Bind ViewModel.RefreshPosts, Mode=OneWay}"
                 ItemsSource="{x:Bind ViewModel.Posts, Mode=OneWay}"
                 SelectedItem="{x:Bind ViewModel.SelectedPost, Mode=OneWay}"
                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
@@ -99,13 +103,16 @@
                         <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemClickCommand}" />
                     </ic:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
-                <ListView.ItemContainerStyle>
+                <ctk:PullToRefreshListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         <Setter Property="Padding" Value="0"/>
                     </Style>
-                </ListView.ItemContainerStyle>
-            </ListView>
+                </ctk:PullToRefreshListView.ItemContainerStyle>
+                <ctk:PullToRefreshListView.RefreshIndicatorContent>
+                    <Border HorizontalAlignment="Center" x:Name="refreshindicator" CornerRadius="30" Height="20" Width="20" ></Border>
+                </ctk:PullToRefreshListView.RefreshIndicatorContent>
+            </ctk:PullToRefreshListView>
             <ProgressBar IsIndeterminate="{x:Bind ViewModel.Posts.IsLoading, Mode=OneWay}"
                          Grid.Row="1"
                          Background="Transparent"
