@@ -288,4 +288,8 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
   <data name="Settings_PushNotifications.Text" xml:space="preserve">
     <value>Push Notifications</value>
   </data>
+  <data name="Shell_Me" xml:space="preserve">
+    <value>Account</value>
+    <comment>Navigation view item name for Account</comment>
+  </data>
 </root>

@@ -221,7 +221,7 @@ namespace WordPressUWP.ViewModels
 
             _secondaryItems.Add(
                 ShellNavigationItem.ForAction(
-                    "Me",
+                    "Shell_Me".GetLocalized(),
                     Symbol.Contact,
                     () => {
                         OpenLoginPopup();
