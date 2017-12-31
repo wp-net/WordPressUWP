@@ -263,7 +263,7 @@
                                 Margin="0 12 0 0"/>
                     </Grid>
                     <CommandBar Grid.Row="2">
-                        <AppBarButton Icon="Refresh" Label="Refresh" Click="{x:Bind ViewModel.RefreshComments, Mode=OneWay}" />
+                        <AppBarButton Icon="Refresh" x:Uid="RefreshCommentButton" Label="[Refresh]" Click="{x:Bind ViewModel.RefreshComments, Mode=OneWay}" />
                     </CommandBar>
                 </Grid>
             </Grid>
