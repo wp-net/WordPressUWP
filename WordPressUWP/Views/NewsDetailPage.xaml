@@ -19,6 +19,7 @@
         <helper:VisibleWhenZeroConverter x:Key="VisibleWhenZeroConverter"/>
         <helper:ProtocolToURLConverter x:Key="ProtocolToURLConverter"/>
         <helper:ReplyToConverter x:Key="ReplyToConverter"/>
+        <ctkconv:BoolNegationConverter x:Key="BoolNegationConverter"/>
         <ctkconv:EmptyObjectToObjectConverter x:Key="EmptyObjectToObjectConverter" EmptyValue="Collapsed" NotEmptyValue="Visible"/>
         <ctkconv:BoolToObjectConverter x:Key="BoolToVisibilityConverter" TrueValue="Visible" FalseValue="Collapsed"/>
         <ctkconv:StringFormatConverter x:Key="StringFormatConverter"/>
@@ -100,13 +101,14 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <TextBox x:Name="CommentInput"
-                                 x:Uid="CommentInput"
-                                 Grid.Row="0"
-                                 PlaceholderText="[Comment]"
-                                 Header="{x:Bind ViewModel.CommentReply, Mode=OneWay, Converter={StaticResource ReplyToConverter}}"
-                                 MaxHeight="120"
-                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                 TextWrapping="Wrap" AcceptsReturn="True" Text="{x:Bind ViewModel.CommentInput, Mode=TwoWay}">
+                                     x:Uid="CommentInput"
+                                     Grid.Row="0"
+                                     IsEnabled="{x:Bind ViewModel.IsCommentsLoading, Mode=OneWay, Converter={StaticResource BoolNegationConverter}}"
+                                     PlaceholderText="[Comment]"
+                                     Header="{x:Bind ViewModel.CommentReply, Mode=OneWay, Converter={StaticResource ReplyToConverter}}"
+                                     MaxHeight="120"
+                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                     TextWrapping="Wrap" AcceptsReturn="True" Text="{x:Bind ViewModel.CommentInput, Mode=TwoWay}">
                             </TextBox>
                             <Button x:Name="UnsetReplyBtn"
                                 Grid.Row="0"
