@@ -34,6 +34,7 @@ namespace WordPressUWP.Helpers
 
             sb.Append("<html><head>");
             sb.Append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">");
+            // add stylesheets
             sb.Append("<link rel=\"stylesheet\" href=\"ms-appx-web:///Assets/Web/Style.css\" type=\"text/css\" media=\"screen\" />");
             if (isDark)
             {
@@ -43,6 +44,9 @@ namespace WordPressUWP.Helpers
             {
                 sb.Append("<link rel=\"stylesheet\" href=\"ms-appx-web:///Assets/Web/Light.css\" type=\"text/css\" media=\"screen\" />");
             }
+
+            // sb.Append("<script>window.external.notify('test');</script>");
+
             sb.Append("</head><body>");
 
             sb.Append(FeaturedImage(post));
@@ -52,6 +56,10 @@ namespace WordPressUWP.Helpers
             sb.Append($"<p id=\"postmeta\">{authors[0].Name} | {post.Date}</p>");
             sb.Append(content);
             sb.Append("</body></html>");
+
+            // add javascript
+            sb.Append("<script type=\"text/javascript\" src=\"ms-appx-web:///Assets/Web/hammer.min.js\"></script>");
+            sb.Append("<script type=\"text/javascript\" src=\"ms-appx-web:///Assets/Web/script.js\"></script>");
 
             return sb.ToString();
         }

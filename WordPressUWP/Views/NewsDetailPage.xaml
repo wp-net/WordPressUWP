@@ -26,13 +26,14 @@
     <Grid
         x:Name="ContentArea"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
-        <Pivot>
+        <Pivot x:Name="PostPivot">
             <PivotItem x:Name="PostDetailsPostPivot" Margin="0">
                 <PivotItem.Header>
                     <TextBlock x:Uid="PostDetailsPostPivot" Margin="48 0 0 0" Text="[Post]"></TextBlock>
                     
                 </PivotItem.Header>
                 <views:NewsDetailControl MasterMenuItem="{x:Bind ViewModel.SelectedPost}"
+                                         Swiped="NewsDetailControl_Swiped"
                                          Margin="0" />
             </PivotItem>
             <PivotItem Header="[Comments]" x:Uid="PostDetailsCommentsPivot" Margin="0">

@@ -16,6 +16,10 @@ namespace WordPressUWP.Views
 
         public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(Post), typeof(NewsDetailControl), new PropertyMetadata(null));
 
+        public delegate void SwipeEventHandler(object sender, EventArgs e);
+
+        public event SwipeEventHandler Swiped;
+
         public NewsDetailControl()
         {
             InitializeComponent();
@@ -42,6 +46,11 @@ namespace WordPressUWP.Views
             //    //    view.BusyText = "text";
             //    //});
             //}
+        }
+
+        private void PostWebView_ScriptNotify(object sender, NotifyEventArgs e)
+        {
+            Swiped(this, EventArgs.Empty);
         }
     }
 }

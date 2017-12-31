@@ -265,6 +265,8 @@
   <ItemGroup>
     <Content Include="Assets\Placeholder\placeholder.jpg" />
     <Content Include="Assets\Web\Dark.css" />
+    <Content Include="Assets\Web\script.js" />
+    <Content Include="Assets\Web\hammer.min.js" />
     <Content Include="Assets\Web\Light.css" />
     <Content Include="Assets\Web\Style.css" />
     <Content Include="Properties\Default.rd.xml" />

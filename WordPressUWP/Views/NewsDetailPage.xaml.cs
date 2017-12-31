@@ -56,5 +56,10 @@ namespace WordPressUWP.Views
                 }
             }
         }
+
+        private void NewsDetailControl_Swiped(object sender, System.EventArgs e)
+        {
+            PostPivot.SelectedIndex = 1;
+        }
     }
 }

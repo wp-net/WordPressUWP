@@ -20,6 +20,7 @@
             <WebView x:Name="PostWebView"
                      ctk:WebViewExtensions.Content="{x:Bind MasterMenuItem, Converter={StaticResource HtmlConverter}, Mode=OneWay}"
                      Height="Auto"
+                     ScriptNotify="PostWebView_ScriptNotify"
                      NavigationStarting="WebView_NavigationStarting" />
         </Grid>
         <!--  Adaptive triggers  -->

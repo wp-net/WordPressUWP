@@ -113,6 +113,10 @@
                                        Style="{StaticResource SubtitleTextBlockStyle}"
                                        Margin="0 24 0 12"/>
                             <TextBlock xml:space="preserve" TextWrapping="Wrap" x:Uid="WASLicense" Text="[License Text]"/>
+                            <TextBlock Text="hammer.js"
+                                       Style="{StaticResource SubtitleTextBlockStyle}"
+                                       Margin="0 24 0 12"/>
+                            <TextBlock xml:space="preserve" TextWrapping="Wrap" x:Uid="HammerJSLicense" Text="[License Text]"/>
                         </StackPanel>
                     </ScrollViewer>
                 </PivotItem>
