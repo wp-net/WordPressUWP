@@ -244,7 +244,8 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
     <comment>Header Text for Post Pivot in NewsDetailPage</comment>
   </data>
   <data name="RefreshCommentButton.Label" xml:space="preserve">
-    <value>Aktualisieren</value>
+    <value>Aktuali-
+sieren</value>
     <comment>AppBarButton for refreshing comment list</comment>
   </data>
   <data name="SendCommentBtn.Content" xml:space="preserve">
