@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WordPressPCL.Models;
@@ -25,11 +26,16 @@ namespace WordPressUWP.Views
             InitializeComponent();
         }
 
-        private void WebView_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
+        private async void WebView_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
         {
             if (args.Uri == null)
                 return;
             var s = args.Uri.ToString();
+            args.Cancel = true;
+            await Launcher.LaunchUriAsync(new Uri(s));
+
+            // TODO Show image popup
+
             //if (s.Contains(".jpg") || s.Contains(".jpeg") || s.Contains(".png") || s.Contains(".gif"))
             //{
             //    args.Cancel = true;
