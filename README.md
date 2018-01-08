@@ -13,7 +13,7 @@ working and planned features for WordPressUWP:
 - [x] Settings page
 - [x] Sign In
 - [x] Add comment
-- [ ] Push Notifications (new posts, comments)
+- [x] Push Notifications (new posts, comments)
 - [ ] Live Tiles
 - [x] Continuum Support
 - [ ] Enable Ads
