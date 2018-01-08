@@ -83,7 +83,7 @@ namespace WordPressUWP.Services
 
         private async Task InitializeAsync()
         {
-            await Singleton<LiveTileService>.Instance.EnableQueueAsync();
+            //await Singleton<LiveTileService>.Instance.EnableQueueAsync();
             await ThemeSelectorService.InitializeAsync();
             await Task.CompletedTask;
         }
@@ -92,7 +92,7 @@ namespace WordPressUWP.Services
         {
             await WhatsNewDisplayService.ShowIfAppropriateAsync();
             await FirstRunDisplayService.ShowIfAppropriateAsync();
-            Singleton<LiveTileService>.Instance.SampleUpdate();
+            //Singleton<LiveTileService>.Instance.SampleUpdate();
 
             // TODO WTS: To use the HubNotificationService specific data related with your Azure Notification Hubs is required.
             //  1. Go to the HubNotificationsService class, in the InitializeAsync() method, provide the Hub Name and DefaultListenSharedAccessSignature.
@@ -104,7 +104,7 @@ namespace WordPressUWP.Services
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
-            yield return Singleton<LiveTileService>.Instance;
+            //yield return Singleton<LiveTileService>.Instance;
             yield return Singleton<HubNotificationsService>.Instance;
             yield return Singleton<SuspendAndResumeService>.Instance;
         }
