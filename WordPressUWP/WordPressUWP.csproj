@@ -133,7 +133,6 @@
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="Config.cs" />
-    <Compile Include="Helpers\ApiCredentials.cs" />
     <Compile Include="Helpers\DebugConverter.cs" />
     <Compile Include="Helpers\DisplayTermsConverter.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
