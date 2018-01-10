@@ -18,7 +18,7 @@
     </ContentDialog.TitleTemplate>
     <ScrollViewer>
         <StackPanel>
-            <TextBlock x:Uid="AfterUpdate_Body" TextWrapping="WrapWholeWords">
+            <TextBlock x:Uid="AfterUpdate_Body" TextWrapping="WrapWholeWords" Margin="0 0 12 0">
                 <Run>Replace the content of this dialog with whatever content is appropriate to your app.</Run><LineBreak/>
                 <Run>You might want to consider lists of bug fixes and new features.</Run><LineBreak/>
                 <Run>Don't feel restricted to just text. You can also include images and animations if you wish too.</Run><LineBreak/>
