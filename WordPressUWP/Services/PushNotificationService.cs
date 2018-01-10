@@ -11,14 +11,14 @@ namespace WordPressUWP.Services
     {
         public async Task DisablePushNotificaitons()
         {
-            var hub = new NotificationHub(ApiCredentials.HubName, ApiCredentials.AccessSiganture);
+            var hub = new NotificationHub(Config.HubName, Config.AccessSiganture);
             var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
             await hub.UnregisterAllAsync(channel.Uri);
         }
 
         public async Task<bool> EnablePushNotifications()
         {
-            var hub = new NotificationHub(ApiCredentials.HubName, ApiCredentials.AccessSiganture);
+            var hub = new NotificationHub(Config.HubName, Config.AccessSiganture);
             var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
             var result = await hub.RegisterNativeAsync(channel.Uri);
             return result.RegistrationId != null;

@@ -1,16 +1,13 @@
 ﻿using GalaSoft.MvvmLight;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Windows.ApplicationModel;
 using Windows.Storage;
 using WordPressPCL;
 using WordPressPCL.Models;
 using WordPressPCL.Utility;
 using WordPressUWP.Helpers;
 using WordPressUWP.Interfaces;
-using System;
 
 namespace WordPressUWP.Services
 {
@@ -35,7 +32,7 @@ namespace WordPressUWP.Services
 
         public WordPressService()
         {
-            _client = new WordPressClient(ApiCredentials.WordPressUri);
+            _client = new WordPressClient(Config.WordPressUri);
             _localSettings = ApplicationData.Current.LocalSettings;
             Init();
         }
@@ -82,7 +79,7 @@ namespace WordPressUWP.Services
         public async Task<List<CommentThreaded>> GetCommentsForPost(int postid)
         {
             var comments = await _client.Comments.GetAllCommentsForPost(postid);
-            return comments.ToThreaded();
+            return ThreadedCommentsHelper.GetThreadedComments(comments, 2);
         }
 
         public async Task<IEnumerable<Post>> GetLatestPosts(int page = 0, int perPage = 20)

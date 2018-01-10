@@ -52,14 +52,14 @@ namespace WordPressUWP.Services
 
         private async Task<Registration> RegisterNotifications()
         {
-            var hub = new NotificationHub(ApiCredentials.HubName, ApiCredentials.AccessSiganture);
+            var hub = new NotificationHub(Config.HubName, Config.AccessSiganture);
             var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
             return await hub.RegisterNativeAsync(channel.Uri);
         }
 
         private async Task UnregisterNotifications()
         {
-            var hub = new NotificationHub(ApiCredentials.HubName, ApiCredentials.AccessSiganture);
+            var hub = new NotificationHub(Config.HubName, Config.AccessSiganture);
             var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
             await hub.UnregisterAllAsync(channel.Uri);
         }

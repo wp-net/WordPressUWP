@@ -146,7 +146,7 @@
                                          Header="[Password]"
                                          PlaceholderText="[Password]"
                                          HorizontalAlignment="Stretch"
-                                         IsPasswordRevealButtonEnabled="True"
+                                         PasswordRevealMode="Peek"
                                          KeyDown="PasswordTbx_KeyDown"
                                          Margin="0 0 0 12"/>
                         <StackPanel Orientation="Horizontal">
