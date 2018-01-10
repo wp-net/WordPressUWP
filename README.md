@@ -1,6 +1,6 @@
 # WordPressUWP
 
-[![Join the chat at https://gitter.im/ThomasPe/WordPressUWP](https://badges.gitter.im/ThomasPe/WordPressUWP.svg)](https://gitter.im/ThomasPe/WordPressUWP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/ThomasPe/WordPressUWP](https://badges.gitter.im/ThomasPe/WordPressUWP.svg)](https://gitter.im/ThomasPe/WordPressUWP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build status](https://build.appcenter.ms/v0.1/apps/5fd5b82a-1ce3-43b5-91e9-85f8b51cd33a/branches/master/badge)](https://appcenter.ms)
 
 This is a Universal Windows Platform app framework designed to turn WordPress Blogs / Sites into nice little apps. It's built on
 * Windows Template Studio
