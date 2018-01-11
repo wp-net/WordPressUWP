@@ -144,6 +144,7 @@
     <Compile Include="Helpers\ProtocolToURLConverter.cs" />
     <Compile Include="Helpers\ReplyToConverter.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Helpers\SwipedEventArgs.cs" />
     <Compile Include="Helpers\TheadedCommentMarginConverter.cs" />
     <Compile Include="Helpers\VisibleWhenZeroConverter.cs" />
     <Compile Include="Interfaces\IInAppNotificationService.cs" />

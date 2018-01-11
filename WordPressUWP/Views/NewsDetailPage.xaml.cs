@@ -1,7 +1,9 @@
-﻿using Windows.UI.Core;
+﻿using System.Diagnostics;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using WordPressUWP.Helpers;
 using WordPressUWP.ViewModels;
 
 namespace WordPressUWP.Views
@@ -57,9 +59,13 @@ namespace WordPressUWP.Views
             }
         }
 
-        private void NewsDetailControl_Swiped(object sender, System.EventArgs e)
+        private void NewsDetailControl_Swiped(object sender, SwipedEventArgs e)
         {
-            PostPivot.SelectedIndex = 1;
+            Debug.WriteLine(e.Direction);
+            if (e.Direction.Equals(SwipeDirection.Left))
+                PostPivot.SelectedIndex = 1;
+            else if (e.Direction.Equals(SwipeDirection.Right))
+                ViewModel.NavigationService.GoBack();
         }
     }
 }

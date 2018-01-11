@@ -4,6 +4,7 @@ using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WordPressPCL.Models;
+using WordPressUWP.Helpers;
 
 namespace WordPressUWP.Views
 {
@@ -17,7 +18,7 @@ namespace WordPressUWP.Views
 
         public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(Post), typeof(NewsDetailControl), new PropertyMetadata(null));
 
-        public delegate void SwipeEventHandler(object sender, EventArgs e);
+        public delegate void SwipeEventHandler(object sender, SwipedEventArgs e);
 
         public event SwipeEventHandler Swiped;
 
@@ -56,7 +57,13 @@ namespace WordPressUWP.Views
 
         private void PostWebView_ScriptNotify(object sender, NotifyEventArgs e)
         {
-            Swiped(this, EventArgs.Empty);
+            SwipeDirection direction;
+            if (e.Value.Equals("swipeleft"))
+                direction = SwipeDirection.Left;
+            else
+                direction = SwipeDirection.Right;
+
+            Swiped?.Invoke(this, new SwipedEventArgs(direction));
         }
     }
 }
