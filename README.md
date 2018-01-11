@@ -13,10 +13,10 @@ working and planned features for WordPressUWP:
 - [x] Settings page
 - [x] Sign In
 - [x] Add comment
-- [x] Push Notifications (new posts, comments)
+- [x] Push Notifications
 - [ ] Live Tiles
 - [x] Continuum Support
-- [ ] Enable Ads
+
 
 # Quickstart
 
@@ -28,16 +28,20 @@ Since WordPress 4.7 the REST API has been integrated into the core so there's no
 
 ## Getting Started
 
-Just clone or download the repo and open it in Visual Studio. Before you can build you'll need to create a `ApiCredentials.cs` class inside the `WordPressUWPApp.Utility` folder. Here you need to enter your site uri.
+Just clone or download the repo and open it in Visual Studio. Go to the `Config.cs` class inside the root folder and enter your site uri.
 
 ```c#
-namespace WordPressUWPApp.Utility
+public static class Config
 {
-    public static class ApiCredentials
-    {
-        public static string WordPressUri = "http://yoursite.com/wp-json/";
-    }
+    public const string BaseUri = "http://yoursite.com/";
+    public static string WordPressUri = $"{BaseUri}wp-json/";
 
+    // Push Notification Settings
+    public const string HubName = "NotificationHubName";
+    public const string AccessSiganture = "Endpoint=";
+
+    // Comments
+    public static int CommentDepth = 3;
 }
 
 ```
