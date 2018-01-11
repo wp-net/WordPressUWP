@@ -24,6 +24,7 @@ namespace WordPressUWP.ViewModels
         private IWordPressService _wordPressService;
         private IInAppNotificationService _inAppNotificationService;
         private int _postid;
+        private bool _firstLaunch = true;
 
         private DataTransferManager dataTransferManager;
 
@@ -116,8 +117,9 @@ namespace WordPressUWP.ViewModels
         internal async void Init(VisualState currentState, NavigationEventArgs e)
         {
             // Show post if there's an id being passed along
-            if (e != null && e.Parameter is string id)
+            if (e != null && e.Parameter is string id && _firstLaunch)
             {
+                _firstLaunch = false;
                 if (!string.IsNullOrEmpty(id))
                 {
                     Int32.TryParse(id, out _postid);

@@ -8,7 +8,7 @@ namespace WordPressUWP
 {
     public static class Config
     {
-        public const string BaseUri = "http://api.medienstudio.net/";
+        public const string BaseUri = "http://yoursite.com/";
         public static string WordPressUri = $"{BaseUri}wp-json/";
 
         // Push Notification Settings
