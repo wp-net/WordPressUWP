@@ -12,6 +12,7 @@ namespace WordPressUWP
         public static string WordPressUri = $"{BaseUri}wp-json/";
 
         // Push Notification Settings
+        public const bool NotificationsEnabled = true;
         public const string HubName = "NotificationHubName";
         public const string AccessSiganture = "Endpoint=";
 

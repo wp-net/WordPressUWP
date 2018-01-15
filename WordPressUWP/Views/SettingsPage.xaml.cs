@@ -13,6 +13,10 @@ namespace WordPressUWP.Views
         {
             get { return DataContext as SettingsViewModel; }
         }
+        private bool PushNotificationEnabled
+        {
+            get { return Config.NotificationsEnabled; }
+        }
 
         //// TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
 

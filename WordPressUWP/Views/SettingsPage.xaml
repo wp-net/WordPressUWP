@@ -21,11 +21,13 @@
                                    Style="{StaticResource SubtitleTextBlockStyle}" />
                         <StackPanel Margin="0 24 0 0">
                             <TextBlock x:Uid="Settings_PushNotifications"
-                                           Text="[Push Notifications]"
-                                           Style="{StaticResource BodyTextStyle}" />
+                                       Text="[Push Notifications]"
+                                       Visibility="{x:Bind PushNotificationEnabled}"
+                                       Style="{StaticResource BodyTextStyle}" />
                             <ToggleSwitch x:Name="PushNotificationsToggle"
-                                              IsOn="{x:Bind ViewModel.PushNotificationsEnabled, Mode=TwoWay}"
-                                              Toggled="{x:Bind ViewModel.ChangePushNotificationSettings}"
+                                          Visibility="{x:Bind PushNotificationEnabled}"
+                                          IsOn="{x:Bind ViewModel.PushNotificationsEnabled, Mode=TwoWay}"
+                                          Toggled="{x:Bind ViewModel.ChangePushNotificationSettings}"
                                               />
                         </StackPanel>
 
