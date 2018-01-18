@@ -27,6 +27,7 @@
         <helper:VisibleWhenZeroConverter x:Key="VisibleWhenZeroConverter"/>
         <helper:ProtocolToURLConverter x:Key="ProtocolToURLConverter"/>
         <ctkconv:StringFormatConverter x:Key="StringFormatConverter"/>
+        <ctkconv:BoolNegationConverter x:Key="BoolNegationConverter"/>
         <helper:ReplyToConverter x:Key="ReplyToConverter"/>
         <ctkconv:BoolToObjectConverter x:Key="BoolToVisibilityConverter" TrueValue="Visible" FalseValue="Collapsed"/>
         <ctkconv:EmptyObjectToObjectConverter x:Key="EmptyObjectToObjectConverter" EmptyValue="Collapsed" NotEmptyValue="Visible"/>
@@ -220,47 +221,63 @@
                                  Margin="0 48 0 0"
                                  Background="Transparent"
                                  VerticalAlignment="Top"/>
-
                     <Grid Grid.Row="1"
-                                Margin="12"
-                                Visibility="{Binding WordPressService.IsAuthenticated, Source={StaticResource Locator}, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                              Margin="0"
+                              x:Name="CommentInputGrid"
+                              Background="{ThemeResource SystemControlBackgroundAltHighBrush}"
+                              Visibility="{Binding WordPressService.IsAuthenticated, Source={StaticResource Locator}, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0"
+                                        Visibility="{x:Bind ViewModel.CommentReply, Mode=OneWay, Converter={StaticResource EmptyObjectToObjectConverter}}">
+                            <TextBlock Margin="12 0 0 0"
+                                                   VerticalAlignment="Center"
+                                                   Text="{x:Bind ViewModel.CommentReply, Mode=OneWay, Converter={StaticResource ReplyToConverter}}"></TextBlock>
+                            <Button x:Name="UnsetReplyBtn"
+                                                Grid.Column="0"
+                                        Background="Transparent"
+                                        Height="32"
+                                        Width="32"
+                                        BorderThickness="0"
+                                        Padding="2"
+                                        Margin="4 0 0 0"
+                                        Style="{StaticResource IconButtonStyle}"
+                                        Visibility="{x:Bind ViewModel.CommentReply, Mode=OneWay, Converter={StaticResource EmptyObjectToObjectConverter}}"
+                                        Click="{x:Bind ViewModel.CommentReplyUnset}">
+                                <SymbolIcon Symbol="Clear" RenderTransformOrigin="0.5,0.5">
+                                    <SymbolIcon.RenderTransform>
+                                        <CompositeTransform ScaleX="0.5" ScaleY="0.5"/>
+                                    </SymbolIcon.RenderTransform>
+                                </SymbolIcon>
+                            </Button>
+                        </StackPanel>
                         <TextBox x:Name="CommentInput"
-                                 x:Uid="CommentInput"
-                                 Grid.Row="0"
-                                 PlaceholderText="[Comment]"
-                                 Header="{x:Bind ViewModel.CommentReply, Mode=OneWay, Converter={StaticResource ReplyToConverter}}"
-                                 MaxHeight="120"
-                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                 TextWrapping="Wrap" AcceptsReturn="True" Text="{x:Bind ViewModel.CommentInput, Mode=TwoWay}">
+                                     x:Uid="CommentInput"
+                                     Grid.Row="1"
+                                     IsEnabled="{x:Bind ViewModel.IsCommentsLoading, Mode=OneWay, Converter={StaticResource BoolNegationConverter}}"
+                                     PlaceholderText="[Comment]"
+                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                     AcceptsReturn="True" Text="{x:Bind ViewModel.CommentInput, Mode=TwoWay}" Style="{StaticResource CommentInputTextBoxStyle}">
                         </TextBox>
-                        <Button x:Name="UnsetReplyBtn"
-                                Grid.Row="0"
-                                Background="Transparent"
-                                Height="34"
-                                Width="34"
-                                Padding="2"
-                                HorizontalAlignment="Right"
-                                Margin="0 -4 -2 0"
-                                Style="{StaticResource IconButtonStyle}"
-                                Visibility="{x:Bind ViewModel.CommentReply, Mode=OneWay, Converter={StaticResource EmptyObjectToObjectConverter}}"
-                                Click="{x:Bind ViewModel.CommentReplyUnset}"
-                                VerticalAlignment="Top">
-                            <SymbolIcon Symbol="Clear" RenderTransformOrigin="0.5,0.5">
+                        <Button Style="{StaticResource SubmitIconButtonStyle}"
+                                    x:Name="SendCommentBtn"
+                                    Grid.Column="1"
+                                    Grid.Row="1"
+                                    VerticalAlignment="Top"
+                                    Click="{x:Bind ViewModel.PostComment, Mode=OneWay}"
+                                    Margin="0">
+                            <SymbolIcon Symbol="Send" RenderTransformOrigin="0.5,0.5">
                                 <SymbolIcon.RenderTransform>
-                                    <CompositeTransform ScaleX="0.5" ScaleY="0.5"/>
+                                    <CompositeTransform ScaleX="0.9" ScaleY="0.9"/>
                                 </SymbolIcon.RenderTransform>
                             </SymbolIcon>
                         </Button>
-                        <Button Content="[Send]"
-                                x:Uid="SendCommentBtn"
-                                x:Name="SendCommentBtn"
-                                Grid.Row="1"
-                                Click="{x:Bind ViewModel.PostComment, Mode=OneWay}"
-                                Margin="0 12 0 0"/>
                     </Grid>
                     <CommandBar Grid.Row="2">
                         <AppBarButton Icon="Refresh" x:Uid="RefreshCommentButton" Label="[Refresh]" Click="{x:Bind ViewModel.RefreshComments, Mode=OneWay}" />

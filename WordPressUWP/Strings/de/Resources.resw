@@ -248,10 +248,6 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
 sieren</value>
     <comment>AppBarButton for refreshing comment list</comment>
   </data>
-  <data name="SendCommentBtn.Content" xml:space="preserve">
-    <value>Abschicken</value>
-    <comment>Button Text for submitting new comments</comment>
-  </data>
   <data name="ShowCommentInputButton.Label" xml:space="preserve">
     <value>Kommentar schreiben</value>
     <comment>AppBarButton for toggling comment input</comment>
@@ -281,7 +277,7 @@ sieren</value>
     <comment>AppBarButton for sharing the post</comment>
   </data>
   <data name="CommentReply" xml:space="preserve">
-    <value>Antwort an {0}:</value>
+    <value>Antwort an {0}</value>
   </data>
   <data name="ReplyButton.Content" xml:space="preserve">
     <value>antworten</value>

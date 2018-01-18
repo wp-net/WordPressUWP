@@ -298,10 +298,13 @@ namespace WordPressUWP.ViewModels
         public async void Login(string username, string password)
         {
             IsLoggingIn = true;
-            var isAuth = await _wordPressService.AuthenticateUser(username, password);
-            if (!isAuth)
+            if(!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
             {
-                ShowLoginError = true;
+                var isAuth = await _wordPressService.AuthenticateUser(username, password);
+                if (!isAuth)
+                {
+                    ShowLoginError = true;
+                }
             }
             IsLoggingIn = false;
         }
