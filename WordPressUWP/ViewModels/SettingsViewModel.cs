@@ -82,7 +82,7 @@ namespace WordPressUWP.ViewModels
 
         public async void ChangePushNotificationSettings(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            if (sender is ToggleSwitch ts)
+            if (sender is ToggleSwitch ts && Config.NotificationsEnabled)
             {
                 await ApplicationData.Current.LocalSettings.SaveAsync(nameof(PushNotificationsEnabled), ts.IsOn);
                 if (ts.IsOn)
