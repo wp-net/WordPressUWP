@@ -26,6 +26,8 @@
         <helper:HtmlDecodeConverter x:Key="HtmlDecodeConverter"/>
         <helper:VisibleWhenZeroConverter x:Key="VisibleWhenZeroConverter"/>
         <helper:ProtocolToURLConverter x:Key="ProtocolToURLConverter"/>
+        <helper:AuthorNameConverter x:Key="AuthorNameConverter"/>
+        <ctkconv:FormatStringConverter x:Key="FormatStringConverter"/>
         <ctkconv:StringFormatConverter x:Key="StringFormatConverter"/>
         <ctkconv:BoolNegationConverter x:Key="BoolNegationConverter"/>
         <helper:ReplyToConverter x:Key="ReplyToConverter"/>
@@ -33,10 +35,6 @@
         <ctkconv:EmptyObjectToObjectConverter x:Key="EmptyObjectToObjectConverter" EmptyValue="Collapsed" NotEmptyValue="Visible"/>
         <DataTemplate x:Key="MasterListViewItemTemplate" x:DataType="wpmodel:Post">
             <Grid Margin="{StaticResource MediumLeftTopRightBottomMargin}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
                 <ctk:ImageEx Source="{x:Bind Embedded, Converter={StaticResource FeaturedImageConverter}, Mode=OneWay}"
                              Height="200"
                              IsCacheEnabled="False"
@@ -45,13 +43,29 @@
                              VerticalAlignment="Center"
                              PlaceholderSource="/Assets/Placeholder/placeholder.jpg"
                              PlaceholderStretch="UniformToFill"/>
-                <TextBlock
-                    Grid.Row="1"
-                    Margin="0 4 0 0"
-                    Text="{x:Bind Title.Rendered, Converter={StaticResource HtmlDecodeConverter}, Mode=OneWay}" 
-                    Style="{StaticResource ListTitleStyle}"
-                    TextWrapping="Wrap"
-                    MaxLines="2"/>
+                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                            <GradientStop Color="#00000000" Offset="0.4" />
+                            <GradientStop Color="#CC000000" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <StackPanel VerticalAlignment="Bottom" Margin="6">
+                        <TextBlock Margin="0 4 0 4"
+                                   Text="{x:Bind Title.Rendered, Converter={StaticResource HtmlDecodeConverter}, Mode=OneWay}"
+                                   Style="{StaticResource ListTitleStyle}"
+                                   TextWrapping="Wrap"
+                                   Foreground="White"
+                                   MaxLines="3"/>
+                        <TextBlock FontSize="12"
+                                   FontStyle="Italic"
+                                   Foreground="White">
+                            <Run Text="{x:Bind Embedded.Author, Converter={StaticResource AuthorNameConverter}, Mode=OneWay}"></Run>
+                            <Run Text="|"></Run>
+                            <Run Text="{x:Bind Date, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:g}'}"></Run>
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
             </Grid>
         </DataTemplate>
     </Page.Resources>
