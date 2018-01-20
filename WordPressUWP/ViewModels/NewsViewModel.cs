@@ -135,7 +135,7 @@ namespace WordPressUWP.ViewModels
         public async Task RefreshPosts()
         {
             Debug.WriteLine("RefreshPosts");
-            if (Posts != null && !Posts.IsLoading && Posts.Count > 0)
+            if (Posts != null && !Posts.IsLoading && Posts.Count > 0 && !_wordPressService.IsLoadingPosts)
             {
                 try
                 {
@@ -145,6 +145,9 @@ namespace WordPressUWP.ViewModels
                 {
                     _inAppNotificationService.ShowInAppNotification("Refresh failed");
                 }
+            } else
+            {
+                Debug.WriteLine("Refresh denied");
             }
         }
 

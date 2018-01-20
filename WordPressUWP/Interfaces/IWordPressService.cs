@@ -11,6 +11,8 @@ namespace WordPressUWP.Interfaces
     {
         bool IsAuthenticated { get; set; }
 
+        bool IsLoadingPosts { get; set; }
+
         Task<IEnumerable<Post>> GetLatestPosts(int page = 0, int perPage = 20);
 
         Task<bool> AuthenticateUser(string username, string password);
