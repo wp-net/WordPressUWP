@@ -81,6 +81,7 @@
                 Style="{StaticResource PageTitleStyle}" />
                 <Button HorizontalAlignment="Right"
                         Style="{StaticResource IconButtonStyle}"
+                        IsEnabled="{Binding WordPressService.IsLoadingPosts, Source={StaticResource Locator}, Converter={StaticResource BoolNegationConverter}}"
                         Click="{x:Bind ViewModel.RefreshPosts}">
                     <SymbolIcon x:Name="play" Symbol="Refresh"/>
                 </Button>
@@ -114,7 +115,7 @@
                     <Border HorizontalAlignment="Center" x:Name="refreshindicator" CornerRadius="30" Height="20" Width="20" ></Border>
                 </ctk:PullToRefreshListView.RefreshIndicatorContent>
             </ctk:PullToRefreshListView>
-            <ProgressBar IsIndeterminate="{x:Bind ViewModel.Posts.IsLoading, Mode=OneWay}"
+            <ProgressBar IsIndeterminate="{Binding WordPressService.IsLoadingPosts, Source={StaticResource Locator}}"
                          Grid.Row="1"
                          Background="Transparent"
                          VerticalAlignment="Top"/>

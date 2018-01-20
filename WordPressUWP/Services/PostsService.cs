@@ -23,7 +23,6 @@ namespace WordPressUWP.Services
 
         public async Task<IEnumerable<Post>> GetPagedItemsAsync(int pageIndex, int pageSize, CancellationToken cancellationToken = default(CancellationToken))
         {
-            Debug.WriteLine("GetPagedItemsAsync");
             return await _wordPressService.GetLatestPosts(pageIndex, pageSize);
         }
     }

@@ -1,6 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
+using Microsoft.Toolkit.Collections;
+using Nito.AsyncEx;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
 using WordPressPCL;
@@ -15,7 +18,7 @@ namespace WordPressUWP.Services
     {
         private WordPressClient _client;
         private ApplicationDataContainer _localSettings;
-        private User _currentUser;
+        private readonly AsyncLock _mutex = new AsyncLock();
 
         private bool _isAuthenticated;
         public bool IsAuthenticated
@@ -24,10 +27,18 @@ namespace WordPressUWP.Services
             set { Set(ref _isAuthenticated, value); }
         }
 
+        private User _currentUser;
         public User CurrentUser
         {
             get { return _currentUser; }
             set { Set(ref _currentUser, value); }
+        }
+
+        private bool _isLoadingPosts;
+        public bool IsLoadingPosts
+        {
+            get { return _isLoadingPosts; }
+            set { Set(ref _isLoadingPosts, value); }
         }
 
         public WordPressService()
@@ -39,7 +50,6 @@ namespace WordPressUWP.Services
 
         public async void Init()
         {
-
             IsAuthenticated = false;
             var username = _localSettings.ReadString("Username");
             if (username != null)
@@ -84,17 +94,20 @@ namespace WordPressUWP.Services
 
         public async Task<IEnumerable<Post>> GetLatestPosts(int page = 0, int perPage = 20)
         {
-            Debug.WriteLine($"loading page {page}");
-            page++;
-
-            var posts = await _client.Posts.Query(new PostsQueryBuilder()
+            // Queue page loads to prevent list from being out of order
+            using (await _mutex.LockAsync())
             {
-                Page = page,
-                PerPage = perPage,
-                Embed = true
-            });
-
-            return posts;
+                IsLoadingPosts = true;
+                page++;
+                var posts = await _client.Posts.Query(new PostsQueryBuilder()
+                {
+                    Page = page,
+                    PerPage = perPage,
+                    Embed = true
+                });
+                IsLoadingPosts = false;
+                return posts;
+            }
         }
 
         public User GetUser()
