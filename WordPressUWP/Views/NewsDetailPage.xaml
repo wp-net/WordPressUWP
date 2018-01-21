@@ -34,9 +34,27 @@
                     <TextBlock x:Uid="PostDetailsPostPivot" Margin="48 0 0 0" Text="[Post]"></TextBlock>
 
                 </PivotItem.Header>
-                <views:NewsDetailControl MasterMenuItem="{x:Bind ViewModel.SelectedPost}"
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <views:NewsDetailControl MasterMenuItem="{x:Bind ViewModel.SelectedPost}"
                                          Swiped="NewsDetailControl_Swiped"
                                          Margin="0" />
+                    <CommandBar Grid.Row="1" Grid.Column="0">
+                        <AppBarButton Label="[Open in Browser]" Click="{x:Bind ViewModel.OpenInBrowser, Mode=OneWay}" x:Uid="BrowserAppBarButton">
+                            <AppBarButton.Icon>
+                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE774;"/>
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton Label="[Share]" Click="{x:Bind ViewModel.SharePost, Mode=OneWay}" x:Uid="ShareAppBarButton">
+                            <AppBarButton.Icon>
+                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72D;"/>
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                    </CommandBar>
+                </Grid>
             </PivotItem>
             <PivotItem Header="[Comments]" x:Uid="PostDetailsCommentsPivot" Margin="0">
                 <Grid Grid.Column="1"
@@ -108,10 +126,10 @@
                             <StackPanel Orientation="Horizontal" Grid.Row="0"
                                         Visibility="{x:Bind ViewModel.CommentReply, Mode=OneWay, Converter={StaticResource EmptyObjectToObjectConverter}}">
                                 <TextBlock Margin="12 0 0 0"
-                                                   VerticalAlignment="Center"
-                                                   Text="{x:Bind ViewModel.CommentReply, Mode=OneWay, Converter={StaticResource ReplyToConverter}}"></TextBlock>
+                                           VerticalAlignment="Center"
+                                           Text="{x:Bind ViewModel.CommentReply, Mode=OneWay, Converter={StaticResource ReplyToConverter}}"/>
                                 <Button x:Name="UnsetReplyBtn"
-                                                Grid.Column="0"
+                                        Grid.Column="0"
                                         Background="Transparent"
                                         Height="32"
                                         Width="32"

@@ -25,8 +25,7 @@ namespace WordPressUWP.ViewModels
         private IInAppNotificationService _inAppNotificationService;
         private int _postid;
         private bool _firstLaunch = true;
-
-        private DataTransferManager dataTransferManager;
+        private DataTransferManager _dataTransferManager;
 
         public NavigationServiceEx NavigationService
         {
@@ -127,8 +126,8 @@ namespace WordPressUWP.ViewModels
                 }
             }
 
-            dataTransferManager = DataTransferManager.GetForCurrentView();
-            dataTransferManager.DataRequested += DataTransferManager_DataRequested;
+            _dataTransferManager = DataTransferManager.GetForCurrentView();
+            _dataTransferManager.DataRequested += DataTransferManager_DataRequested;
             LoadDataAsync(currentState);
         }
 
