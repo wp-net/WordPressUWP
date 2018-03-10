@@ -67,5 +67,16 @@ namespace WordPressUWP.Views
             else if (e.Direction.Equals(SwipeDirection.Right))
                 ViewModel.NavigationService.GoBack();
         }
+
+        private void FirstCommentBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CommentListView.ScrollIntoView(CommentListView.Items[0]);
+        }
+
+        private void LastCommentBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var itemIndex = CommentListView.Items.Count - 1;
+            CommentListView.ScrollIntoView(CommentListView.Items[itemIndex]);
+        }
     }
 }
