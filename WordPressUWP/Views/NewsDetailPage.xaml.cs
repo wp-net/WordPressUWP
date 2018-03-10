@@ -27,7 +27,7 @@ namespace WordPressUWP.Views
             await ViewModel.Init();
         }
 
-        private void CommentToggleButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void CommentToggleButton_Click(object sender, RoutedEventArgs e)
         {
             bool showCommentInput = CommentToggleButton.IsChecked ?? false;
             ToggleCommentInput(showCommentInput);
