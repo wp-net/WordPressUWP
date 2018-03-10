@@ -1,8 +1,6 @@
-﻿using System;
+﻿using CommonServiceLocator;
+using System;
 using System.Threading.Tasks;
-
-using Microsoft.Practices.ServiceLocation;
-
 using Windows.ApplicationModel.Activation;
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;

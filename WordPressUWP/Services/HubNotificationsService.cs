@@ -5,9 +5,9 @@ using Windows.ApplicationModel.Activation;
 using Windows.Networking.PushNotifications;
 using WordPressUWP.Activation;
 using WordPressUWP.ViewModels;
-using Microsoft.Practices.ServiceLocation;
 using Windows.Storage;
 using WordPressUWP.Helpers;
+using CommonServiceLocator;
 
 namespace WordPressUWP.Services
 {

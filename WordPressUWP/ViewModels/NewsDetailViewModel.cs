@@ -12,6 +12,7 @@ using System;
 using Windows.ApplicationModel.DataTransfer;
 using System.Net;
 using System.Diagnostics;
+using CommonServiceLocator;
 
 namespace WordPressUWP.ViewModels
 {
@@ -25,7 +26,7 @@ namespace WordPressUWP.ViewModels
         {
             get
             {
-                return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+                return ServiceLocator.Current.GetInstance<NavigationServiceEx>();
             }
         }
 

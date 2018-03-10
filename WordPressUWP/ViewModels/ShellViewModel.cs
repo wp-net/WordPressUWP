@@ -5,13 +5,13 @@ using System.Windows.Input;
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using Microsoft.Practices.ServiceLocation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WordPressUWP.Helpers;
 using WordPressUWP.Services;
 using WordPressUWP.Interfaces;
+using CommonServiceLocator;
 
 namespace WordPressUWP.ViewModels
 {
