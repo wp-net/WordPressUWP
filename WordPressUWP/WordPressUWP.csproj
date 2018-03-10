@@ -124,7 +124,7 @@
       <Version>0.1.7.9</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>10.0.3</Version>
+      <Version>11.0.1</Version>
     </PackageReference>
     <PackageReference Include="WordPressPCL">
       <Version>1.4.0</Version>
