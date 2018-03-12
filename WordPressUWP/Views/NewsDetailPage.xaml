@@ -178,8 +178,17 @@
                                                 Label="[Write Comment]"
                                                 DataContext="{Binding WordPressService, Source={StaticResource Locator}}"
                                                 Visibility="{Binding WordPressService.IsAuthenticated, Source={StaticResource Locator}, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                            <AppBarButton Icon="Up" x:Name="FirstCommentBtn" x:Uid="FirstCommentButton" Label="[First]" Click="FirstCommentBtn_Click" />
-                            <AppBarButton x:Name="LastCommentBtn" x:Uid="LastCommentButton" Label="[Last]" Click="LastCommentBtn_Click">
+                            <AppBarButton Icon="Up"
+                                          x:Name="FirstCommentBtn"
+                                          x:Uid="FirstCommentButton"
+                                          Label="[First]"
+                                          IsEnabled="{x:Bind ViewModel.IsCommentsLoading, Converter={StaticResource BoolNegationConverter}, Mode=OneWay}"
+                                          Click="FirstCommentBtn_Click" />
+                            <AppBarButton x:Name="LastCommentBtn"
+                                          x:Uid="LastCommentButton"
+                                          Label="[Last]"
+                                          IsEnabled="{x:Bind ViewModel.IsCommentsLoading, Converter={StaticResource BoolNegationConverter}, Mode=OneWay}"
+                                          Click="LastCommentBtn_Click">
                                 <AppBarButton.Icon>
                                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74B;" />
                                 </AppBarButton.Icon>
@@ -188,6 +197,7 @@
                                 x:Uid="RefreshCommentButton"
                                 Icon="Refresh"
                                 Label="[Refresh]"
+                                IsEnabled="{x:Bind ViewModel.IsCommentsLoading, Converter={StaticResource BoolNegationConverter}, Mode=OneWay}"
                                 Click="{x:Bind ViewModel.RefreshComments, Mode=OneWay}" />
                         </CommandBar>
                     </Grid>

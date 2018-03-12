@@ -70,13 +70,15 @@ namespace WordPressUWP.Views
 
         private void FirstCommentBtn_Click(object sender, RoutedEventArgs e)
         {
-            CommentListView.ScrollIntoView(CommentListView.Items[0]);
+            if (CommentListView.Items.Count > 0)
+                CommentListView.ScrollIntoView(CommentListView.Items[0]);
         }
 
         private void LastCommentBtn_Click(object sender, RoutedEventArgs e)
         {
             var itemIndex = CommentListView.Items.Count - 1;
-            CommentListView.ScrollIntoView(CommentListView.Items[itemIndex]);
+            if (itemIndex > 0)
+                CommentListView.ScrollIntoView(CommentListView.Items[itemIndex]);
         }
     }
 }

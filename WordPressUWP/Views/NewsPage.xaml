@@ -295,13 +295,26 @@
                         </Button>
                     </Grid>
                     <CommandBar Grid.Row="2">
-                        <AppBarButton Icon="Up" x:Name="FirstCommentBtn" x:Uid="FirstCommentButton" Label="[First]" Click="FirstCommentBtn_Click" />
-                        <AppBarButton x:Name="LastCommentBtn" x:Uid="LastCommentButton" Label="[Last]" Click="LastCommentBtn_Click">
+                        <AppBarButton Icon="Up"
+                                      x:Name="FirstCommentBtn"
+                                      x:Uid="FirstCommentButton"
+                                      Label="[First]"
+                                      IsEnabled="{x:Bind ViewModel.IsCommentsLoading, Converter={StaticResource BoolNegationConverter}, Mode=OneWay}"
+                                      Click="FirstCommentBtn_Click" />
+                        <AppBarButton x:Name="LastCommentBtn"
+                                      x:Uid="LastCommentButton"
+                                      Label="[Last]"
+                                      IsEnabled="{x:Bind ViewModel.IsCommentsLoading, Converter={StaticResource BoolNegationConverter}, Mode=OneWay}"
+                                      Click="LastCommentBtn_Click">
                             <AppBarButton.Icon>
                                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74B;" />
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton Icon="Refresh" x:Uid="RefreshCommentButton" Label="[Refresh]" Click="{x:Bind ViewModel.RefreshComments, Mode=OneWay}" />
+                        <AppBarButton Icon="Refresh"
+                                      x:Uid="RefreshCommentButton"
+                                      Label="[Refresh]"
+                                      IsEnabled="{x:Bind ViewModel.IsCommentsLoading, Converter={StaticResource BoolNegationConverter}, Mode=OneWay}"
+                                      Click="{x:Bind ViewModel.RefreshComments, Mode=OneWay}" />
                     </CommandBar>
                 </Grid>
             </Grid>
