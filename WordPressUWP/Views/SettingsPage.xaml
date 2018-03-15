@@ -29,7 +29,12 @@
                                           Toggled="{x:Bind ViewModel.ChangePushNotificationSettings}"
                                               />
                             </StackPanel>
-
+                            <StackPanel Margin="0 24 0 0">
+                                <TextBlock x:Uid="Settings_FontSize"
+                                       Text="[Font Size]"
+                                       Style="{StaticResource BodyTextStyle}" />
+                                <ComboBox x:Name="FontSizeCB" SelectedValue="{x:Bind ViewModel.FontSize, Mode=TwoWay}"></ComboBox>
+                            </StackPanel>
                             <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
                                 <TextBlock
                         x:Uid="Settings_Theme"

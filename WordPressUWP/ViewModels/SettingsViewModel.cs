@@ -53,6 +53,14 @@ namespace WordPressUWP.ViewModels
             }
         }
 
+        private int _fontSize;
+        public int FontSize
+        {
+            get { return _fontSize; }
+            set { Set(ref _fontSize, value); }
+        }
+
+
         private bool _pushNotificationsEnabled;
         public bool PushNotificationsEnabled
         {
@@ -69,6 +77,7 @@ namespace WordPressUWP.ViewModels
         {
             VersionDescription = GetVersionDescription();
             PushNotificationsEnabled = await ApplicationData.Current.LocalSettings.ReadAsync<bool>(nameof(PushNotificationsEnabled));
+            
         }
 
         private string GetVersionDescription()
