@@ -1,14 +1,11 @@
 ﻿using System;
-
 using GalaSoft.MvvmLight.Ioc;
-
-using Microsoft.Practices.ServiceLocation;
-
 using WordPressUWP.Services;
 using WordPressUWP.Views;
 using WordPressUWP.Interfaces;
 using Microsoft.Toolkit.Collections;
 using WordPressPCL.Models;
+using CommonServiceLocator;
 
 namespace WordPressUWP.ViewModels
 {

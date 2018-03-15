@@ -72,7 +72,14 @@ namespace WordPressUWP.Services
         public async Task<bool> AuthenticateUser(string username, string password)
         {
             _client.AuthMethod = AuthMethod.JWT;
-            await _client.RequestJWToken(username, password);
+            try
+            {
+                await _client.RequestJWToken(username, password);
+            }
+            catch
+            {
+                // Authentication failed
+            }
             var isAuthenticated = await IsUserAuthenticated();
 
             if (isAuthenticated)

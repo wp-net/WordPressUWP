@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommonServiceLocator;
+using System;
 using System.Threading.Tasks;
 
 using Windows.ApplicationModel.Activation;
@@ -15,7 +16,7 @@ namespace WordPressUWP.Activation
         {
             get
             {
-                return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+                return ServiceLocator.Current.GetInstance<NavigationServiceEx>();
             }
         }
 

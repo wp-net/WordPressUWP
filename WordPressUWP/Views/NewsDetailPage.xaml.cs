@@ -27,7 +27,7 @@ namespace WordPressUWP.Views
             await ViewModel.Init();
         }
 
-        private void CommentToggleButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void CommentToggleButton_Click(object sender, RoutedEventArgs e)
         {
             bool showCommentInput = CommentToggleButton.IsChecked ?? false;
             ToggleCommentInput(showCommentInput);
@@ -66,6 +66,19 @@ namespace WordPressUWP.Views
                 PostPivot.SelectedIndex = 1;
             else if (e.Direction.Equals(SwipeDirection.Right))
                 ViewModel.NavigationService.GoBack();
+        }
+
+        private void FirstCommentBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (CommentListView.Items.Count > 0)
+                CommentListView.ScrollIntoView(CommentListView.Items[0]);
+        }
+
+        private void LastCommentBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var itemIndex = CommentListView.Items.Count - 1;
+            if (itemIndex > 0)
+                CommentListView.ScrollIntoView(CommentListView.Items[itemIndex]);
         }
     }
 }
