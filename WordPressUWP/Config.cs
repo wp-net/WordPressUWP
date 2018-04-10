@@ -12,5 +12,8 @@
 
         // Comments
         public static int CommentDepth = 3;
+
+        // Authentication
+        public static bool EnableLogin = true;
     }
 }

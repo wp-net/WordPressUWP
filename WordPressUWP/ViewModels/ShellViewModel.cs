@@ -219,13 +219,16 @@ namespace WordPressUWP.ViewModels
             }
             _secondaryItems.Add(new ShellNavigationItem("Shell_Settings".GetLocalized(), Symbol.Setting, typeof(SettingsViewModel).FullName));
 
-            _secondaryItems.Add(
+            if (Config.EnableLogin)
+            {
+                _secondaryItems.Add(
                 ShellNavigationItem.ForAction(
                     "Shell_Me".GetLocalized(),
                     Symbol.Contact,
                     () => {
                         OpenLoginPopup();
                     }));
+            }
         }
 
         private void ItemSelected(ItemClickEventArgs args)
