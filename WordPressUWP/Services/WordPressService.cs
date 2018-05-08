@@ -1,9 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
-using Microsoft.Toolkit.Collections;
-using Nito.AsyncEx;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
 using WordPressPCL;
@@ -18,7 +14,6 @@ namespace WordPressUWP.Services
     {
         private WordPressClient _client;
         private ApplicationDataContainer _localSettings;
-        private readonly AsyncLock _mutex = new AsyncLock();
 
         private bool _isAuthenticated;
         public bool IsAuthenticated
@@ -96,25 +91,21 @@ namespace WordPressUWP.Services
         public async Task<List<CommentThreaded>> GetCommentsForPost(int postid)
         {
             var comments = await _client.Comments.GetAllCommentsForPost(postid);
-            return ThreadedCommentsHelper.GetThreadedComments(comments, 2);
+            return ThreadedCommentsHelper.GetThreadedComments(comments, 2, true);
         }
 
         public async Task<IEnumerable<Post>> GetLatestPosts(int page = 0, int perPage = 20)
         {
-            // Queue page loads to prevent list from being out of order
-            using (await _mutex.LockAsync())
+            IsLoadingPosts = true;
+            page++;
+            var posts = await _client.Posts.Query(new PostsQueryBuilder()
             {
-                IsLoadingPosts = true;
-                page++;
-                var posts = await _client.Posts.Query(new PostsQueryBuilder()
-                {
-                    Page = page,
-                    PerPage = perPage,
-                    Embed = true
-                });
-                IsLoadingPosts = false;
-                return posts;
-            }
+                Page = page,
+                PerPage = perPage,
+                Embed = true
+            });
+            IsLoadingPosts = false;
+            return posts;
         }
 
         public User GetUser()
