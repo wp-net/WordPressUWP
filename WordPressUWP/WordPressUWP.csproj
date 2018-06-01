@@ -141,6 +141,7 @@
     <Compile Include="Helpers\HtmlConverter.cs" />
     <Compile Include="Helpers\HtmlDecodeConverter.cs" />
     <Compile Include="Helpers\HtmlTools.cs" />
+    <Compile Include="Helpers\InverseBoolConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\ProtocolToURLConverter.cs" />
     <Compile Include="Helpers\ReplyToConverter.cs" />

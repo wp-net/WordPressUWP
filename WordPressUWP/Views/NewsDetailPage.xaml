@@ -162,6 +162,7 @@
                                     Grid.Row="1"
                                     VerticalAlignment="Top"
                                     Click="{x:Bind ViewModel.PostComment, Mode=OneWay}"
+                                    IsEnabled="{x:Bind ViewModel.IsCommenting, Converter={StaticResource InverseBoolConverter}, Mode=OneWay}"
                                     Margin="0">
                                 <SymbolIcon Symbol="Send" RenderTransformOrigin="0.5,0.5">
                                     <SymbolIcon.RenderTransform>

@@ -3,11 +3,12 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vms="using:WordPressUWP.ViewModels"
-    >
+             xmlns:helpers="using:WordPressUWP.Helpers">
 
     <Application.Resources>
         <ResourceDictionary>
             <vms:ViewModelLocator x:Key="Locator" />
+            <helpers:InverseBoolConverter x:Key="InverseBoolConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/TextBlock.xaml"/>
             </ResourceDictionary.MergedDictionaries>

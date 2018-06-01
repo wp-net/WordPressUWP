@@ -108,6 +108,14 @@ namespace WordPressUWP.ViewModels
             set { Set(ref _isCommentsLoading, value); }
         }
 
+
+        private bool _isCommenting;
+        public bool IsCommenting
+        {
+            get { return _isCommenting; }
+            set { Set(ref _isCommenting, value); }
+        }
+
         public NewsViewModel(IWordPressService wordPressService, IInAppNotificationService inAppNotificationService)
         {
             _wordPressService = wordPressService;
@@ -170,27 +178,36 @@ namespace WordPressUWP.ViewModels
 
         public async Task PostComment()
         {
-            if (await _wordPressService.IsUserAuthenticated())
+            try
             {
-                int replyto = 0;
-                if (CommentReply != null)
-                    replyto = CommentReply.Id;
-                var comment = await _wordPressService.PostComment(SelectedPost.Id, CommentInput, replyto);
-                if (comment != null)
+                IsCommenting = true;
+
+                if (await _wordPressService.IsUserAuthenticated())
                 {
-                    _inAppNotificationService.ShowInAppNotification("successfully posted comment");
-                    CommentInput = String.Empty;
-                    await GetComments(SelectedPost.Id);
-                    CommentReplyUnset();
+                    int replyto = 0;
+                    if (CommentReply != null)
+                        replyto = CommentReply.Id;
+                    var comment = await _wordPressService.PostComment(SelectedPost.Id, CommentInput, replyto);
+                    if (comment != null)
+                    {
+                        _inAppNotificationService.ShowInAppNotification("successfully posted comment");
+                        CommentInput = String.Empty;
+                        await GetComments(SelectedPost.Id);
+                        CommentReplyUnset();
+                    }
+                    else
+                    {
+                        _inAppNotificationService.ShowInAppNotification("something went wrong...");
+                    }
                 }
                 else
                 {
-                    _inAppNotificationService.ShowInAppNotification("something went wrong...");
+                    _inAppNotificationService.ShowInAppNotification("You have to log in first.");
                 }
             }
-            else
+            finally
             {
-                _inAppNotificationService.ShowInAppNotification("You have to log in first.");
+                IsCommenting = false;
             }
         }
 
