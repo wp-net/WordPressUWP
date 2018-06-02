@@ -306,4 +306,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   <data name="LastCommentButton.Label" xml:space="preserve">
     <value>Letzter Kommentar</value>
   </data>
+  <data name="Notification_DownloadPostsFailed" xml:space="preserve">
+    <value>Beim Abruf der neuesten Artikel ist ein Fehler aufgetreten.</value>
+  </data>
 </root>

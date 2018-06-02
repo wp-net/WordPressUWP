@@ -380,4 +380,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   <data name="LastCommentButton.Label" xml:space="preserve">
     <value>Last Comment</value>
   </data>
+  <data name="Notification_DownloadPostsFailed" xml:space="preserve">
+    <value>Something went wrong while downloading the latest posts.</value>
+  </data>
 </root>

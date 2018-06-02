@@ -1,7 +1,10 @@
 ﻿using GalaSoft.MvvmLight;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Storage;
+using Windows.UI.Xaml;
 using WordPressPCL;
 using WordPressPCL.Models;
 using WordPressPCL.Utility;
@@ -12,7 +15,8 @@ namespace WordPressUWP.Services
 {
     public class WordPressService : ViewModelBase, IWordPressService
     {
-        private WordPressClient _client;
+        private readonly IInAppNotificationService _inAppNotificationService;
+        private readonly WordPressClient _client;
         private ApplicationDataContainer _localSettings;
 
         private bool _isAuthenticated;
@@ -36,8 +40,9 @@ namespace WordPressUWP.Services
             set { Set(ref _isLoadingPosts, value); }
         }
 
-        public WordPressService()
+        public WordPressService(IInAppNotificationService inAppNotificationService)
         {
+            _inAppNotificationService = inAppNotificationService;
             _client = new WordPressClient(Config.WordPressUri);
             _localSettings = ApplicationData.Current.LocalSettings;
             Init();
@@ -98,12 +103,22 @@ namespace WordPressUWP.Services
         {
             IsLoadingPosts = true;
             page++;
-            var posts = await _client.Posts.Query(new PostsQueryBuilder()
+            IEnumerable<Post> posts = new List<Post>();
+            try
             {
-                Page = page,
-                PerPage = perPage,
-                Embed = true
-            });
+                posts = await _client.Posts.Query(new PostsQueryBuilder()
+                {
+                    Page = page,
+                    PerPage = perPage,
+                    Embed = true
+                });
+            }
+            catch
+            {
+                var res = ResourceLoader.GetForCurrentView();
+                var msg = res.GetString("Notification_DownloadPostsFailed");
+                _inAppNotificationService.ShowInAppNotification(msg);
+            }
             IsLoadingPosts = false;
             return posts;
         }
