@@ -33,7 +33,7 @@
                                 <TextBlock x:Uid="Settings_FontSize"
                                        Text="[Font Size]"
                                        Style="{StaticResource BodyTextStyle}" />
-                                <ComboBox x:Name="FontSizeCB" SelectedValue="{x:Bind ViewModel.FontSize, Mode=TwoWay}"></ComboBox>
+                                <ComboBox Margin="0 12 0 0" x:Name="FontSizeCB" SelectedValue="{x:Bind ViewModel.SelectedFontSize, Mode=TwoWay}" SelectionChanged="{x:Bind ViewModel.ChangeFontSizeSettings}"></ComboBox>
                             </StackPanel>
                             <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
                                 <TextBlock

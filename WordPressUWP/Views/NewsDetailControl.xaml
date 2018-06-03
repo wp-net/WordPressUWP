@@ -11,14 +11,13 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
     <UserControl.Resources>
-        <helper:HtmlConverter x:Key="HtmlConverter" />
         <helper:HtmlDecodeConverter x:Key="HtmlDecodeConverter"/>
     </UserControl.Resources>
     <Grid>
         <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your detail content.-->
         <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}" Grid.Row="0">
             <WebView x:Name="PostWebView"
-                     ctk:WebViewExtensions.Content="{x:Bind MasterMenuItem, Converter={StaticResource HtmlConverter}, Mode=OneWay}"
+                     ctk:WebViewExtensions.Content="{x:Bind MasterMenuItem.Content.Rendered, Mode=OneWay}"
                      Height="Auto"
                      ScriptNotify="PostWebView_ScriptNotify"
                      NavigationStarting="WebView_NavigationStarting" />

@@ -147,7 +147,7 @@ namespace WordPressUWP.ViewModels
             {
                 try
                 {
-                    await Posts.RefreshAsync();
+                    Posts.Refresh();
                 }
                 catch (Exception ex)
                 {

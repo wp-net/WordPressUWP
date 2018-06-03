@@ -138,7 +138,6 @@
     <Compile Include="Helpers\DisplayTermsConverter.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\FeaturedImageConverter.cs" />
-    <Compile Include="Helpers\HtmlConverter.cs" />
     <Compile Include="Helpers\HtmlDecodeConverter.cs" />
     <Compile Include="Helpers\HtmlTools.cs" />
     <Compile Include="Helpers\InverseBoolConverter.cs" />
@@ -152,6 +151,8 @@
     <Compile Include="Interfaces\IInAppNotificationService.cs" />
     <Compile Include="Interfaces\IPushNotificationService.cs" />
     <Compile Include="Interfaces\IWordPressService.cs" />
+    <Compile Include="Models\HtmlSettings.cs" />
+    <Compile Include="Models\SettingsLocality.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\FirstRunDisplayService.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Services\OnBackgroundEnteringEventArgs.cs" />
     <Compile Include="Services\PostsService.cs" />
     <Compile Include="Services\PushNotificationService.cs" />
+    <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Services\SuspendAndResumeService.cs" />
     <Compile Include="Services\SuspensionState.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
@@ -261,9 +263,7 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Assets\Placeholder\placeholder.jpg" />
     <Content Include="Assets\Web\Dark.css" />

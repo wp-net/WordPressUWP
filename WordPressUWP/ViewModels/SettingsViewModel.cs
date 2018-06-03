@@ -9,6 +9,8 @@ using WordPressUWP.Interfaces;
 using Windows.Storage;
 using WordPressUWP.Helpers;
 using Windows.UI.Xaml.Controls;
+using System.Diagnostics;
+using WordPressUWP.Models;
 
 namespace WordPressUWP.ViewModels
 {
@@ -17,6 +19,7 @@ namespace WordPressUWP.ViewModels
         // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
         private ElementTheme _elementTheme = ThemeSelectorService.Theme;
         private IPushNotificationService _pushNotificationService;
+        private SettingsService _settingsService;
 
         public ElementTheme ElementTheme
         {
@@ -54,7 +57,7 @@ namespace WordPressUWP.ViewModels
         }
 
         private int _fontSize;
-        public int FontSize
+        public int SelectedFontSize
         {
             get { return _fontSize; }
             set { Set(ref _fontSize, value); }
@@ -68,16 +71,17 @@ namespace WordPressUWP.ViewModels
             set { Set(ref _pushNotificationsEnabled, value); }
         }
 
-        public SettingsViewModel(IPushNotificationService pushNotificationService)
+        public SettingsViewModel(IPushNotificationService pushNotificationService, SettingsService settingsService)
         {
             _pushNotificationService = pushNotificationService;
+            _settingsService = settingsService;
         }
 
-        public async void Initialize()
+        public void Initialize()
         {
+            SelectedFontSize = _settingsService.GetSetting("fontsize", () => Config.DefaultFontSize, SettingLocality.Roamed);
             VersionDescription = GetVersionDescription();
-            PushNotificationsEnabled = await ApplicationData.Current.LocalSettings.ReadAsync<bool>(nameof(PushNotificationsEnabled));
-            
+            PushNotificationsEnabled = _settingsService.GetSetting(nameof(PushNotificationsEnabled), () => true, SettingLocality.Local);            
         }
 
         private string GetVersionDescription()
@@ -89,16 +93,22 @@ namespace WordPressUWP.ViewModels
             return $"{package.DisplayName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
         }
 
-        public async void ChangePushNotificationSettings(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        public async void ChangePushNotificationSettings(object sender, RoutedEventArgs e)
         {
             if (sender is ToggleSwitch ts && Config.NotificationsEnabled)
             {
-                await ApplicationData.Current.LocalSettings.SaveAsync(nameof(PushNotificationsEnabled), ts.IsOn);
+                _settingsService.SetSetting(nameof(PushNotificationsEnabled), ts.IsOn, SettingLocality.Local);
                 if (ts.IsOn)
                     PushNotificationsEnabled = await _pushNotificationService.EnablePushNotifications();
                 else
                     await _pushNotificationService.DisablePushNotificaitons();
             }
+        }
+
+        public void ChangeFontSizeSettings(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine($"saving font size {SelectedFontSize}");
+            _settingsService.SetSetting("fontsize", SelectedFontSize, SettingLocality.Roamed);
         }
     }
 }

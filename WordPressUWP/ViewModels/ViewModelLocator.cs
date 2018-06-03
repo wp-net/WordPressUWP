@@ -21,6 +21,7 @@ namespace WordPressUWP.ViewModels
             SimpleIoc.Default.Register<IPushNotificationService, PushNotificationService>();
             SimpleIoc.Default.Register<IIncrementalSource<Post>, PostsService>();
             SimpleIoc.Default.Register<ShellViewModel>();
+            SimpleIoc.Default.Register<SettingsService>();
             Register<NewsViewModel, NewsPage>();
             Register<NewsDetailViewModel, NewsDetailPage>();
             Register<SettingsViewModel, SettingsPage>();
@@ -39,6 +40,8 @@ namespace WordPressUWP.ViewModels
         public ShellViewModel ShellViewModel => ServiceLocator.Current.GetInstance<ShellViewModel>();
 
         public NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+
+        public SettingsService SettingsSerive => ServiceLocator.Current.GetInstance<SettingsService>();
 
 
 

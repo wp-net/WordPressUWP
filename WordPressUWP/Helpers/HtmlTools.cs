@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Windows.UI.Xaml;
 using WordPressPCL.Models;
+using WordPressUWP.Models;
 using WordPressUWP.Services;
 
 namespace WordPressUWP.Helpers
@@ -16,7 +17,7 @@ namespace WordPressUWP.Helpers
             return Regex.Replace(text, @"<(.|\n)*?>", string.Empty);
         }
 
-        public static string WrapContent(Post post)
+        public static string WrapContent(Post post, HtmlSettings settings)
         {
             var sb = new StringBuilder();
             var isDark = ThemeSelectorService.IsDarkMode();
@@ -46,7 +47,7 @@ namespace WordPressUWP.Helpers
             }
 
             // sb.Append("<script>window.external.notify('test');</script>");
-
+            sb.Append("<style>p {font-size: " + settings.FontSize + "px;}</style>");
             sb.Append("</head><body>");
 
             sb.Append(FeaturedImage(post));

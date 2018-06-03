@@ -28,7 +28,7 @@ namespace WordPressUWP.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ViewModel.Initialize();
-            int[] sizes = { 12, 14, 16, 18 };
+            int[] sizes = { 12, 14, 16, 18, 20, 22, 24 };
             FontSizeCB.ItemsSource = sizes;
         }
     }

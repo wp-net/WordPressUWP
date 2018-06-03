@@ -15,5 +15,8 @@
 
         // Authentication
         public static bool EnableLogin = true;
+
+        // Style
+        public static int DefaultFontSize = 16;
     }
 }

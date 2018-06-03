@@ -10,14 +10,16 @@ using WordPressPCL.Models;
 using WordPressPCL.Utility;
 using WordPressUWP.Helpers;
 using WordPressUWP.Interfaces;
+using WordPressUWP.Models;
 
 namespace WordPressUWP.Services
 {
     public class WordPressService : ViewModelBase, IWordPressService
     {
+        private readonly SettingsService _settingsService;
+        private readonly ApplicationDataContainer _localSettings;
         private readonly IInAppNotificationService _inAppNotificationService;
         private readonly WordPressClient _client;
-        private ApplicationDataContainer _localSettings;
 
         private bool _isAuthenticated;
         public bool IsAuthenticated
@@ -40,18 +42,19 @@ namespace WordPressUWP.Services
             set { Set(ref _isLoadingPosts, value); }
         }
 
-        public WordPressService(IInAppNotificationService inAppNotificationService)
+        public WordPressService(IInAppNotificationService inAppNotificationService, SettingsService settingsService)
         {
+            _settingsService = settingsService;
+            _localSettings = ApplicationData.Current.LocalSettings;
             _inAppNotificationService = inAppNotificationService;
             _client = new WordPressClient(Config.WordPressUri);
-            _localSettings = ApplicationData.Current.LocalSettings;
             Init();
         }
 
         public async void Init()
         {
             IsAuthenticated = false;
-            var username = _localSettings.ReadString("Username");
+            var username = _settingsService.GetSetting<string>("Username", () => null, SettingLocality.Roamed);
             if (username != null)
             {
                 // get password
@@ -85,7 +88,7 @@ namespace WordPressUWP.Services
             if (isAuthenticated)
             {
                 // Store username & JWT token for logging in on next app launch
-                SettingsStorageExtensions.SaveString(_localSettings, "Username", username);
+                _settingsService.SetSetting("Username", username, SettingLocality.Roamed);
                 SettingsStorageExtensions.SaveCredentialsToLocker(username, _client.GetToken());
                 CurrentUser = await _client.Users.GetCurrentUser();
             }

@@ -309,4 +309,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   <data name="Notification_DownloadPostsFailed" xml:space="preserve">
     <value>Beim Abruf der neuesten Artikel ist ein Fehler aufgetreten.</value>
   </data>
+  <data name="Settings_FontSize.Text" xml:space="preserve">
+    <value>Schriftgröße</value>
+  </data>
 </root>

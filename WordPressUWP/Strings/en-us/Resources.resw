@@ -383,4 +383,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   <data name="Notification_DownloadPostsFailed" xml:space="preserve">
     <value>Something went wrong while downloading the latest posts.</value>
   </data>
+  <data name="Settings_FontSize.Text" xml:space="preserve">
+    <value>Font Size</value>
+    <comment>Settings</comment>
+  </data>
 </root>
