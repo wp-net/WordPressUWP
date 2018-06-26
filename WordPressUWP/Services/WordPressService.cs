@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
@@ -99,7 +100,8 @@ namespace WordPressUWP.Services
         public async Task<List<CommentThreaded>> GetCommentsForPost(int postid)
         {
             var comments = await _client.Comments.GetAllCommentsForPost(postid);
-            return ThreadedCommentsHelper.GetThreadedComments(comments, 2, true);
+            var isDesc = _settingsService.GetSetting("CommentsOrderDesc", () => true, SettingLocality.Roamed);
+            return ThreadedCommentsHelper.GetThreadedComments(comments, 2, isDesc);
         }
 
         public async Task<IEnumerable<Post>> GetLatestPosts(int page = 0, int perPage = 20)

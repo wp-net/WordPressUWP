@@ -63,6 +63,13 @@ namespace WordPressUWP.ViewModels
             set { Set(ref _fontSize, value); }
         }
 
+        private bool _commentsOrderDesc;
+        public bool CommentsOrderDesc
+        {
+            get { return _commentsOrderDesc; }
+            set { Set(ref _commentsOrderDesc, value); }
+        }
+
 
         private bool _pushNotificationsEnabled;
         public bool PushNotificationsEnabled
@@ -81,7 +88,8 @@ namespace WordPressUWP.ViewModels
         {
             SelectedFontSize = _settingsService.GetSetting("fontsize", () => Config.DefaultFontSize, SettingLocality.Roamed);
             VersionDescription = GetVersionDescription();
-            PushNotificationsEnabled = _settingsService.GetSetting(nameof(PushNotificationsEnabled), () => true, SettingLocality.Local);            
+            PushNotificationsEnabled = _settingsService.GetSetting(nameof(PushNotificationsEnabled), () => true, SettingLocality.Local);
+            CommentsOrderDesc = _settingsService.GetSetting(nameof(CommentsOrderDesc), () => true, SettingLocality.Roamed);
         }
 
         private string GetVersionDescription()
@@ -107,8 +115,15 @@ namespace WordPressUWP.ViewModels
 
         public void ChangeFontSizeSettings(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine($"saving font size {SelectedFontSize}");
             _settingsService.SetSetting("fontsize", SelectedFontSize, SettingLocality.Roamed);
+        }
+
+        public void ChangeCommentOrderSettings(object sender, RoutedEventArgs e)
+        {
+            if (sender is ToggleSwitch ts)
+            {
+                _settingsService.SetSetting("CommentsOrderDesc", ts.IsOn, SettingLocality.Roamed);
+            }
         }
     }
 }

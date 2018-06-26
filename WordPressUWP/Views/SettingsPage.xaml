@@ -35,6 +35,17 @@
                                        Style="{StaticResource BodyTextStyle}" />
                                 <ComboBox Margin="0 12 0 0" x:Name="FontSizeCB" SelectedValue="{x:Bind ViewModel.SelectedFontSize, Mode=TwoWay}" SelectionChanged="{x:Bind ViewModel.ChangeFontSizeSettings}"></ComboBox>
                             </StackPanel>
+                            <StackPanel Margin="0 24 0 0">
+                                <TextBlock x:Uid="Settings_CommentOrder"
+                                       Text="[Order Comments]"
+                                       Style="{StaticResource BodyTextStyle}" />
+                                <ToggleSwitch x:Name="CommentsOrderToggle" x:Uid="Settings_CommentOrderToggle"
+                                              IsOn="{x:Bind ViewModel.CommentsOrderDesc, Mode=TwoWay}"
+                                              Toggled="{x:Bind ViewModel.ChangeCommentOrderSettings}"
+                                              OnContent="[Newest first]"
+                                              OffContent="[Newest last]">
+                                </ToggleSwitch>
+                            </StackPanel>
                             <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
                                 <TextBlock
                         x:Uid="Settings_Theme"

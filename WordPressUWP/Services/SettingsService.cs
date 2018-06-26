@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Windows.Storage;
 using WordPressUWP.Models;
 
@@ -58,6 +59,7 @@ namespace WordPressUWP.Services
                 //get existing
                 try
                 {
+                    Debug.WriteLine($"getting {key} as {result}");
                     return (T)result;
                 }
                 catch
@@ -71,6 +73,7 @@ namespace WordPressUWP.Services
 
         public void SetSetting<T>(string key, T value, SettingLocality locality = SettingLocality.Local)
         {
+            Debug.WriteLine($"saving {key} as {value}");
             var container = locality == SettingLocality.Roamed ? ApplicationData.Current.RoamingSettings : ApplicationData.Current.LocalSettings;
             container.Values[key] = value;
             //ensure cache is updated

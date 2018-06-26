@@ -312,4 +312,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   <data name="Settings_FontSize.Text" xml:space="preserve">
     <value>Schriftgröße</value>
   </data>
+  <data name="Settings_CommentOrder.Text" xml:space="preserve">
+    <value>Kommentare Reihenfolge</value>
+    <comment>Comment Order</comment>
+  </data>
+  <data name="Settings_CommentOrderToggle.OffContent" xml:space="preserve">
+    <value>Älteste zuerst</value>
+    <comment>Oldest comment on top</comment>
+  </data>
+  <data name="Settings_CommentOrderToggle.OnContent" xml:space="preserve">
+    <value>Neuste zuerst</value>
+    <comment>Newest comment on top</comment>
+  </data>
 </root>
