@@ -17,6 +17,7 @@ using System.Net;
 using Windows.UI.Xaml.Navigation;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Messaging;
+using Windows.ApplicationModel.Resources;
 
 namespace WordPressUWP.ViewModels
 {
@@ -141,6 +142,7 @@ namespace WordPressUWP.ViewModels
         public async Task RefreshPosts()
         {
             Debug.WriteLine("RefreshPosts");
+            var res = ResourceLoader.GetForCurrentView();
             if (Posts != null && !Posts.IsLoading && Posts.Count > 0 && !_wordPressService.IsLoadingPosts)
             {
                 try
@@ -149,7 +151,7 @@ namespace WordPressUWP.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    MessengerInstance.Send(new NotificationMessage("Refresh failed"));
+                    MessengerInstance.Send(new NotificationMessage(res.GetString("Notification_RefreshFailed")));
                 }
             } else
             {
@@ -176,6 +178,7 @@ namespace WordPressUWP.ViewModels
 
         public async Task PostComment()
         {
+            var res = ResourceLoader.GetForCurrentView();
             try
             {
                 IsCommenting = true;
@@ -188,19 +191,19 @@ namespace WordPressUWP.ViewModels
                     var comment = await _wordPressService.PostComment(SelectedPost.Id, CommentInput, replyto);
                     if (comment != null)
                     {
-                        MessengerInstance.Send(new NotificationMessage("successfully posted comment"));
+                        MessengerInstance.Send(new NotificationMessage(res.GetString("Notification_CommentPosted")));
                         CommentInput = String.Empty;
                         await GetComments(SelectedPost.Id);
                         CommentReplyUnset();
                     }
                     else
                     {
-                        MessengerInstance.Send(new NotificationMessage("something went wrong..."));
+                        MessengerInstance.Send(new NotificationMessage(res.GetString("Notification_GenericError")));
                     }
                 }
                 else
                 {
-                    MessengerInstance.Send(new NotificationMessage("You have to log in first."));
+                    MessengerInstance.Send(new NotificationMessage(res.GetString("Notification_Unauthenticated")));
                 }
             }
             finally

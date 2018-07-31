@@ -399,4 +399,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <value>Newest first</value>
     <comment>Newest comment on top</comment>
   </data>
+  <data name="Notification_CommentPosted" xml:space="preserve">
+    <value>successfully posted comment</value>
+  </data>
+  <data name="Notification_GenericError" xml:space="preserve">
+    <value>something went wrong... Sorry!</value>
+  </data>
+  <data name="Notification_RefreshFailed" xml:space="preserve">
+    <value>Refresh failed</value>
+  </data>
+  <data name="Notification_Unauthenticated" xml:space="preserve">
+    <value>You have to log in first.</value>
+  </data>
 </root>
