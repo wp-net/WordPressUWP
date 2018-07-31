@@ -17,7 +17,6 @@ namespace WordPressUWP.ViewModels
 
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
             SimpleIoc.Default.Register<IWordPressService, WordPressService>();
-            SimpleIoc.Default.Register<IInAppNotificationService, InAppNotificationService>();
             SimpleIoc.Default.Register<IPushNotificationService, PushNotificationService>();
             SimpleIoc.Default.Register<IIncrementalSource<Post>, PostsService>();
             SimpleIoc.Default.Register<ShellViewModel>();

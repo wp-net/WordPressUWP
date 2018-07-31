@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Messaging;
+using System;
 using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -22,7 +23,7 @@ namespace WordPressUWP.Views
 
         private void Page_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            ViewModel.InAppNotificationRaised += ViewModel_InAppNotificationRaised;
+            Messenger.Default.Register<NotificationMessage>(this, (message) => GlobalInAppNotification.Show(message.Notification, 3000));
             Window.Current.SizeChanged += Current_SizeChanged;
             InitLoginPopup();
         }
@@ -58,11 +59,6 @@ namespace WordPressUWP.Views
 
             LoginPopupGrid.VerticalAlignment = VerticalAlignment.Center;
             LoginPopupGrid.HorizontalAlignment = HorizontalAlignment.Center;
-        }
-
-        private void ViewModel_InAppNotificationRaised(object sender, string e)
-        {
-            GlobalInAppNotification.Show(e, 3000);
         }
 
         private void LoginBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)

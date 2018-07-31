@@ -11,19 +11,18 @@ using WordPressUWP.Services;
 using WordPressPCL.Models;
 using WordPressUWP.Interfaces;
 using System.Diagnostics;
-using System.Collections.Generic;
 using Microsoft.Toolkit.Uwp;
 using Windows.ApplicationModel.DataTransfer;
 using System.Net;
 using Windows.UI.Xaml.Navigation;
 using CommonServiceLocator;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace WordPressUWP.ViewModels
 {
     public class NewsViewModel : ViewModelBase
     {
         private IWordPressService _wordPressService;
-        private IInAppNotificationService _inAppNotificationService;
         private int _postid;
         private bool _firstLaunch = true;
         private DataTransferManager _dataTransferManager;
@@ -116,10 +115,9 @@ namespace WordPressUWP.ViewModels
             set { Set(ref _isCommenting, value); }
         }
 
-        public NewsViewModel(IWordPressService wordPressService, IInAppNotificationService inAppNotificationService)
+        public NewsViewModel(IWordPressService wordPressService)
         {
             _wordPressService = wordPressService;
-            _inAppNotificationService = inAppNotificationService;
         }
 
         internal async void Init(VisualState currentState, NavigationEventArgs e)
@@ -151,7 +149,7 @@ namespace WordPressUWP.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    _inAppNotificationService.ShowInAppNotification("Refresh failed");
+                    MessengerInstance.Send(new NotificationMessage("Refresh failed"));
                 }
             } else
             {
@@ -190,19 +188,19 @@ namespace WordPressUWP.ViewModels
                     var comment = await _wordPressService.PostComment(SelectedPost.Id, CommentInput, replyto);
                     if (comment != null)
                     {
-                        _inAppNotificationService.ShowInAppNotification("successfully posted comment");
+                        MessengerInstance.Send(new NotificationMessage("successfully posted comment"));
                         CommentInput = String.Empty;
                         await GetComments(SelectedPost.Id);
                         CommentReplyUnset();
                     }
                     else
                     {
-                        _inAppNotificationService.ShowInAppNotification("something went wrong...");
+                        MessengerInstance.Send(new NotificationMessage("something went wrong..."));
                     }
                 }
                 else
                 {
-                    _inAppNotificationService.ShowInAppNotification("You have to log in first.");
+                    MessengerInstance.Send(new NotificationMessage("You have to log in first."));
                 }
             }
             finally

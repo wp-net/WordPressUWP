@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,7 +20,6 @@ namespace WordPressUWP.Services
     {
         private readonly SettingsService _settingsService;
         private readonly ApplicationDataContainer _localSettings;
-        private readonly IInAppNotificationService _inAppNotificationService;
         private readonly WordPressClient _client;
 
         private bool _isAuthenticated;
@@ -43,11 +43,10 @@ namespace WordPressUWP.Services
             set { Set(ref _isLoadingPosts, value); }
         }
 
-        public WordPressService(IInAppNotificationService inAppNotificationService, SettingsService settingsService)
+        public WordPressService(SettingsService settingsService)
         {
             _settingsService = settingsService;
             _localSettings = ApplicationData.Current.LocalSettings;
-            _inAppNotificationService = inAppNotificationService;
             _client = new WordPressClient(Config.WordPressUri);
             Init();
         }
@@ -122,7 +121,7 @@ namespace WordPressUWP.Services
             {
                 var res = ResourceLoader.GetForCurrentView();
                 var msg = res.GetString("Notification_DownloadPostsFailed");
-                _inAppNotificationService.ShowInAppNotification(msg);
+                Messenger.Default.Send(new NotificationMessage(msg));
             }
             IsLoadingPosts = false;
             return posts;

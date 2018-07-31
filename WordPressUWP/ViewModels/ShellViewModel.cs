@@ -12,6 +12,7 @@ using WordPressUWP.Helpers;
 using WordPressUWP.Services;
 using WordPressUWP.Interfaces;
 using CommonServiceLocator;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace WordPressUWP.ViewModels
 {
@@ -118,7 +119,6 @@ namespace WordPressUWP.ViewModels
 
         private ICommand _stateChangedCommand;
         private IWordPressService _wordPressService;
-        private IInAppNotificationService _inAppNotificationService;
 
         public ICommand StateChangedCommand
         {
@@ -135,10 +135,9 @@ namespace WordPressUWP.ViewModels
 
         public event EventHandler<string> InAppNotificationRaised;
 
-        public ShellViewModel(IWordPressService wordPressService, IInAppNotificationService inAppNotificationService)
+        public ShellViewModel(IWordPressService wordPressService)
         {
             _wordPressService = wordPressService;
-            _inAppNotificationService = inAppNotificationService;
         }
 
         private void GoToState(string stateName)
@@ -169,14 +168,8 @@ namespace WordPressUWP.ViewModels
             PopulateNavItems();
 
             InitializeState(Window.Current.Bounds.Width);
-            _inAppNotificationService.InAppNotificationRaised += _inAppNotificationService_InAppNotificationRaised;
         }
 
-        private void _inAppNotificationService_InAppNotificationRaised(object sender, string e)
-        {
-            // Relay to codebehind
-            InAppNotificationRaised.Invoke(null, e);
-        }
 
         private void InitializeState(double windowWith)
         {

@@ -148,7 +148,6 @@
     <Compile Include="Helpers\SwipedEventArgs.cs" />
     <Compile Include="Helpers\TheadedCommentMarginConverter.cs" />
     <Compile Include="Helpers\VisibleWhenZeroConverter.cs" />
-    <Compile Include="Interfaces\IInAppNotificationService.cs" />
     <Compile Include="Interfaces\IPushNotificationService.cs" />
     <Compile Include="Interfaces\IWordPressService.cs" />
     <Compile Include="Models\HtmlSettings.cs" />
@@ -157,7 +156,6 @@
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\FirstRunDisplayService.cs" />
     <Compile Include="Services\HubNotificationsService.cs" />
-    <Compile Include="Services\InAppNotificationService.cs" />
     <Compile Include="Services\LiveTileService.cs" />
     <Compile Include="Services\LiveTileService.Samples.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
