@@ -81,15 +81,18 @@ namespace WordPressUWP.Helpers
             sb.Append("<img class=\"alignnone size-full\" id=\"featured\" ");
             sb.Append($"src=\"{imgSrc}\" width=\"{img.MediaDetails.Width}\" height=\"{img.MediaDetails.Height}\" ");
 
-            sb.Append("srcset=\"");
-            foreach (var size in img.MediaDetails.Sizes)
+            if (img.MediaDetails.Sizes != null)
             {
-                sb.Append($"{size.Value.SourceUrl} {size.Value.Width}w ");
+                sb.Append("srcset=\"");
+                foreach (var size in img.MediaDetails.Sizes)
+                {
+                    sb.Append($"{size.Value.SourceUrl} {size.Value.Width}w ");
+                }
+                sb.Append("\" ");
             }
-            sb.Append("\" ");
-
-            sb.Append($"sizes =\"(max-width: {img.MediaDetails.Width}px) 100vw, {img.MediaDetails.Width}px\" />");
-
+            if(img.MediaDetails.Width != 0) { 
+                sb.Append($"sizes =\"(max-width: {img.MediaDetails.Width}px) 100vw, {img.MediaDetails.Width}px\" />");
+            }
             return sb.ToString();
         }
     }
